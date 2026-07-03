@@ -1,0 +1,81 @@
+---
+/**
+ * About — "dare to care" 6th-year narrative. Reversible split on sand ground.
+ *
+ * CMS hints: heading short-text, body rich-text-editor, image image-picker,
+ * secondaryCta link-picker.
+ */
+import SplitContent from '~/components/primitives/SplitContent.astro';
+import Button from '~/components/Button.astro';
+
+export interface Props {
+  heading: string;
+  body: string[];
+  image: string;
+  imageAlt?: string;
+  secondaryCta?: { label: string; href: string };
+}
+
+const { heading, body, image, imageAlt = '', secondaryCta } = Astro.props;
+---
+
+<SplitContent id="about" ground="layer-02">
+  <div slot="media" class="about-media">
+    <img src={image} alt={imageAlt} loading="lazy" />
+  </div>
+  <div slot="body" class="about-body">
+    <p class="about-overline">About BLD Southeast</p>
+    <h2 class="about-heading">{heading}</h2>
+    {body.map((para) => <p class="about-copy">{para}</p>)}
+    {secondaryCta && (
+      <Button href={secondaryCta.href} variant="secondary" class="about-cta">
+        {secondaryCta.label}
+      </Button>
+    )}
+  </div>
+</SplitContent>
+
+<style>
+  .about-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+  }
+
+  .about-overline {
+    margin: 0 0 var(--space-xs);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-body-semi);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-overline);
+    color: var(--color-primary);
+  }
+
+  .about-heading {
+    margin: 0 0 var(--space-md);
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    font-size: var(--text-2xl);
+    line-height: var(--leading-snug);
+    color: var(--color-text-heading);
+  }
+
+  .about-copy {
+    margin: 0 0 var(--space-md);
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text);
+  }
+  .about-copy:last-of-type {
+    margin-bottom: var(--space-lg);
+  }
+
+  .about-cta {
+    margin-top: var(--space-2xs);
+  }
+</style>

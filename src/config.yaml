@@ -1,30 +1,28 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
+  name: BLD Southeast
+  site: 'https://bldsoutheast.com'
   base: '/'
-  trailingSlash: false
+  trailingSlash: true
 
-  googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
+  googleSiteVerificationId: ''
 
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+    default: 'BLD Southeast 2026 - Washington, DC | September 16-17, 2026'
+    template: '%s — BLD Southeast'
+  description: 'Sept. 16-17, 2026. Join B Corps & mission-driven professionals in Washington, DC to learn & connect at the BLD Southeast conference.'
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: BLD Southeast
     images:
-      - url: '~/assets/images/default.png'
-        width: 1200
-        height: 628
+      - url: '~/assets/images/og-social-share-image.jpg'
+        width: 1346
+        height: 706
     type: website
   twitter:
-    handle: '@arthelokyo'
-    site: '@arthelokyo'
     cardType: summary_large_image
 
 i18n:
@@ -33,7 +31,7 @@ i18n:
 
 apps:
   blog:
-    isEnabled: true
+    isEnabled: false
     postsPerPage: 6
 
     post:

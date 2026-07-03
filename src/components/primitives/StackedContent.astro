@@ -1,0 +1,58 @@
+---
+/**
+ * StackedContent — single-column stacked rows (agenda days/sessions, FAQ
+ * items, footer columns, travel info blocks). Vertical rhythm via spacing
+ * tokens. Width caps via `measure` prop.
+ */
+export interface Props {
+  ground?: 'layer-01' | 'layer-02' | 'layer-03' | 'layer-invert' | 'invertDeep';
+  measure?: 'prose' | 'content';
+  id?: string;
+  class?: string;
+}
+
+const { ground = 'layer-01', measure = 'content', id, class: className = '' } = Astro.props;
+
+const groundClass =
+  ground === 'invertDeep' ? 'stacked--invert-deep' : ground === 'layer-invert' ? 'stacked--invert' : `stacked--${ground}`;
+---
+
+<section id={id} class:list={['stacked', groundClass, className]}>
+  <div class:list={['stacked__inner', `stacked__inner--${measure}`]}>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .stacked {
+    padding-block: var(--space-section);
+  }
+  .stacked--layer-01 {
+    background-color: var(--layer-01);
+  }
+  .stacked--layer-02 {
+    background-color: var(--layer-02);
+  }
+  .stacked--layer-03 {
+    background-color: var(--layer-03);
+  }
+  .stacked--invert {
+    background-color: var(--layer-invert);
+    color: var(--color-text-invert);
+  }
+  .stacked--invert-deep {
+    background-color: var(--color-bg-invert-deep);
+    color: var(--color-text-invert);
+  }
+
+  .stacked__inner {
+    margin-inline: auto;
+    padding-inline: var(--space-gutter);
+  }
+  .stacked__inner--content {
+    max-width: var(--space-content-max);
+  }
+  .stacked__inner--prose {
+    max-width: var(--space-prose-max);
+  }
+</style>

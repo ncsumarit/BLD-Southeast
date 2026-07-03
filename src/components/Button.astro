@@ -1,0 +1,142 @@
+---
+/**
+ * Button — brand pill CTA. Variants map 1:1 to design-system.json `buttons`.
+ * All color/spacing/motion via tokens. Two-part focus ring on every variant.
+ *
+ * CMS field-type hint: consuming sections expose this as a `link` field
+ * (label + href + optional external flag) per section-patterns.json.
+ */
+export interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'outline' | 'text';
+  external?: boolean;
+  onDark?: boolean;
+  class?: string;
+}
+
+const { href, variant = 'primary', external = false, onDark = false, class: className = '' } = Astro.props;
+
+const isExternal = external || /^https?:\/\//.test(href);
+---
+
+<a
+  href={href}
+  class:list={['btn', `btn--${variant}`, { 'btn--on-dark': onDark }, className]}
+  target={isExternal ? '_blank' : undefined}
+  rel={isExternal ? 'noopener noreferrer' : undefined}
+>
+  <span class="btn__label"><slot /></span>
+  {variant === 'text' && <span class="btn__chevron" aria-hidden="true">&rarr;</span>}
+</a>
+
+<style>
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-family: var(--font-body);
+    font-weight: var(--weight-body-semi);
+    font-size: var(--text-base);
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color var(--transition-ui), color var(--transition-ui), border-color var(--transition-ui),
+      transform var(--transition-ui), box-shadow var(--transition-ui);
+  }
+
+  .btn:focus-visible {
+    outline: var(--focus-ring-width) solid var(--color-focus);
+    outline-offset: var(--focus-ring-offset);
+    box-shadow: 0 0 0 var(--focus-inset-width) var(--color-focus-inset);
+  }
+
+  /* Primary — burnt orange. The ONLY orange element per design direction. */
+  .btn--primary {
+    border-radius: var(--radius-pill);
+    padding: var(--space-sm) var(--space-lg);
+    background-color: var(--color-accent);
+    color: var(--white);
+    border: none;
+  }
+  .btn--primary:hover {
+    background-color: var(--orange-600);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+  .btn--primary:active {
+    background-color: var(--orange-600);
+    transform: translateY(0);
+    box-shadow: var(--shadow-xs);
+  }
+
+  /* Secondary — deep teal fill, white text (7.54:1). */
+  .btn--secondary {
+    border-radius: var(--radius-pill);
+    padding: var(--space-sm) var(--space-lg);
+    background-color: var(--color-primary-strong);
+    color: var(--white);
+    border: none;
+  }
+  .btn--secondary:hover {
+    background-color: var(--color-primary-deepest);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+  }
+  .btn--secondary:active {
+    transform: translateY(0);
+  }
+
+  /* Outline — lower-emphasis, on light grounds. */
+  .btn--outline {
+    border-radius: var(--radius-pill);
+    padding: calc(var(--space-sm) - 1.5px) calc(var(--space-lg) - 1.5px);
+    background-color: transparent;
+    color: var(--color-primary-strong);
+    border: 1.5px solid var(--color-primary);
+  }
+  .btn--outline:hover {
+    background-color: var(--teal-100);
+    border-color: var(--color-primary-strong);
+  }
+  .btn--outline:active {
+    background-color: color-mix(in srgb, var(--teal-500) 12%, transparent);
+  }
+
+  /* Outline on dark grounds (hero, ink-teal bands). */
+  .btn--outline.btn--on-dark {
+    color: var(--white);
+    border-color: var(--color-on-dark-teal);
+  }
+  .btn--outline.btn--on-dark:hover {
+    background-color: color-mix(in srgb, var(--teal-300) 12%, transparent);
+    border-color: var(--white);
+  }
+
+  /* Text — tertiary/inline (Apply to Speak). */
+  .btn--text {
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--color-link);
+    border-radius: var(--radius-sm);
+  }
+  .btn--text:hover {
+    color: var(--color-link-hover);
+  }
+  .btn--text.btn--on-dark {
+    color: var(--white);
+  }
+  .btn--text.btn--on-dark:hover {
+    color: var(--color-on-dark-coral);
+  }
+
+  .btn__chevron {
+    display: inline-block;
+    transition: transform var(--transition-ui);
+  }
+  .btn--text:hover .btn__chevron {
+    transform: translateX(3px);
+  }
+</style>

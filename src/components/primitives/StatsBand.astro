@@ -1,0 +1,78 @@
+---
+/**
+ * StatsBand — horizontal band of large numeral stats with labels; optional
+ * gallery strip. Typically immersive dark ground (layer-invert).
+ *
+ * columnHint: expected number of stat items at desktop width (2-4). Used to
+ * pick a fixed-count grid class instead of an inline style custom property
+ * (no inline style="" per CLAUDE.md). Falls back to a single-column
+ * full-width statement layout when omitted (the "no data yet" state).
+ */
+export interface Props {
+  id?: string;
+  class?: string;
+  columnHint?: number;
+}
+
+const { id, class: className = '', columnHint } = Astro.props;
+const colClass = columnHint ? `stats-band__row--cols-${Math.min(Math.max(columnHint, 2), 4)}` : 'stats-band__row--statement';
+---
+
+<section id={id} class:list={['stats-band', className]}>
+  <div class="stats-band__inner">
+    <div class="stats-band__intro">
+      <slot name="intro" />
+    </div>
+    <div class:list={['stats-band__row', colClass]}>
+      <slot />
+    </div>
+    <div class="stats-band__gallery">
+      <slot name="gallery" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats-band {
+    background-color: var(--layer-invert);
+    color: var(--color-text-invert);
+    padding-block: var(--space-section);
+  }
+
+  .stats-band__inner {
+    max-width: var(--space-content-max);
+    margin-inline: auto;
+    padding-inline: var(--space-gutter);
+  }
+
+  .stats-band__intro {
+    max-width: var(--space-prose-max);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .stats-band__row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl) var(--space-gap);
+  }
+
+  .stats-band__row--statement {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .stats-band__row--cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .stats-band__row--cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .stats-band__row--cols-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .stats-band__gallery:empty {
+    display: none;
+  }
+</style>

@@ -1,0 +1,106 @@
+---
+/**
+ * MediaOverlay — full-bleed media (photo) with a gradient scrim and an
+ * overlaid content stack. Used for immersive dark bands (hero, final CTA).
+ * Pure layout primitive: no content opinions. The scrim is always painted
+ * at load (a11y contrast) — never fade/animate this element's opacity.
+ *
+ * CMS field-type hints (for consuming section components):
+ *   backgroundImage: image-picker
+ */
+export interface Props {
+  /** Background image src (required for true media-overlay use; optional to allow a plain ink-teal band). */
+  backgroundImage?: string;
+  backgroundAlt?: string;
+  /** left | center — alignment of the content stack */
+  align?: 'left' | 'center';
+  /** Visual height of the band. */
+  minHeight?: 'tall' | 'medium' | 'short';
+  class?: string;
+  id?: string;
+}
+
+const { backgroundImage, backgroundAlt = '', align = 'left', minHeight = 'medium', class: className = '', id } = Astro.props;
+---
+
+<section id={id} class:list={['media-overlay', `media-overlay--${minHeight}`, className]}>
+  {
+    backgroundImage && (
+      <img class="media-overlay__img" src={backgroundImage} alt={backgroundAlt} loading={minHeight === 'tall' ? 'eager' : 'lazy'} />
+    )
+  }
+  <div class="media-overlay__scrim" aria-hidden="true"></div>
+  <div class="media-overlay__decor">
+    <slot name="decor" />
+  </div>
+  <div class:list={['media-overlay__content', `media-overlay__content--${align}`]}>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .media-overlay {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background-color: var(--layer-invert);
+    isolation: isolate;
+  }
+
+  .media-overlay--tall {
+    min-height: 100svh;
+    padding-block: calc(var(--header-height) + var(--space-2xl)) var(--space-2xl);
+  }
+  .media-overlay--medium {
+    min-height: 32rem;
+    padding-block: var(--space-section);
+  }
+  .media-overlay--short {
+    min-height: 20rem;
+    padding-block: var(--space-section-tight);
+  }
+
+  .media-overlay__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  /* Scrim is always solid at paint time — never animate opacity (a11y hard rule). */
+  .media-overlay__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--layer-invert) 78%, transparent) 0%,
+      color-mix(in srgb, var(--layer-invert) 88%, transparent) 45%,
+      var(--layer-invert) 100%
+    );
+  }
+
+  .media-overlay__decor {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .media-overlay__content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: var(--space-content-max);
+    margin-inline: auto;
+    padding-inline: var(--space-gutter);
+  }
+
+  .media-overlay__content--center {
+    text-align: center;
+    margin-inline: auto;
+  }
+</style>

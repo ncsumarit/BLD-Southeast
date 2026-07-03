@@ -1,0 +1,374 @@
+---
+/**
+ * TravelStay — one-off section (not in the designer's section-patterns.json
+ * registry; composed from the StackedContent primitive + tokens per
+ * CLAUDE.md "one-offs use primitives" rule). Venue + getting there + hotel
+ * deals + TripZero carbon-offset callout. Data source:
+ * .build/scraped-content/travel-venue-hotels.md + org.json event.travel/hotels.
+ *
+ * CMS field-type hints (candidate interface if promoted to the registry):
+ *   heading: short-text
+ *   venueNote: short-text (the "to be confirmed" caveat)
+ *   venue: object{name,address,neighborhood,metro}
+ *   airports: repeater{code,name,transit}
+ *   hotels: repeater{name,neighborhood,walkMin,rate,bookHref,phone,notes}
+ *   bookingDeadline: short-text
+ *   carbonOffset: rich-text-editor
+ */
+import StackedContent from '~/components/primitives/StackedContent.astro';
+import Button from '~/components/Button.astro';
+
+export interface Props {
+  heading: string;
+  venueNote: string;
+  partnerUrl: string;
+  venue: {
+    name: string;
+    address: string;
+    neighborhood: string;
+    metro: string;
+  };
+  airports: { code: string; name: string; transit: string }[];
+  hotels: {
+    name: string;
+    neighborhood: string;
+    walkMin: number;
+    rate: string;
+    bookHref?: string;
+    phone?: string;
+    notes?: string;
+  }[];
+  bookingDeadline: string;
+  carbonOffsetNote: string;
+}
+
+const { heading, venueNote, partnerUrl, venue, airports, hotels, bookingDeadline, carbonOffsetNote } = Astro.props;
+---
+
+<StackedContent id="travel" ground="layer-01" measure="content">
+  <p class="travel-overline">Travel &amp; Stay</p>
+  <h2 class="travel-heading">{heading}</h2>
+
+  <div class="travel-grid">
+    <div class="travel-block">
+      <h3 class="travel-block__title">Venue</h3>
+      <p class="travel-venue__name">{venue.name}</p>
+      <p class="travel-venue__address">{venue.address}</p>
+      <p class="travel-venue__meta">{venue.neighborhood} &middot; {venue.metro}</p>
+      <p class="travel-caveat">{venueNote}</p>
+    </div>
+
+    <div class="travel-block">
+      <h3 class="travel-block__title">Getting there</h3>
+      <ul class="travel-airports">
+        {
+          airports.map((airport) => (
+            <li class="travel-airport">
+              <span class="travel-airport__code">{airport.code}</span>
+              <span class="travel-airport__body">
+                <span class="travel-airport__name">{airport.name}</span>
+                <span class="travel-airport__transit">{airport.transit}</span>
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+
+  <div class="travel-hotels">
+    <h3 class="travel-block__title">Attendee hotel deals</h3>
+    <p class="travel-deadline">Book by {bookingDeadline} to lock in the event rate.</p>
+    <div class="travel-partner-cta">
+      <p class="travel-partner-cta__text">
+        Browse every discounted attendee hotel and book through our travel partner, <strong>TripZero</strong>.
+      </p>
+      <Button href={partnerUrl} variant="secondary">Book your stay on TripZero</Button>
+    </div>
+    <div class="travel-hotel-grid">
+      {
+        hotels.map((hotel) => (
+          <article class="hotel-card">
+            <h4 class="hotel-card__name">{hotel.name}</h4>
+            <p class="hotel-card__meta">
+              {hotel.neighborhood} &middot; {hotel.walkMin} min walk to venue
+            </p>
+            <p class="hotel-card__rate">{hotel.rate} <span class="hotel-card__rate-note">event rate*</span></p>
+            {hotel.notes && <p class="hotel-card__notes">{hotel.notes}</p>}
+            <div class="hotel-card__actions">
+              {hotel.bookHref && (
+                <a class="hotel-card__book" href={hotel.bookHref} target="_blank" rel="noopener noreferrer">
+                  Book this rate &rarr;
+                </a>
+              )}
+              {hotel.phone && <span class="hotel-card__phone">{hotel.phone}</span>}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+    <p class="travel-rate-disclaimer">*Rates vary by room/bed type — request the event rate when booking.</p>
+  </div>
+
+  <div class="travel-carbon">
+    <p class="travel-carbon__label">Carbon offset</p>
+    <p class="travel-carbon__note">{carbonOffsetNote}</p>
+  </div>
+</StackedContent>
+
+<style>
+  .travel-overline {
+    margin: 0 0 var(--space-xs);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-body-semi);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-overline);
+    color: var(--color-primary);
+  }
+
+  .travel-heading {
+    margin: 0 0 var(--space-2xl);
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    font-size: var(--text-2xl);
+    line-height: var(--leading-snug);
+    color: var(--color-text-heading);
+  }
+
+  .travel-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    margin-bottom: var(--space-2xl);
+  }
+
+  @media (min-width: 768px) {
+    .travel-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .travel-block__title {
+    margin: 0 0 var(--space-sm);
+    font-family: var(--font-display);
+    font-weight: var(--weight-display-bold);
+    font-size: var(--text-lg);
+    color: var(--color-primary-strong);
+  }
+
+  .travel-venue__name {
+    margin: 0 0 var(--space-3xs);
+    font-family: var(--font-body);
+    font-weight: var(--weight-body-semi);
+    font-size: var(--text-md);
+    color: var(--color-text);
+  }
+
+  .travel-venue__address,
+  .travel-venue__meta {
+    margin: 0 0 var(--space-3xs);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .travel-caveat {
+    margin: var(--space-sm) 0 0;
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-style: italic;
+    color: var(--color-accent-text);
+  }
+
+  .travel-airports {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .travel-airport {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr;
+    gap: var(--space-sm);
+  }
+
+  .travel-airport__code {
+    font-family: var(--font-display);
+    font-weight: var(--weight-display-bold);
+    font-size: var(--text-lg);
+    color: var(--color-primary);
+  }
+
+  .travel-airport__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+  }
+
+  .travel-airport__name {
+    font-family: var(--font-body);
+    font-weight: var(--weight-body-semi);
+    font-size: var(--text-sm);
+    color: var(--color-text);
+  }
+
+  .travel-airport__transit {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .travel-hotels {
+    padding-top: var(--space-2xl);
+    border-top: 1px solid var(--color-border);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .travel-deadline {
+    margin: 0 0 var(--space-md);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .travel-partner-cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+    padding: var(--space-lg);
+    background-color: var(--layer-02);
+    border-radius: var(--radius-md);
+  }
+
+  .travel-partner-cta__text {
+    margin: 0;
+    flex: 1 1 18rem;
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    color: var(--color-text);
+  }
+
+  .travel-hotel-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-gap);
+  }
+
+  @media (min-width: 640px) {
+    .travel-hotel-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .hotel-card {
+    padding: var(--space-lg);
+    background-color: var(--layer-03);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .hotel-card__name {
+    margin: 0 0 var(--space-3xs);
+    font-family: var(--font-display);
+    font-weight: var(--weight-display-bold);
+    font-size: var(--text-lg);
+    color: var(--color-text-heading);
+  }
+
+  .hotel-card__meta {
+    margin: 0 0 var(--space-sm);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .hotel-card__rate {
+    margin: 0 0 var(--space-sm);
+    font-family: var(--font-body);
+    font-weight: var(--weight-body-semi);
+    font-size: var(--text-lg);
+    color: var(--color-primary-strong);
+  }
+  .hotel-card__rate-note {
+    font-family: var(--font-body);
+    font-weight: var(--weight-body);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  .hotel-card__notes {
+    margin: 0 0 var(--space-md);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-text);
+  }
+
+  .hotel-card__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+
+  .hotel-card__book {
+    font-family: var(--font-body);
+    font-weight: var(--weight-body-semi);
+    font-size: var(--text-sm);
+    color: var(--color-link);
+    text-decoration: none;
+  }
+  .hotel-card__book:hover {
+    color: var(--color-link-hover);
+  }
+  .hotel-card__book:focus-visible {
+    outline: var(--focus-ring-width) solid var(--color-focus);
+    outline-offset: var(--focus-ring-offset);
+    border-radius: var(--radius-sm);
+  }
+
+  .hotel-card__phone {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  .travel-rate-disclaimer {
+    margin: var(--space-md) 0 0;
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  .travel-carbon {
+    padding: var(--space-lg);
+    background-color: var(--layer-02);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--color-highlight-green);
+  }
+
+  .travel-carbon__label {
+    margin: 0 0 var(--space-2xs);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-body-semi);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-overline);
+    color: var(--color-primary-strong);
+  }
+
+  .travel-carbon__note {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    color: var(--color-text);
+  }
+</style>

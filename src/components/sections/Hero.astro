@@ -1,0 +1,178 @@
+---
+/**
+ * Hero — image-forward editorial split. The DC photo is the focus (large,
+ * clear, framed), with the text block beside it on light warm-paper ground.
+ * Mirrors the original site's image-led hero, elevated into the new system.
+ *
+ * Content interface / CMS hints (section-patterns.json):
+ *   eyebrow: short-text (optional)
+ *   headline: rich-text-editor (required)
+ *   dateLine: short-text (required)
+ *   locationLine: short-text (required)
+ *   primaryCta: link-picker (required)
+ *   secondaryCta: link-picker (optional)
+ *   backgroundImage: image-picker (required)  — the hero photo (now foregrounded)
+ *   decorativeOverlay: image-picker (optional, aria-hidden) — brand accent graphic
+ */
+import Button from '~/components/Button.astro';
+
+export interface Props {
+  eyebrow?: string;
+  headline: string;
+  dateLine: string;
+  locationLine: string;
+  primaryCta: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+  tertiaryCta?: { label: string; href: string };
+  backgroundImage: string;
+  backgroundAlt?: string;
+  decorativeOverlay?: string;
+}
+
+const {
+  eyebrow,
+  headline,
+  dateLine,
+  locationLine,
+  primaryCta,
+  secondaryCta,
+  tertiaryCta,
+  backgroundImage,
+  backgroundAlt = '',
+  decorativeOverlay,
+} = Astro.props;
+---
+
+<section id="hero" class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      {eyebrow && <p class="hero-eyebrow">{eyebrow}</p>}
+      <h1 class="hero-headline">{headline}</h1>
+      <p class="hero-meta">{dateLine} &middot; {locationLine}</p>
+      <div class="hero-actions">
+        <Button href={primaryCta.href} variant="primary">{primaryCta.label}</Button>
+        {secondaryCta && (
+          <Button href={secondaryCta.href} variant="outline">{secondaryCta.label}</Button>
+        )}
+        {tertiaryCta && (
+          <Button href={tertiaryCta.href} variant="outline">{tertiaryCta.label}</Button>
+        )}
+      </div>
+    </div>
+
+    <div class="hero-media">
+      <img
+        class="hero-photo"
+        src={backgroundImage}
+        alt={backgroundAlt}
+        loading="eager"
+        fetchpriority="high"
+      />
+      {decorativeOverlay && (
+        <img class="hero-decor" src={decorativeOverlay} alt="" aria-hidden="true" loading="eager" />
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background-color: var(--layer-01);
+    padding-block: calc(var(--header-height) + var(--space-xl)) var(--space-section);
+    padding-inline: var(--space-gutter);
+  }
+
+  .hero-inner {
+    max-width: var(--space-content-max);
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  /* Image-forward: on desktop the photo gets the larger share of the grid. */
+  @media (min-width: 900px) {
+    .hero-inner {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: var(--space-2xl);
+    }
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .hero-eyebrow {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-body-semi);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-overline);
+    color: var(--color-primary);
+  }
+
+  .hero-headline {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    font-size: var(--text-2xl);
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-text-heading);
+    text-wrap: balance;
+  }
+
+  .hero-meta {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    font-weight: var(--weight-body-med);
+    color: var(--color-text-muted);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-top: var(--space-2xs);
+  }
+
+  /* Media: the star of the hero. Large, clear, framed — no dark scrim. */
+  .hero-media {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .hero-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+  }
+
+  @media (min-width: 900px) {
+    .hero-photo {
+      aspect-ratio: 3 / 2;
+      min-height: 30rem;
+    }
+  }
+
+  /* Brand "DC" outline graphic as a subtle accent tucked behind a corner. */
+  .hero-decor {
+    position: absolute;
+    left: calc(-1 * var(--space-lg));
+    bottom: calc(-1 * var(--space-lg));
+    width: min(16rem, 40%);
+    max-width: none;
+    height: auto;
+    opacity: 0.85;
+    z-index: -1;
+  }
+</style>

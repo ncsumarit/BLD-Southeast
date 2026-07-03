@@ -1,0 +1,90 @@
+---
+/**
+ * PastYears — restrained "six years" statement band. No real photos/stats
+ * exist yet, so this renders ONLY the verifiable fact (edition count + years
+ * active) as a single large stat-style statement — no fabricated attendance
+ * numbers, photos, or testimonials (no-fabricated-social-proof rule).
+ * Swap to full stats-band-gallery variant once operator supplies real data.
+ *
+ * CMS hints: heading short-text, stats repeater{value,label} (optional —
+ * only rendered when real), gallery repeater (optional), testimonials
+ * repeater (optional).
+ */
+import StatsBand from '~/components/primitives/StatsBand.astro';
+
+export interface Props {
+  heading: string;
+  edition: string;
+  statement: string;
+  stats?: { value: string; label: string }[];
+}
+
+const { heading, edition, statement, stats = [] } = Astro.props;
+---
+
+<StatsBand id="past-years" columnHint={stats.length || undefined}>
+  <Fragment slot="intro">
+    <p class="pastyears-overline">{edition}</p>
+    <h2 class="pastyears-heading">{heading}</h2>
+  </Fragment>
+
+  {
+    stats.length > 0 ? (
+      stats.map((stat) => (
+        <div class="pastyears-stat">
+          <p class="pastyears-stat__value">{stat.value}</p>
+          <p class="pastyears-stat__label">{stat.label}</p>
+        </div>
+      ))
+    ) : (
+      <p class="pastyears-statement">{statement}</p>
+    )
+  }
+</StatsBand>
+
+<style>
+  .pastyears-overline {
+    margin: 0 0 var(--space-xs);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-body-semi);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-overline);
+    color: var(--color-on-dark-coral);
+  }
+
+  .pastyears-heading {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    font-size: var(--text-2xl);
+    line-height: var(--leading-snug);
+    color: var(--white);
+  }
+
+  .pastyears-statement {
+    grid-column: 1 / -1;
+    margin: 0;
+    max-width: 46rem;
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    font-size: var(--text-xl);
+    line-height: var(--leading-snug);
+    color: var(--color-on-dark-green);
+  }
+
+  .pastyears-stat__value {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: var(--weight-display-bold);
+    font-size: var(--text-3xl);
+    color: var(--color-on-dark-coral);
+  }
+
+  .pastyears-stat__label {
+    margin: var(--space-2xs) 0 0;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--white);
+  }
+</style>

@@ -1,0 +1,58 @@
+---
+/**
+ * BaseLayout — BLD Southeast landing page shell. Wraps the AstroWind base
+ * Layout (head/meta/fonts) with our own sticky Header + Footer, replacing
+ * the generic PageLayout widgets entirely. Enforces <main id="content">
+ * for the skip-link target (a11y hard rule). No analytics/cookies → no
+ * consent banner.
+ *
+ * Header/Footer editable fields (register CTA link, contact email, social
+ * links, privacy link, copyright) are sourced from content/landing.json —
+ * the same single content file the page sections use, editable via
+ * TinaCMS at /admin. Anchor links stay hardcoded here (they're structural
+ * in-page section IDs, not content — editing them without touching the
+ * matching section `id` would silently break navigation).
+ */
+import Layout from '~/layouts/Layout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+
+import type { MetaData } from '~/types';
+
+import content from '../../content/landing.json';
+
+export interface Props {
+  metadata?: MetaData;
+}
+
+const { metadata } = Astro.props;
+
+const { hero, footer } = content;
+
+const anchorLinks = [
+  { label: 'About', href: '#about' },
+  { label: 'Why Attend', href: '#why-attend' },
+  { label: 'Agenda', href: '#agenda' },
+  { label: 'Speakers', href: '#speakers' },
+  { label: 'Beneficiaries', href: '#beneficiaries' },
+  { label: 'Travel', href: '#travel' },
+];
+---
+
+<Layout metadata={metadata}>
+  <Header
+    logo={{ src: '/images/bld-southeast-logo-white.png', alt: 'BLD Southeast' }}
+    anchorLinks={anchorLinks}
+    registerCta={{ label: 'Register', href: hero.primaryCta.href }}
+  />
+  <main id="content">
+    <slot />
+  </main>
+  <Footer
+    logo={{ src: '/images/bld-southeast-logo-white.png', alt: 'BLD Southeast' }}
+    contactEmail={footer.contactEmail || undefined}
+    socialLinks={footer.socialLinks}
+    privacyLink={footer.privacyLink}
+    copyright={footer.copyright}
+  />
+</Layout>

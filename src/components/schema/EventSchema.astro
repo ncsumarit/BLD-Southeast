@@ -1,0 +1,80 @@
+---
+/**
+ * Event JSON-LD Schema
+ * Required on: Home page (single-event landing site).
+ * Venue name/address are present but flagged _needsConfirmation in org.json —
+ * schema still emits location.name/address since city/state alone is
+ * insufficient for full Event rich-results eligibility (per architecture.json
+ * schemaTypes gap note); confirm exact building with organizer before the
+ * venue-to-be-confirmed caveat is removed from the Travel section.
+ */
+export interface Props {
+  name: string;
+  startDate: string;
+  endDate: string;
+  url: string;
+  image?: string;
+  venueName: string;
+  streetAddress: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  country?: string;
+  offerUrl: string;
+  organizerName: string;
+  organizerUrl: string;
+}
+
+const {
+  name,
+  startDate,
+  endDate,
+  url,
+  image,
+  venueName,
+  streetAddress,
+  city,
+  state,
+  postalCode,
+  country = 'US',
+  offerUrl,
+  organizerName,
+  organizerUrl,
+} = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name,
+  startDate,
+  endDate,
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  eventStatus: 'https://schema.org/EventScheduled',
+  url,
+  ...(image && { image }),
+  location: {
+    '@type': 'Place',
+    name: venueName,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress,
+      addressLocality: city,
+      addressRegion: state,
+      postalCode,
+      addressCountry: country,
+    },
+  },
+  offers: {
+    '@type': 'Offer',
+    url: offerUrl,
+    availability: 'https://schema.org/InStock',
+  },
+  organizer: {
+    '@type': 'Organization',
+    name: organizerName,
+    url: organizerUrl,
+  },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

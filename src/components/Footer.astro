@@ -1,0 +1,168 @@
+---
+/**
+ * Footer — deepest-teal stacked footer. Contact, socials (omitted until
+ * supplied), privacy link, copyright. Composed on StackedContent primitive.
+ *
+ * CMS field-type hints:
+ *   logo: image-picker
+ *   contactEmail: short-text
+ *   socialLinks: repeater (platform: select, url: link-picker)
+ *   privacyLink: link-picker
+ *   copyright: short-text
+ */
+import StackedContent from '~/components/primitives/StackedContent.astro';
+
+export interface Props {
+  logo?: { src: string; alt: string };
+  contactEmail?: string;
+  contactEmailIsTodo?: boolean;
+  socialLinks?: { platform: string; url: string }[];
+  privacyLink: { label: string; href: string };
+  copyright: string;
+}
+
+const { logo, contactEmail, contactEmailIsTodo = false, socialLinks = [], privacyLink, copyright } = Astro.props;
+---
+
+<footer class="site-footer">
+  <StackedContent ground="invertDeep">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        {logo && <img src={logo.src} alt={logo.alt} class="site-footer__logo" width="140" height="55" />}
+        {
+          contactEmail && (
+            <a href={`mailto:${contactEmail}`} class="site-footer__email">
+              {contactEmail}
+            </a>
+          )
+        }
+      </div>
+
+      {
+        socialLinks.length > 0 && (
+          <ul class="site-footer__socials">
+            {socialLinks.map((s) => (
+              <li>
+                <a href={s.url} class="site-footer__social-link" target="_blank" rel="noopener noreferrer">
+                  {s.platform}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+
+      <nav class="site-footer__legal" aria-label="Legal">
+        <a href={privacyLink.href} class="site-footer__link">{privacyLink.label}</a>
+      </nav>
+    </div>
+
+    <p class="site-footer__copyright">{copyright}</p>
+  </StackedContent>
+</footer>
+
+<style>
+  .site-footer__grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--color-border-invert);
+  }
+
+  @media (min-width: 768px) {
+    .site-footer__grid {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .site-footer__brand {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .site-footer__logo {
+    height: 2rem;
+    width: auto;
+    max-width: none;
+    /* Prevent the column flex from stretching the logo to full width. */
+    align-self: flex-start;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+  }
+
+  .site-footer__email {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.85;
+    transition: opacity var(--transition-ui);
+    width: fit-content;
+  }
+  .site-footer__email:hover {
+    opacity: 1;
+  }
+  .site-footer__email:focus-visible {
+    outline: var(--focus-ring-width) solid var(--color-focus);
+    outline-offset: var(--focus-ring-offset);
+  }
+  .site-footer__todo {
+    color: var(--color-on-dark-coral);
+    font-size: var(--text-xs);
+  }
+
+  .site-footer__socials {
+    display: flex;
+    gap: var(--space-md);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .site-footer__social-link {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.85;
+    transition: opacity var(--transition-ui);
+  }
+  .site-footer__social-link:hover {
+    opacity: 1;
+  }
+  .site-footer__social-link:focus-visible {
+    outline: var(--focus-ring-width) solid var(--color-focus);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  .site-footer__legal {
+    display: flex;
+  }
+  .site-footer__link {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.85;
+    transition: opacity var(--transition-ui);
+  }
+  .site-footer__link:hover {
+    opacity: 1;
+  }
+  .site-footer__link:focus-visible {
+    outline: var(--focus-ring-width) solid var(--color-focus);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  .site-footer__copyright {
+    margin: 0;
+    padding-top: var(--space-lg);
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    color: var(--white);
+    opacity: 0.65;
+  }
+</style>

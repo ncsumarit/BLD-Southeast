@@ -1,0 +1,168 @@
+---
+/**
+ * Speakers — none confirmed yet: "to be announced" placeholder + prominent
+ * Apply to Speak CTA. Renders real speaker cards once supplied (same
+ * component, CMS repeater fills `speakers`).
+ *
+ * CMS hints: heading short-text, intro rich-text-editor,
+ * speakers repeater{name,title,org,photo,bio}, placeholderNote short-text,
+ * applyCta link-picker.
+ */
+import CardGrid from '~/components/primitives/CardGrid.astro';
+import Button from '~/components/Button.astro';
+
+export interface Props {
+  heading: string;
+  intro?: string;
+  speakers?: { name: string; title?: string; org?: string; photo?: string; bio?: string }[];
+  placeholderNote?: string;
+  applyCta: { label: string; href: string };
+}
+
+const { heading, intro, speakers = [], placeholderNote, applyCta } = Astro.props;
+const hasSpeakers = speakers.length > 0;
+---
+
+<CardGrid id="speakers" ground="layer-01" columns={3}>
+  <Fragment slot="intro">
+    <p class="speakers-overline">Speakers</p>
+    <h2 class="speakers-heading">{heading}</h2>
+    {intro && <p class="speakers-intro">{intro}</p>}
+  </Fragment>
+
+  {
+    hasSpeakers
+      ? speakers.map((speaker) => (
+          <article class="speaker-card">
+            {speaker.photo && <img class="speaker-card__photo" src={speaker.photo} alt={speaker.name} loading="lazy" />}
+            <h3 class="speaker-card__name">{speaker.name}</h3>
+            {(speaker.title || speaker.org) && (
+              <p class="speaker-card__role">
+                {speaker.title}
+                {speaker.title && speaker.org ? ', ' : ''}
+                {speaker.org}
+              </p>
+            )}
+            {speaker.bio && <p class="speaker-card__bio">{speaker.bio}</p>}
+          </article>
+        ))
+      : (
+        <div class="speakers-placeholder">
+          <p class="speakers-placeholder__note">{placeholderNote ?? 'Speaker lineup announced soon.'}</p>
+          <p class="speakers-placeholder__sub">Want to share your work on the BLD Southeast stage? We're accepting speaker applications now.</p>
+          <Button href={applyCta.href} variant="secondary">{applyCta.label}</Button>
+        </div>
+      )
+  }
+</CardGrid>
+
+{
+  hasSpeakers && (
+    <div class="speakers-apply-row">
+      <Button href={applyCta.href} variant="secondary">{applyCta.label}</Button>
+    </div>
+  )
+}
+
+<style>
+  .speakers-overline {
+    margin: 0 0 var(--space-xs);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-body-semi);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-overline);
+    color: var(--color-primary);
+  }
+
+  .speakers-heading {
+    margin: 0 0 var(--space-sm);
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    font-size: var(--text-2xl);
+    line-height: var(--leading-snug);
+    color: var(--color-text-heading);
+  }
+
+  .speakers-intro {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    color: var(--color-text-muted);
+  }
+
+  .speaker-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 14rem;
+    padding: var(--space-lg);
+    background-color: var(--layer-03);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .speaker-card__photo {
+    width: 5rem;
+    height: 5rem;
+    border-radius: var(--radius-round);
+    object-fit: cover;
+    margin-bottom: var(--space-md);
+  }
+
+  .speaker-card__name {
+    margin: 0 0 var(--space-3xs);
+    font-family: var(--font-display);
+    font-weight: var(--weight-display-bold);
+    font-size: var(--text-lg);
+    color: var(--color-text-heading);
+  }
+
+  .speaker-card__role {
+    margin: 0 0 var(--space-sm);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .speaker-card__bio {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    color: var(--color-text);
+  }
+
+  .speakers-placeholder {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-2xl) var(--space-lg);
+    text-align: center;
+    background-color: var(--layer-03);
+    border-radius: var(--radius-lg);
+  }
+
+  .speakers-placeholder__note {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--weight-display);
+    color: var(--color-text-heading);
+  }
+
+  .speakers-placeholder__sub {
+    margin: 0;
+    max-width: 40ch;
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    color: var(--color-text-muted);
+  }
+
+  .speakers-apply-row {
+    max-width: var(--space-content-max);
+    margin: var(--space-lg) auto 0;
+    padding-inline: var(--space-gutter);
+  }
+</style>

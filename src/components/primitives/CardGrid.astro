@@ -1,0 +1,68 @@
+---
+/**
+ * CardGrid — responsive grid of equal-height (min-height, not fixed) cards.
+ * Used for WhyAttend benefits and Speakers. Pure layout: children provide cards.
+ */
+export interface Props {
+  ground?: 'layer-01' | 'layer-02' | 'layer-03';
+  /** Hint for column count at desktop width; grid remains auto-fit/minmax responsive. */
+  columns?: 2 | 3 | 4;
+  minItemWidth?: string;
+  id?: string;
+  class?: string;
+}
+
+const { ground = 'layer-01', columns = 3, minItemWidth = '17rem', id, class: className = '' } = Astro.props;
+---
+
+<section id={id} class:list={['card-grid-section', `card-grid-section--${ground}`, className]}>
+  <div class="card-grid-section__inner">
+    <div class="card-grid-section__intro">
+      <slot name="intro" />
+    </div>
+    <div
+      class="card-grid"
+      style={`--card-grid-cols: ${columns}; --card-grid-min: ${minItemWidth};`}
+    >
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .card-grid-section {
+    padding-block: var(--space-section);
+  }
+  .card-grid-section--layer-01 {
+    background-color: var(--layer-01);
+  }
+  .card-grid-section--layer-02 {
+    background-color: var(--layer-02);
+  }
+  .card-grid-section--layer-03 {
+    background-color: var(--layer-03);
+  }
+
+  .card-grid-section__inner {
+    max-width: var(--space-content-max);
+    margin-inline: auto;
+    padding-inline: var(--space-gutter);
+  }
+
+  .card-grid-section__intro {
+    max-width: var(--space-prose-max);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(var(--card-grid-min), 100%), 1fr));
+    gap: var(--space-gap);
+  }
+
+  @media (min-width: 1024px) {
+    .card-grid {
+      grid-template-columns: repeat(var(--card-grid-cols), 1fr);
+    }
+  }
+</style>

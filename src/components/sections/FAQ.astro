@@ -1,0 +1,165 @@
+---
+/**
+ * FAQ — no real answers yet: renders a minimal "coming soon" placeholder.
+ * IMPORTANT: do NOT emit FAQPage schema from this component while `items`
+ * is empty/placeholder — the page template only wires FAQPage JSON-LD when
+ * real items are passed in (see CLAUDE.md: no non-substantive FAQPage).
+ *
+ * CMS hints: heading short-text, items repeater{question,answer}.
+ */
+export interface Props {
+  heading: string;
+  items?: { question: string; answer: string }[];
+  placeholderNote?: string;
+}
+
+const { heading, items = [], placeholderNote = 'FAQ coming soon.' } = Astro.props;
+const hasFaq = items.length > 0;
+---
+
+<section id="faq" class="faq">
+  <div class="faq__inner">
+    <p class="faq-overline">FAQ</p>
+    <h2 class="faq-heading">{heading}</h2>
+
+    {
+      hasFaq ? (
+        <div class="faq-accordion">
+          {items.map((item, i) => (
+            <details class="faq-item" name="faq-accordion">
+              <summary class="faq-item__question">
+                {item.question}
+                <span class="faq-item__icon" aria-hidden="true" />
+              </summary>
+              <div class="faq-item__answer" set:html={item.answer} />
+            </details>
+          ))}
+        </div>
+      ) : (
+        <div class="faq-placeholder">
+          <p class="faq-placeholder__note">{placeholderNote}</p>
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .faq {
+    background-color: var(--layer-01);
+    padding-block: var(--space-section);
+  }
+
+  .faq__inner {
+    max-width: var(--space-prose-max);
+    margin-inline: auto;
+    padding-inline: var(--space-gutter);
+  }
+
+  .faq-overline {
+    margin: 0 0 var(--space-xs);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-body-semi);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-overline);
+    color: var(--color-primary);
+  }
+
+  .faq-heading {
+    margin: 0 0 var(--space-xl);
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    font-size: var(--text-2xl);
+    line-height: var(--leading-snug);
+    color: var(--color-text-heading);
+  }
+
+  .faq-accordion {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .faq-item {
+    border-top: 1px solid var(--color-border);
+  }
+  .faq-item:last-child {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .faq-item__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding-block: var(--space-md);
+    font-family: var(--font-display);
+    font-weight: var(--weight-display-bold);
+    font-size: var(--text-md);
+    color: var(--color-text-heading);
+    cursor: pointer;
+    list-style: none;
+  }
+  .faq-item__question::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item__question:focus-visible {
+    outline: var(--focus-ring-width) solid var(--color-focus);
+    outline-offset: var(--focus-ring-offset);
+    border-radius: var(--radius-sm);
+  }
+
+  .faq-item__icon {
+    flex-shrink: 0;
+    position: relative;
+    width: 1rem;
+    height: 1rem;
+  }
+  .faq-item__icon::before,
+  .faq-item__icon::after {
+    content: '';
+    position: absolute;
+    background-color: var(--color-primary);
+    transition: transform var(--transition-ui);
+  }
+  .faq-item__icon::before {
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 2px;
+    transform: translateY(-50%);
+  }
+  .faq-item__icon::after {
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    transform: translateX(-50%);
+  }
+  .faq-item[open] .faq-item__icon::after {
+    transform: translateX(-50%) scaleY(0);
+  }
+
+  .faq-item__answer {
+    padding-bottom: var(--space-md);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .faq-placeholder {
+    padding: var(--space-2xl) var(--space-lg);
+    text-align: center;
+    background-color: var(--layer-03);
+    border-radius: var(--radius-lg);
+  }
+
+  .faq-placeholder__note {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: var(--weight-display);
+    color: var(--color-text-heading);
+  }
+</style>

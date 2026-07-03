@@ -1,0 +1,98 @@
+---
+/**
+ * Beneficiaries — 6 B Local logos in uniform equal-height tiles, framed as
+ * proceeds recipients (not sponsors). object-fit: contain normalizes the
+ * mixed source aspect ratios flagged in the audit.
+ *
+ * CMS hints: heading short-text, framingLine rich-text-editor,
+ * logos repeater{name,logo,url?}.
+ */
+import LogoTileGrid from '~/components/primitives/LogoTileGrid.astro';
+
+export interface Props {
+  heading: string;
+  framingLine?: string;
+  logos: { name: string; logo: string; url?: string }[];
+}
+
+const { heading, framingLine, logos } = Astro.props;
+---
+
+<LogoTileGrid id="beneficiaries" ground="layer-02">
+  <Fragment slot="intro">
+    <p class="beneficiaries-overline">Beneficiaries</p>
+    <h2 class="beneficiaries-heading">{heading}</h2>
+    {framingLine && <p class="beneficiaries-framing">{framingLine}</p>}
+  </Fragment>
+
+  {
+    logos.map((item) =>
+      item.url ? (
+        <a class="logo-tile" href={item.url} target="_blank" rel="noopener noreferrer" aria-label={item.name}>
+          <img src={item.logo} alt={item.name} loading="lazy" />
+        </a>
+      ) : (
+        <div class="logo-tile" role="img" aria-label={item.name}>
+          <img src={item.logo} alt={item.name} loading="lazy" />
+        </div>
+      )
+    )
+  }
+</LogoTileGrid>
+
+<style>
+  .beneficiaries-overline {
+    margin: 0 0 var(--space-xs);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-body-semi);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-overline);
+    color: var(--color-primary);
+  }
+
+  .beneficiaries-heading {
+    margin: 0 0 var(--space-sm);
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    font-size: var(--text-2xl);
+    line-height: var(--leading-snug);
+    color: var(--color-text-heading);
+  }
+
+  .beneficiaries-framing {
+    margin: 0;
+    max-width: var(--space-prose-max);
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    color: var(--color-text-muted);
+  }
+
+  .logo-tile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 3 / 2;
+    /* Minimal padding → logos render larger within each (now wider) tile. */
+    padding: var(--space-sm);
+    background-color: var(--layer-03);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-xs);
+    transition: box-shadow var(--transition-ui), transform var(--transition-ui);
+  }
+  a.logo-tile:hover {
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
+  }
+  a.logo-tile:focus-visible {
+    outline: var(--focus-ring-width) solid var(--color-focus);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  .logo-tile img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+  }
+</style>

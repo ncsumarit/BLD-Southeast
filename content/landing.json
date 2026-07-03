@@ -1,0 +1,124 @@
+{
+  "seo": {
+    "title": "BLD Southeast 2026 - Washington, DC | September 16-17, 2026",
+    "description": "Sept. 16-17, 2026. Join B Corps & mission-driven professionals in Washington, DC to learn & connect at the BLD Southeast conference."
+  },
+  "hero": {
+    "eyebrow": "6th Annual BLD Southeast",
+    "headline": "The future of business is built by those who dare to care, cultivating legacy through thriving communities.",
+    "dateLine": "September 16–17, 2026",
+    "locationLine": "Washington, DC",
+    "primaryCta": { "label": "Get Your Ticket", "href": "https://www.tickettailor.com/events/bldsoutheast/2128091" },
+    "secondaryCta": { "label": "Apply to Speak", "href": "https://docs.google.com/forms/d/e/1FAIpQLSdjo7GO7IDMCZVbW_jBbTBmvuEr1YpZuYEEwfenkjCdEzLlwA/viewform" },
+    "tertiaryCta": { "label": "Book Your Stay", "href": "https://www.tripzero.events/bld-southeast/2026" },
+    "heroImage": "/images/hero-dc-background.jpg",
+    "heroImageAlt": "United States Capitol, Washington, DC"
+  },
+  "about": {
+    "heading": "Back for our sixth year",
+    "body": "We're back for our sixth year of BLD Southeast, and this year we're bringing our impactful event to the dynamic, historic, and influential nation's capital: Washington, D.C.",
+    "bodySecondary": "",
+    "image": "/images/sixth-year-intro-image.jpg",
+    "imageAlt": "Washington Monument, Washington DC"
+  },
+  "whyAttend": {
+    "heading": "Why attend BLD Southeast",
+    "intro": "Two days built for people who believe business can be a force for good — and want the tools, network, and community to prove it.",
+    "benefits": [
+      {
+        "title": "Learn from conscious-business practitioners",
+        "description": "Sessions and conversations drawn from B Corps and mission-driven leaders putting people-and-planet practices to work every day."
+      },
+      {
+        "title": "Connect with the B Corp community",
+        "description": "Meet founders, operators, and advocates from across the Southeast and beyond who are building companies around a stronger bottom line."
+      },
+      {
+        "title": "Support local B Local communities",
+        "description": "Every ticket helps fund the regional B Local organizations that keep the conscious-business movement growing where you live."
+      }
+    ]
+  },
+  "agenda": {
+    "heading": "Agenda",
+    "show": true,
+    "placeholderNote": "Full agenda coming soon — check back for Day 1 (Sept 16) and Day 2 (Sept 17) session details.",
+    "days": []
+  },
+  "speakers": {
+    "heading": "Speakers",
+    "intro": "Our 2026 speaker lineup is coming together.",
+    "show": true,
+    "placeholderNote": "Speaker lineup announced soon.",
+    "applyCta": { "label": "Apply to Speak", "href": "https://docs.google.com/forms/d/e/1FAIpQLSdjo7GO7IDMCZVbW_jBbTBmvuEr1YpZuYEEwfenkjCdEzLlwA/viewform" },
+    "speakers": []
+  },
+  "beneficiaries": {
+    "heading": "Proceeds of BLD Southeast benefit",
+    "logos": [
+      { "name": "Mid Atlantic", "logo": "/images/beneficiaries/beneficiary-mid-atlantic.png", "url": "" },
+      { "name": "Georgia", "logo": "/images/beneficiaries/beneficiary-georgia.png", "url": "" },
+      { "name": "NC Triangle", "logo": "/images/beneficiaries/beneficiary-nc-triangle.png", "url": "" },
+      { "name": "Asheville/WNC", "logo": "/images/beneficiaries/beneficiary-asheville-wnc.png", "url": "" },
+      { "name": "Charlotte B Corp Collective", "logo": "/images/beneficiaries/beneficiary-charlotte-bcorp-collective.png", "url": "" },
+      { "name": "24FFG", "logo": "/images/beneficiaries/beneficiary-24ffg.png", "url": "" }
+    ]
+  },
+  "travelStay": {
+    "heading": "Travel & stay",
+    "venueNote": "Venue to be confirmed — exact building/room pending final confirmation with the organizer.",
+    "partnerUrl": "https://www.tripzero.events/bld-southeast/2026",
+    "venue": {
+      "name": "George Washington University – Foggy Bottom Campus",
+      "address": "800 21st St NW, Washington, DC 20052",
+      "neighborhood": "Foggy Bottom / West End",
+      "metro": "Foggy Bottom-GWU Metro (Blue/Orange/Silver), ~6 min walk"
+    },
+    "airports": [
+      {
+        "code": "DCA",
+        "name": "Ronald Reagan Washington National",
+        "transit": "Blue line to Foggy Bottom-GWU, ~25 min (~$3) · taxi ~10–30 min (~$20)"
+      },
+      {
+        "code": "IAD",
+        "name": "Dulles International",
+        "transit": "Silver line to Foggy Bottom-GWU, ~60 min (~$6) · taxi ~35–65 min (~$90)"
+      }
+    ],
+    "hotels": [
+      {
+        "name": "Hotel Hive",
+        "neighborhood": "West End",
+        "walkMin": 8,
+        "rate": "$199*",
+        "bookHref": "https://www.addtripzero.events/bld/hotel-hive",
+        "phone": "202-849-8499",
+        "notes": "Green Key certified micro-hotel · Destination DC Sustainability District"
+      },
+      {
+        "name": "The River Inn",
+        "neighborhood": "Foggy Bottom",
+        "walkMin": 11,
+        "rate": "$229*",
+        "bookHref": "",
+        "phone": "202-337-7600",
+        "notes": "Suites with kitchenettes · Destination DC Sustainability District"
+      }
+    ],
+    "bookingDeadline": "August 26, 2026",
+    "carbonOffsetNote": "Book your room through our travel partner TripZero and your stay offsets roughly 400 lbs of CO₂ in certified carbon offsets — at no cost to you. It's one more way BLD Southeast puts conscious-business values into practice."
+  },
+  "registerCta": {
+    "heading": "Join us in Washington, DC",
+    "subhead": "September 16–17, 2026",
+    "cta": { "label": "Register Now", "href": "https://www.tickettailor.com/events/bldsoutheast/2128091" },
+    "backgroundImage": "/images/hero-dc-background.jpg"
+  },
+  "footer": {
+    "contactEmail": "",
+    "socialLinks": [],
+    "privacyLink": { "label": "Privacy Policy", "href": "/privacy/" },
+    "copyright": "© 2026 BLD Southeast"
+  }
+}

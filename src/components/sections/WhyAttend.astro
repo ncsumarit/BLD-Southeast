@@ -1,0 +1,100 @@
+---
+/**
+ * WhyAttend — value prop card grid on white/paper. No icons/emojis; the
+ * only ornament is a teal rule. First-pass copy; CONTENT phase refines.
+ *
+ * CMS hints: heading short-text, intro rich-text-editor,
+ * benefits repeater (title short-text, description rich-text-editor).
+ */
+import CardGrid from '~/components/primitives/CardGrid.astro';
+
+export interface Props {
+  heading: string;
+  intro?: string;
+  benefits: { title: string; description: string }[];
+}
+
+const { heading, intro, benefits } = Astro.props;
+---
+
+<CardGrid id="why-attend" ground="layer-01" columns={benefits.length >= 4 ? 4 : 3}>
+  <Fragment slot="intro">
+    <p class="why-overline">Why attend</p>
+    <h2 class="why-heading">{heading}</h2>
+    {intro && <p class="why-intro">{intro}</p>}
+  </Fragment>
+
+  {
+    benefits.map((benefit) => (
+      <article class="why-card">
+        <span class="why-card__rule" aria-hidden="true" />
+        <h3 class="why-card__title">{benefit.title}</h3>
+        <p class="why-card__desc">{benefit.description}</p>
+      </article>
+    ))
+  }
+</CardGrid>
+
+<style>
+  .why-overline {
+    margin: 0 0 var(--space-xs);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-body-semi);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-overline);
+    color: var(--color-primary);
+  }
+
+  .why-heading {
+    margin: 0 0 var(--space-sm);
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    font-size: var(--text-2xl);
+    line-height: var(--leading-snug);
+    color: var(--color-text-heading);
+  }
+
+  .why-intro {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
+  }
+
+  .why-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 12rem;
+    padding: var(--space-lg);
+    background-color: var(--layer-03);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .why-card__rule {
+    display: block;
+    width: 2.5rem;
+    height: 3px;
+    border-radius: var(--radius-pill);
+    background-color: var(--color-primary);
+    margin-bottom: var(--space-md);
+  }
+
+  .why-card__title {
+    margin: 0 0 var(--space-xs);
+    font-family: var(--font-display);
+    font-weight: var(--weight-display-bold);
+    font-size: var(--text-xl);
+    color: var(--color-text-heading);
+  }
+
+  .why-card__desc {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
+  }
+</style>

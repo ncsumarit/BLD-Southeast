@@ -1,0 +1,72 @@
+---
+/**
+ * SplitContent — two-column image + text, reversible order.
+ * Pure layout primitive: no color/typography opinions beyond structural rhythm.
+ * Stacks at 768px (see tokens breakpoint convention).
+ */
+export interface Props {
+  reverse?: boolean;
+  ground?: 'layer-01' | 'layer-02' | 'layer-03';
+  id?: string;
+  class?: string;
+}
+
+const { reverse = false, ground = 'layer-01', id, class: className = '' } = Astro.props;
+---
+
+<section id={id} class:list={['split', `split--${ground}`, className]}>
+  <div class:list={['split__grid', { 'split__grid--reverse': reverse }]}>
+    <div class="split__media">
+      <slot name="media" />
+    </div>
+    <div class="split__body">
+      <slot name="body" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .split {
+    padding-block: var(--space-section);
+  }
+  .split--layer-01 {
+    background-color: var(--layer-01);
+  }
+  .split--layer-02 {
+    background-color: var(--layer-02);
+  }
+  .split--layer-03 {
+    background-color: var(--layer-03);
+  }
+
+  .split__grid {
+    max-width: var(--space-content-max);
+    margin-inline: auto;
+    padding-inline: var(--space-gutter);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .split__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-gap);
+    }
+    .split__grid--reverse {
+      direction: rtl;
+    }
+    .split__grid--reverse > * {
+      direction: ltr;
+    }
+  }
+
+  .split__media {
+    width: 100%;
+  }
+
+  .split__body {
+    max-width: var(--space-prose-max);
+  }
+</style>

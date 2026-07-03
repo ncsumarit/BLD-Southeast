@@ -1,0 +1,60 @@
+---
+/**
+ * RegisterCTA — final full-bleed ink-teal conversion push. Provides the
+ * required bottom padding above the footer (footer-overlay spacing rule).
+ *
+ * CMS hints: heading short-text, subhead short-text, cta link-picker,
+ * backgroundImage image-picker (optional).
+ */
+import MediaOverlay from '~/components/primitives/MediaOverlay.astro';
+import Button from '~/components/Button.astro';
+
+export interface Props {
+  heading: string;
+  subhead?: string;
+  cta: { label: string; href: string };
+  backgroundImage?: string;
+}
+
+const { heading, subhead, cta, backgroundImage } = Astro.props;
+---
+
+<MediaOverlay id="register" backgroundImage={backgroundImage} minHeight="short" align="center">
+  <div class="register-stack">
+    <h2 class="register-heading">{heading}</h2>
+    {subhead && <p class="register-subhead">{subhead}</p>}
+    <Button href={cta.href} variant="primary" class="register-cta">{cta.label}</Button>
+  </div>
+</MediaOverlay>
+
+<style>
+  .register-stack {
+    max-width: 40rem;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    text-align: center;
+  }
+
+  .register-heading {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    font-size: var(--text-3xl);
+    line-height: var(--leading-tight);
+    color: var(--white);
+  }
+
+  .register-subhead {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    color: var(--color-on-dark-teal);
+  }
+
+  .register-cta {
+    margin-top: var(--space-sm);
+  }
+</style>

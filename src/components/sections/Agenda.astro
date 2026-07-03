@@ -1,0 +1,144 @@
+---
+/**
+ * Agenda — schedule not public yet: tasteful "coming soon" state when no
+ * days are supplied. No fabricated sessions. Renders real day/session rows
+ * once operator supplies them (CMS repeater), same component either way.
+ *
+ * CMS hints: heading short-text, days repeater (label short-text,
+ * sessions repeater{time,title,description}), placeholderNote short-text.
+ */
+import StackedContent from '~/components/primitives/StackedContent.astro';
+
+export interface Props {
+  heading: string;
+  days?: { label: string; sessions: { time: string; title: string; description?: string }[] }[];
+  placeholderNote?: string;
+}
+
+const { heading, days = [], placeholderNote } = Astro.props;
+const hasAgenda = days.length > 0;
+---
+
+<StackedContent id="agenda" ground="layer-02" measure="content">
+  <p class="agenda-overline">Agenda</p>
+  <h2 class="agenda-heading">{heading}</h2>
+
+  {
+    hasAgenda ? (
+      <div class="agenda-days">
+        {days.map((day) => (
+          <div class="agenda-day">
+            <h3 class="agenda-day__label">{day.label}</h3>
+            <ul class="agenda-sessions">
+              {day.sessions.map((session) => (
+                <li class="agenda-session">
+                  <span class="agenda-session__time">{session.time}</span>
+                  <span class="agenda-session__body">
+                    <span class="agenda-session__title">{session.title}</span>
+                    {session.description && <span class="agenda-session__desc">{session.description}</span>}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div class="agenda-placeholder">
+        <p class="agenda-placeholder__note">{placeholderNote ?? 'Full agenda coming soon.'}</p>
+      </div>
+    )
+  }
+</StackedContent>
+
+<style>
+  .agenda-overline {
+    margin: 0 0 var(--space-xs);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-body-semi);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-overline);
+    color: var(--color-primary);
+  }
+
+  .agenda-heading {
+    margin: 0 0 var(--space-xl);
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    font-size: var(--text-2xl);
+    line-height: var(--leading-snug);
+    color: var(--color-text-heading);
+  }
+
+  .agenda-days {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+  }
+
+  .agenda-day__label {
+    margin: 0 0 var(--space-md);
+    font-family: var(--font-display);
+    font-weight: var(--weight-display-bold);
+    font-size: var(--text-xl);
+    color: var(--color-primary-strong);
+  }
+
+  .agenda-sessions {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .agenda-session {
+    display: grid;
+    grid-template-columns: 8rem 1fr;
+    gap: var(--space-md);
+    padding-block: var(--space-md);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .agenda-session__time {
+    font-family: var(--font-body);
+    font-weight: var(--weight-body-semi);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .agenda-session__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+  }
+
+  .agenda-session__title {
+    font-family: var(--font-body);
+    font-weight: var(--weight-body-semi);
+    font-size: var(--text-base);
+    color: var(--color-text);
+  }
+
+  .agenda-session__desc {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .agenda-placeholder {
+    padding: var(--space-2xl) var(--space-lg);
+    text-align: center;
+    background-color: var(--layer-03);
+    border-radius: var(--radius-lg);
+  }
+
+  .agenda-placeholder__note {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: var(--weight-display);
+    color: var(--color-text-heading);
+  }
+</style>
