@@ -1,0 +1,102 @@
+---
+/**
+ * LocalBusiness JSON-LD Schema
+ * Uses industry-specific @type (Electrician, Plumber, RoofingContractor, etc.)
+ * Required on: Home page, About page
+ */
+import type { LocalBusiness, WithContext } from 'schema-dts';
+
+export interface Props {
+  name: string;
+  type?: string; // Schema.org LocalBusiness subtype
+  description?: string;
+  url: string;
+  telephone: string;
+  email?: string;
+  address: {
+    street: string;
+    city: string;
+    state: string;
+    zip: string;
+    country?: string;
+  };
+  geo?: {
+    latitude: number;
+    longitude: number;
+  };
+  openingHours?: string[];
+  priceRange?: string;
+  image?: string;
+  logo?: string;
+  sameAs?: string[];
+  aggregateRating?: {
+    ratingValue: number;
+    reviewCount: number;
+  };
+  licenseNumber?: string;
+}
+
+const {
+  name,
+  type = 'LocalBusiness',
+  description,
+  url,
+  telephone,
+  email,
+  address,
+  geo,
+  openingHours,
+  priceRange = '$$',
+  image,
+  logo,
+  sameAs,
+  aggregateRating,
+  licenseNumber,
+} = Astro.props;
+
+const schema: WithContext<LocalBusiness> = {
+  '@context': 'https://schema.org',
+  '@type': type as any,
+  name,
+  ...(description && { description }),
+  url,
+  telephone,
+  ...(email && { email }),
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: address.street,
+    addressLocality: address.city,
+    addressRegion: address.state,
+    postalCode: address.zip,
+    addressCountry: address.country || 'US',
+  },
+  ...(geo && {
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: geo.latitude,
+      longitude: geo.longitude,
+    },
+  }),
+  ...(openingHours && { openingHoursSpecification: openingHours }),
+  priceRange,
+  ...(image && { image }),
+  ...(logo && { logo }),
+  ...(sameAs && { sameAs }),
+  ...(aggregateRating && {
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: aggregateRating.ratingValue,
+      reviewCount: aggregateRating.reviewCount,
+    },
+  }),
+  ...(licenseNumber && {
+    hasCredential: {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'license',
+      name: `License #${licenseNumber}`,
+    },
+  }),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

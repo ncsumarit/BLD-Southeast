@@ -1,0 +1,48 @@
+---
+/**
+ * Service JSON-LD Schema
+ * One per service offering
+ * Required on: Individual service pages
+ */
+export interface Props {
+  name: string;
+  description: string;
+  url: string;
+  provider: {
+    name: string;
+    url: string;
+    type?: string;
+  };
+  areaServed?: Array<{
+    name: string;
+    type?: string;
+  }>;
+  serviceType?: string;
+  image?: string;
+}
+
+const { name, description, url, provider, areaServed, serviceType, image } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name,
+  description,
+  url,
+  ...(serviceType && { serviceType }),
+  ...(image && { image }),
+  provider: {
+    '@type': provider.type || 'LocalBusiness',
+    name: provider.name,
+    url: provider.url,
+  },
+  ...(areaServed && {
+    areaServed: areaServed.map((area) => ({
+      '@type': area.type || 'City',
+      name: area.name,
+    })),
+  }),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

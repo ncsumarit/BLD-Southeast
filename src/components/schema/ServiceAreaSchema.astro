@@ -1,0 +1,52 @@
+---
+/**
+ * ServiceArea JSON-LD Schema
+ * Embedded in service area (per-city) pages
+ * Required on: /areas/<city> pages
+ */
+export interface Props {
+  businessName: string;
+  businessUrl: string;
+  businessType?: string;
+  city: string;
+  state: string;
+  services: string[];
+  description?: string;
+  url: string;
+}
+
+const { businessName, businessUrl, businessType = 'LocalBusiness', city, state, services, description, url } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': businessType,
+  name: businessName,
+  url: businessUrl,
+  ...(description && { description }),
+  areaServed: {
+    '@type': 'City',
+    name: city,
+    containedInPlace: {
+      '@type': 'State',
+      name: state,
+    },
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: `${businessName} Services in ${city}`,
+    itemListElement: services.map((service, i) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: service,
+      },
+    })),
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': url,
+  },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

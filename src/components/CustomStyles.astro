@@ -1,0 +1,23 @@
+---
+/*
+ * BLD Southeast brand fonts.
+ * Display: Fraunces (high-contrast humanist serif). Body/UI: Figtree (variable sans).
+ * NOTE (builder phase): install packages before build ->
+ *   npm i @fontsource-variable/fraunces @fontsource-variable/figtree
+ * All color/type/spacing tokens live in src/styles/tokens.css (loaded via
+ * tailwind.css). The --aw-* AstroWind bridge is defined there too.
+ */
+import '@fontsource-variable/fraunces';
+import '@fontsource-variable/figtree';
+---
+
+<style is:inline>
+  ::selection {
+    background-color: #98d09a; /* soft green brand wash */
+    color: #14312f;
+  }
+  .dark ::selection {
+    background-color: #f9b5b5; /* coral on dark */
+    color: #05242a;
+  }
+</style>

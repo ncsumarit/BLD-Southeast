@@ -1,0 +1,49 @@
+---
+/**
+ * Organization JSON-LD Schema
+ * Required on: Home page
+ */
+export interface Props {
+  name: string;
+  url: string;
+  logo?: string;
+  description?: string;
+  telephone?: string;
+  email?: string;
+  address?: {
+    street: string;
+    city: string;
+    state: string;
+    zip: string;
+  };
+  sameAs?: string[];
+  foundingDate?: string;
+}
+
+const { name, url, logo, description, telephone, email, address, sameAs, foundingDate } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name,
+  url,
+  ...(logo && { logo }),
+  ...(description && { description }),
+  ...(telephone && { telephone }),
+  ...(email && { email }),
+  ...(address && {
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: address.street,
+      addressLocality: address.city,
+      addressRegion: address.state,
+      postalCode: address.zip,
+      addressCountry: 'US',
+    },
+  }),
+  ...(sameAs && { sameAs }),
+  ...(foundingDate && { foundingDate }),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

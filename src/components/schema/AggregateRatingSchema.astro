@@ -1,0 +1,39 @@
+---
+/**
+ * AggregateRating JSON-LD Schema
+ * Only included when review data exists (from GMB or manual entry)
+ * Required on: Home page (if reviews available)
+ */
+export interface Props {
+  businessName: string;
+  businessType?: string;
+  ratingValue: number;
+  reviewCount: number;
+  bestRating?: number;
+  worstRating?: number;
+}
+
+const {
+  businessName,
+  businessType = 'LocalBusiness',
+  ratingValue,
+  reviewCount,
+  bestRating = 5,
+  worstRating = 1,
+} = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': businessType,
+  name: businessName,
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue,
+    reviewCount,
+    bestRating,
+    worstRating,
+  },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
