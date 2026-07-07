@@ -121,9 +121,11 @@ const { logo, anchorLinks, registerCta } = Astro.props;
 
   .site-header.is-scrolled {
     height: var(--header-height-scroll);
-    background-color: color-mix(in srgb, var(--color-bg) 92%, transparent);
+    /* Solid white, not the page's own paper tone — sections below are the
+       same cream color, so a paper-tinted header was invisible against them. */
+    background-color: var(--white);
     backdrop-filter: blur(10px);
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-md);
   }
 
   .site-header__bar {
