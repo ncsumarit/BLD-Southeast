@@ -24,8 +24,9 @@
   --green-500: #98d09a; /* brand soft green — accent background/dividers */
   --green-300: #cbe8cc; /* pale green wash */
 
+  --orange-700: #9d4415; /* deepest orange — primary button hover/active (darker than 600) */
   --orange-600: #c4551a; /* accent orange, AA on white for small text (4.51:1) */
-  --orange-500: #dd6420; /* BRAND burnt orange — CTA fill, focus, energy accent */
+  --orange-500: #dd6420; /* BRAND burnt orange — energy accent, focus ring (3:1+ UI use only — fails 4.5:1 as a text/button-fill color, do not use for button backgrounds with white text) */
   --orange-100: #fbe6d8; /* pale orange wash */
 
   --paper:      #fbf8f3; /* warm off-white page ground (editorial, not stark) */
@@ -215,6 +216,14 @@
   --aw-color-text-page:    var(--color-text);
   --aw-color-bg-page:      var(--color-bg);
   --aw-color-bg-page-dark: var(--color-bg-invert);
+}
+
+/* Keep anchor-jump and focus targets clear of the sticky header (WCAG
+   2.4.11 Focus Not Obscured) — without this, jumping to #sponsors/#travel/
+   etc., or tabbing to a focusable element near a section top, renders it
+   partially/fully hidden under the fixed header. */
+html {
+  scroll-padding-top: var(--header-height);
 }
 
 /* Respect reduced-motion globally. */

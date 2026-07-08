@@ -65,6 +65,7 @@ const { logo, anchorLinks, registerCta } = Astro.props;
   const header = document.querySelector<HTMLElement>('[data-site-header]');
   const toggle = document.getElementById('site-header-toggle');
   const links = document.getElementById('site-header-links');
+  const linkEls = links ? Array.from(links.querySelectorAll('a')) : [];
 
   const setScrolled = () => {
     if (!header) return;
@@ -77,16 +78,39 @@ const { logo, anchorLinks, registerCta } = Astro.props;
   setScrolled();
   window.addEventListener('scroll', setScrolled, { passive: true });
 
+  // Below the 1024px breakpoint the nav collapses to a 0-height panel
+  // (grid-template-rows: 0fr) — but links inside stay in the DOM and, by
+  // default, in tab order. Without this, a keyboard user tabs through 7
+  // invisible focus stops (0px-tall, no visible ring) before ever seeing
+  // where focus is. Mirror the visual collapsed/open state onto tabindex
+  // so closed-panel links are skipped entirely, matching what's rendered.
+  const mobileMedia = window.matchMedia('(max-width: 1023px)');
+  const syncLinkFocusability = () => {
+    const isOpen = header?.classList.contains('is-menu-open') ?? false;
+    const shouldHide = mobileMedia.matches && !isOpen;
+    linkEls.forEach((a) => {
+      if (shouldHide) {
+        a.setAttribute('tabindex', '-1');
+      } else {
+        a.removeAttribute('tabindex');
+      }
+    });
+  };
+  syncLinkFocusability();
+  mobileMedia.addEventListener('change', syncLinkFocusability);
+
   toggle?.addEventListener('click', () => {
     const expanded = toggle.getAttribute('aria-expanded') === 'true';
     toggle.setAttribute('aria-expanded', String(!expanded));
     header?.classList.toggle('is-menu-open', !expanded);
+    syncLinkFocusability();
   });
 
-  links?.querySelectorAll('a').forEach((a) => {
+  linkEls.forEach((a) => {
     a.addEventListener('click', () => {
       toggle?.setAttribute('aria-expanded', 'false');
       header?.classList.remove('is-menu-open');
+      syncLinkFocusability();
     });
   });
 </script>
@@ -102,7 +126,7 @@ const { logo, anchorLinks, registerCta } = Astro.props;
     padding: var(--space-sm) var(--space-md);
     border-radius: var(--radius-sm);
   }
-  .skip-link:focus {
+  .skip-link:focus-visible {
     left: var(--space-sm);
     top: var(--space-sm);
   }
@@ -205,8 +229,7 @@ const { logo, anchorLinks, registerCta } = Astro.props;
     background-color: currentColor;
     transition: right var(--transition-ui);
   }
-  .site-header__link:hover::after,
-  .site-header__link[aria-current='page']::after {
+  .site-header__link:hover::after {
     right: 0;
   }
   .site-header__link:focus-visible {
@@ -270,37 +293,59 @@ const { logo, anchorLinks, registerCta } = Astro.props;
   }
 
   @media (max-width: 1023px) {
-    .site-header.is-menu-open .site-header__nav {
+    /*
+     * Collapsible mobile panel via the CSS grid-rows technique instead of
+     * a guessed max-height ceiling. `height: auto` can't be transitioned,
+     * so the common workaround is animating `max-height` to a hardcoded
+     * number — but any number you pick is either too small (clips content,
+     * as happened here once Sponsors/Travel were added) or too generous
+     * (dead space on short menus, breaks on short viewports). Animating
+     * `grid-template-rows` from 0fr to 1fr instead resolves to the
+     * content's real height at every frame — no ceiling to guess, and it
+     * never needs revisiting as nav items are added or removed.
+     * Reference: https://css-tricks.com/css-grid-can-do-auto-height-transitions/
+     */
+    .site-header__nav {
       position: fixed;
       inset-inline: 0;
       top: var(--header-height);
-      display: flex;
+      display: grid;
+      grid-template-rows: 0fr;
+      /* Reset the desktop horizontal-flex-bar's justify-content: center —
+         irrelevant here and was visually centering/indenting the stacked
+         mobile links instead of letting them sit flush to the gutter. */
+      justify-content: normal;
       background-color: var(--color-bg);
-      box-shadow: var(--shadow-md);
-      padding: var(--space-lg) var(--space-gutter);
+      transition: grid-template-rows var(--transition-express);
+      padding-inline: var(--space-gutter);
     }
     .site-header:not(.is-menu-open) .site-header__nav {
       pointer-events: none;
     }
-    .site-header .site-header__nav {
-      position: fixed;
-      inset-inline: 0;
-      top: var(--header-height);
-      max-height: 0;
-      overflow: hidden;
-      background-color: var(--color-bg);
-      transition: max-height var(--transition-express);
-      padding-inline: var(--space-gutter);
-    }
     .site-header.is-menu-open .site-header__nav {
-      max-height: 24rem;
+      grid-template-rows: 1fr;
+      /* Padding must be gated by open state, not applied unconditionally —
+         padding is its own box-model layer and does NOT shrink away with
+         the row track, so an always-on padding here would leave a fixed
+         gap visible even at grid-template-rows: 0fr (this bit us once:
+         a stray 64px gap when "closed" turned out to be exactly this). */
       padding-block: var(--space-lg);
       box-shadow: var(--shadow-md);
     }
     .site-header__links {
+      /* Base rule hides this list until the 1024px breakpoint (desktop
+         inline nav); the mobile open-menu panel needs it visible too, or
+         the panel opens with the toggle animated but no links inside. */
+      display: flex;
       flex-direction: column;
       gap: var(--space-md);
       width: 100%;
+      /* Required by the grid-rows technique: the single grid item must be
+         allowed to shrink below its content size (min-height: 0) and clip
+         (overflow: hidden) for the 0fr state to actually collapse to zero
+         instead of being forced open by its own intrinsic content height. */
+      overflow: hidden;
+      min-height: 0;
     }
     .site-header__link {
       color: var(--color-text);

@@ -1,6 +1,14 @@
+# CSP script-src: 'wasm-unsafe-eval' and cdn.jsdelivr.net are AstroWind
+# template defaults — no reference to either was found in this site's
+# build output (main site or the TinaCMS /admin bundle), but Tina's admin
+# app could plausibly load something dynamically at runtime that a static
+# grep wouldn't catch. Kept out of caution rather than removed on
+# unverified confidence; googletagmanager.com/google-analytics.com/
+# web3forms.com WERE removed below — confirmed zero usage anywhere
+# (no analytics, no on-site forms, verified via build output).
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://web3forms.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://web3forms.com
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   X-XSS-Protection: 1; mode=block
@@ -9,3 +17,11 @@
 
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
+
+# CMS-managed images ship from /images/, not /_astro/ (see
+# scripts/optimize-images.mjs doc comment for why they stay in public/).
+# Filenames aren't content-hashed, so cap the cache shorter than the
+# immutable /_astro/ rule — long enough to matter, short enough that a
+# same-filename replacement via Tina propagates within a day.
+/images/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800

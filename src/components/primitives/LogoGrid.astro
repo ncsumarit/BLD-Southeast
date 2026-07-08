@@ -1,0 +1,107 @@
+---
+/**
+ * LogoGrid — the actual tile grid + tile rendering shared by Beneficiaries
+ * (via LogoTileGrid, which wraps this in a full section) and Sponsors
+ * (which renders one LogoGrid per tier, with different sizing). Previously
+ * duplicated near-verbatim between LogoTileGrid and Sponsors — consolidated
+ * here so a fix (e.g. the Big Path Capital dark-card treatment) only needs
+ * to happen once.
+ *
+ * `columnsAtDesktop`/`tilePadding` follow the same dynamic-CSS-variable
+ * bridge pattern as CardGrid.astro's `--card-grid-cols`/`--card-grid-min`
+ * — the values vary per caller (tier) but are still token strings, not
+ * raw hardcoded numbers/hex.
+ */
+export interface LogoItem {
+  name: string;
+  logo: string;
+  url?: string;
+  /** Set true only for a logo file with a baked-in dark/solid background
+   *  (not transparent) — renders its tile on a dark card instead of white
+   *  so the asset doesn't show as a mismatched box. Fix at the source
+   *  asset when a clean version is available. */
+  darkCard?: boolean;
+}
+
+export interface Props {
+  logos: LogoItem[];
+  /** Grid columns from the 640px breakpoint up. */
+  columnsAtDesktop?: number;
+  /** A spacing token, e.g. 'var(--space-md)' — controls tile padding, which
+   *  is what makes Gold tiles read larger than Silver/Bronze. */
+  tilePadding?: string;
+}
+
+const { logos, columnsAtDesktop = 3, tilePadding = 'var(--space-md)' } = Astro.props;
+---
+
+<div class="logo-grid" style={`--logo-grid-cols: ${columnsAtDesktop}; --logo-grid-padding: ${tilePadding};`}>
+  {
+    logos.map((item) =>
+      item.url ? (
+        <a
+          class:list={['logo-tile', { 'logo-tile--dark': item.darkCard }]}
+          href={item.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${item.name} (opens in new tab)`}
+        >
+          <img src={item.logo} alt={item.name} loading="lazy" />
+        </a>
+      ) : (
+        <div class:list={['logo-tile', { 'logo-tile--dark': item.darkCard }]} role="img" aria-label={item.name}>
+          <img src={item.logo} alt={item.name} loading="lazy" />
+        </div>
+      ),
+    )
+  }
+</div>
+
+<style>
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-gap);
+  }
+
+  @media (min-width: 640px) {
+    .logo-grid {
+      grid-template-columns: repeat(var(--logo-grid-cols), 1fr);
+    }
+  }
+
+  .logo-tile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 3 / 2;
+    padding: var(--logo-grid-padding);
+    background-color: var(--layer-03);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-xs);
+    transition:
+      box-shadow var(--transition-ui),
+      transform var(--transition-ui);
+  }
+  a.logo-tile:hover {
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
+  }
+  a.logo-tile:focus-visible {
+    outline: var(--focus-ring-width) solid var(--color-focus);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  .logo-tile img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  /* Escape hatch for a logo asset with a baked-in dark/solid background —
+     see LogoItem.darkCard doc comment above. */
+  .logo-tile--dark {
+    background-color: var(--teal-800);
+  }
+</style>

@@ -7,7 +7,7 @@
  * consent banner.
  *
  * Header/Footer editable fields (register CTA link, contact email, social
- * links, privacy link, copyright) are sourced from content/landing.json —
+ * links, copyright) are sourced from content/landing.json —
  * the same single content file the page sections use, editable via
  * TinaCMS at /admin. Anchor links stay hardcoded here (they're structural
  * in-page section IDs, not content — editing them without touching the
@@ -29,13 +29,18 @@ const { metadata } = Astro.props;
 
 const { hero, footer } = content;
 
+// Order mirrors the actual page (src/pages/index.astro) — Agenda/Speakers
+// sit at the bottom there since both are still placeholder "coming soon"
+// states, so the nav follows suit rather than sending visitors to an
+// early empty section.
 const anchorLinks = [
   { label: 'About', href: '#about' },
   { label: 'Why Attend', href: '#why-attend' },
+  { label: 'Beneficiaries', href: '#beneficiaries' },
+  { label: 'Sponsors', href: '#sponsors' },
+  { label: 'Travel', href: '#travel' },
   { label: 'Agenda', href: '#agenda' },
   { label: 'Speakers', href: '#speakers' },
-  { label: 'Beneficiaries', href: '#beneficiaries' },
-  { label: 'Travel', href: '#travel' },
 ];
 ---
 
@@ -52,7 +57,6 @@ const anchorLinks = [
     logo={{ src: '/images/bld-southeast-logo-white.png', alt: 'BLD Southeast' }}
     contactEmail={footer.contactEmail || undefined}
     socialLinks={footer.socialLinks}
-    privacyLink={footer.privacyLink}
     copyright={footer.copyright}
   />
 </Layout>

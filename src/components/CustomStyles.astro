@@ -9,15 +9,29 @@
  */
 import '@fontsource-variable/fraunces';
 import '@fontsource-variable/figtree';
+
+// Preload the LCP-critical font: the Hero <h1> renders in Fraunces, and
+// without a preload the browser only discovers the font after parsing the
+// generated CSS bundle, adding request-discovery latency to the page's
+// largest text paint. `?url` resolves Vite's actual hashed build output
+// path rather than guessing a filename that could drift on a dependency
+// bump. This is the "latin" (not latin-ext/vietnamese) unicode-range file
+// — the one that actually covers standard English text.
+import fraunicesPreloadHref from '@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2?url';
 ---
 
+<link rel="preload" as="font" type="font/woff2" href={fraunicesPreloadHref} crossorigin />
+
 <style is:inline>
+  /* Tokens (--green-500, --ink-900, etc.) are defined globally in
+     src/styles/tokens.css, loaded before this component — reference them
+     directly rather than duplicating their hex values here. */
   ::selection {
-    background-color: #98d09a; /* soft green brand wash */
-    color: #14312f;
+    background-color: var(--green-500); /* soft green brand wash */
+    color: var(--ink-900);
   }
   .dark ::selection {
-    background-color: #f9b5b5; /* coral on dark */
-    color: #05242a;
+    background-color: var(--coral-500); /* coral on dark */
+    color: var(--teal-900);
   }
 </style>

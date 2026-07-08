@@ -1,16 +1,19 @@
 ---
 /**
- * LogoTileGrid — uniform equal-height tiles containing partner/beneficiary
- * logos with contained scaling (object-fit: contain). Normalizes mixed
- * aspect ratios (the exact problem flagged in the source-site audit).
+ * LogoTileGrid — full section wrapper (heading/intro slot + tile grid) for
+ * partner/beneficiary logos. The actual grid/tile rendering lives in the
+ * shared LogoGrid primitive (also used per-tier by Sponsors.astro).
  */
+import LogoGrid, { type LogoItem } from './LogoGrid.astro';
+
 export interface Props {
+  logos: LogoItem[];
   ground?: 'layer-01' | 'layer-02' | 'layer-03';
   id?: string;
   class?: string;
 }
 
-const { ground = 'layer-02', id, class: className = '' } = Astro.props;
+const { logos, ground = 'layer-02', id, class: className = '' } = Astro.props;
 ---
 
 <section id={id} class:list={['logo-tile-section', `logo-tile-section--${ground}`, className]}>
@@ -18,9 +21,7 @@ const { ground = 'layer-02', id, class: className = '' } = Astro.props;
     <div class="logo-tile-section__intro">
       <slot name="intro" />
     </div>
-    <div class="logo-tile-grid">
-      <slot />
-    </div>
+    <LogoGrid logos={logos} columnsAtDesktop={3} tilePadding="var(--space-sm)" />
   </div>
 </section>
 
@@ -47,18 +48,5 @@ const { ground = 'layer-02', id, class: className = '' } = Astro.props;
   .logo-tile-section__intro {
     max-width: var(--space-prose-max);
     margin-bottom: var(--space-2xl);
-  }
-
-  .logo-tile-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-gap);
-  }
-
-  /* 3 across (→ 2 rows of 3 for six logos) from tablet up. */
-  @media (min-width: 640px) {
-    .logo-tile-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
   }
 </style>

@@ -27,6 +27,7 @@ const isExternal = external || /^https?:\/\//.test(href);
 >
   <span class="btn__label"><slot /></span>
   {variant === 'text' && <span class="btn__chevron" aria-hidden="true">&rarr;</span>}
+  {isExternal && <span class="sr-only"> (opens in new tab)</span>}
 </a>
 
 <style>
@@ -52,21 +53,25 @@ const isExternal = external || /^https?:\/\//.test(href);
     box-shadow: 0 0 0 var(--focus-inset-width) var(--color-focus-inset);
   }
 
-  /* Primary — burnt orange. The ONLY orange element per design direction. */
+  /* Primary — burnt orange. The ONLY orange element per design direction.
+     Resting fill is orange-600, not --color-accent (orange-500) — orange-500
+     is brand-correct for the focus ring/small accents (3:1+ UI threshold)
+     but white text on it is only 3.55:1, below the 4.5:1 AA text minimum.
+     orange-600 is the AA-safe (4.51:1) shade for a filled text button. */
   .btn--primary {
     border-radius: var(--radius-pill);
     padding: var(--space-sm) var(--space-lg);
-    background-color: var(--color-accent);
+    background-color: var(--orange-600);
     color: var(--white);
     border: none;
   }
   .btn--primary:hover {
-    background-color: var(--orange-600);
+    background-color: var(--orange-700);
     transform: translateY(-1px);
     box-shadow: var(--shadow-md);
   }
   .btn--primary:active {
-    background-color: var(--orange-600);
+    background-color: var(--orange-700);
     transform: translateY(0);
     box-shadow: var(--shadow-xs);
   }

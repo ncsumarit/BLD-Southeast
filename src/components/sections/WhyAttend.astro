@@ -43,7 +43,9 @@ const { heading, intro, benefits } = Astro.props;
     font-weight: var(--weight-body-semi);
     text-transform: uppercase;
     letter-spacing: var(--tracking-overline);
-    color: var(--color-primary);
+    /* --color-primary (teal-500) is 4.07:1 on paper — fails AA 4.5:1 for
+       this 14px text. Use the strong variant (7.54:1) instead. */
+    color: var(--color-primary-strong);
   }
 
   .why-heading {

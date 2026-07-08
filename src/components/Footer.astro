@@ -1,13 +1,15 @@
 ---
 /**
  * Footer — deepest-teal stacked footer. Contact, socials (omitted until
- * supplied), privacy link, copyright. Composed on StackedContent primitive.
+ * supplied), copyright. Composed on StackedContent primitive.
+ *
+ * No privacy policy — site collects no data directly (no analytics, no
+ * first-party cookies), so no policy page exists.
  *
  * CMS field-type hints:
  *   logo: image-picker
  *   contactEmail: short-text
  *   socialLinks: repeater (platform: select, url: link-picker)
- *   privacyLink: link-picker
  *   copyright: short-text
  */
 import StackedContent from '~/components/primitives/StackedContent.astro';
@@ -15,13 +17,11 @@ import StackedContent from '~/components/primitives/StackedContent.astro';
 export interface Props {
   logo?: { src: string; alt: string };
   contactEmail?: string;
-  contactEmailIsTodo?: boolean;
   socialLinks?: { platform: string; url: string }[];
-  privacyLink: { label: string; href: string };
   copyright: string;
 }
 
-const { logo, contactEmail, contactEmailIsTodo = false, socialLinks = [], privacyLink, copyright } = Astro.props;
+const { logo, contactEmail, socialLinks = [], copyright } = Astro.props;
 ---
 
 <footer class="site-footer">
@@ -45,16 +45,13 @@ const { logo, contactEmail, contactEmailIsTodo = false, socialLinks = [], privac
               <li>
                 <a href={s.url} class="site-footer__social-link" target="_blank" rel="noopener noreferrer">
                   {s.platform}
+                  <span class="sr-only"> (opens in new tab)</span>
                 </a>
               </li>
             ))}
           </ul>
         )
       }
-
-      <nav class="site-footer__legal" aria-label="Legal">
-        <a href={privacyLink.href} class="site-footer__link">{privacyLink.label}</a>
-      </nav>
     </div>
 
     <p class="site-footer__copyright">{copyright}</p>
@@ -110,11 +107,6 @@ const { logo, contactEmail, contactEmailIsTodo = false, socialLinks = [], privac
     outline: var(--focus-ring-width) solid var(--color-focus);
     outline-offset: var(--focus-ring-offset);
   }
-  .site-footer__todo {
-    color: var(--color-on-dark-coral);
-    font-size: var(--text-xs);
-  }
-
   .site-footer__socials {
     display: flex;
     gap: var(--space-md);
@@ -134,25 +126,6 @@ const { logo, contactEmail, contactEmailIsTodo = false, socialLinks = [], privac
     opacity: 1;
   }
   .site-footer__social-link:focus-visible {
-    outline: var(--focus-ring-width) solid var(--color-focus);
-    outline-offset: var(--focus-ring-offset);
-  }
-
-  .site-footer__legal {
-    display: flex;
-  }
-  .site-footer__link {
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    color: var(--white);
-    text-decoration: none;
-    opacity: 0.85;
-    transition: opacity var(--transition-ui);
-  }
-  .site-footer__link:hover {
-    opacity: 1;
-  }
-  .site-footer__link:focus-visible {
     outline: var(--focus-ring-width) solid var(--color-focus);
     outline-offset: var(--focus-ring-offset);
   }

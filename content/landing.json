@@ -64,6 +64,46 @@
       { "name": "24FFG", "logo": "/images/beneficiaries/beneficiary-24ffg.png", "url": "" }
     ]
   },
+  "sponsors": {
+    "heading": "Thank you to our sponsors",
+    "intro": "",
+    "tiers": [
+      {
+        "tier": "gold",
+        "label": "Gold",
+        "sponsors": [
+          { "name": "Climate First Bank", "logo": "/images/sponsors/gold/climate-first-bank.jpg", "url": "" },
+          { "name": "University of Maryland – Robert H. Smith School of Business, Center for Social Value Creation", "logo": "/images/sponsors/gold/umd-smith-school.png", "url": "" },
+          { "name": "B Lab U.S. & Canada", "logo": "/images/sponsors/gold/b-lab-us-canada.png", "url": "" }
+        ]
+      },
+      {
+        "tier": "silver",
+        "label": "Silver",
+        "sponsors": [
+          { "name": "Vector Global Logistics", "logo": "/images/sponsors/silver/vector-global-logistics.png", "url": "" },
+          { "name": "Merit Financial Advisors", "logo": "/images/sponsors/silver/merit-financial-advisors.png", "url": "" },
+          { "name": "Retaaza", "logo": "/images/sponsors/silver/retaaza.png", "url": "" },
+          { "name": "TripZero", "logo": "/images/sponsors/silver/tripzero.png", "url": "" },
+          { "name": "Impact GC", "logo": "/images/sponsors/silver/impact-gc.png", "url": "" },
+          { "name": "Council Fire", "logo": "/images/sponsors/silver/council-fire.png", "url": "" },
+          { "name": "Practical Insight", "logo": "/images/sponsors/silver/practical-insight.png", "url": "" },
+          { "name": "Big Path Capital", "logo": "/images/sponsors/silver/big-path-capital.jpg", "url": "" },
+          { "name": "Mangrove Web Development", "logo": "/images/sponsors/silver/mangrove-web-development.svg", "url": "https://mangrove-web.com/" }
+        ]
+      },
+      {
+        "tier": "bronze",
+        "label": "Bronze",
+        "sponsors": [
+          { "name": "Nazareth Bonifacino Law", "logo": "/images/sponsors/bronze/nazareth-bonifacino-law.png", "url": "" },
+          { "name": "NextLevel Financial", "logo": "/images/sponsors/bronze/nextlevel-financial.png", "url": "" },
+          { "name": "Ocaquatics Swim School", "logo": "/images/sponsors/bronze/ocaquatics-swim-school.png", "url": "" },
+          { "name": "Marit Digital", "logo": "/images/sponsors/bronze/marit-digital.png", "url": "" }
+        ]
+      }
+    ]
+  },
   "travelStay": {
     "heading": "Travel & stay",
     "venueNote": "Venue to be confirmed — exact building/room pending final confirmation with the organizer.",
@@ -118,7 +158,6 @@
   "footer": {
     "contactEmail": "",
     "socialLinks": [],
-    "privacyLink": { "label": "Privacy Policy", "href": "/privacy/" },
     "copyright": "© 2026 BLD Southeast"
   }
 }

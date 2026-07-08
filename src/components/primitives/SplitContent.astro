@@ -64,9 +64,21 @@ const { reverse = false, ground = 'layer-01', id, class: className = '' } = Astr
 
   .split__media {
     width: 100%;
+    /* Stacked (mobile) layout: text first, image second — otherwise this
+       section's image lands directly beneath the Hero's own image with no
+       text between them. Desktop's two-column layout resets order below. */
+    order: 2;
   }
 
   .split__body {
     max-width: var(--space-prose-max);
+    order: 1;
+  }
+
+  @media (min-width: 768px) {
+    .split__media,
+    .split__body {
+      order: unset;
+    }
   }
 </style>

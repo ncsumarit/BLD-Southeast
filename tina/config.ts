@@ -216,6 +216,50 @@ export default defineConfig({
           },
           {
             type: 'object',
+            name: 'sponsors',
+            label: 'Sponsors',
+            fields: [
+              { type: 'string', name: 'heading', label: 'Heading' },
+              { type: 'string', name: 'intro', label: 'Intro (optional)' },
+              {
+                type: 'object',
+                name: 'tiers',
+                label: 'Tiers',
+                list: true,
+                ui: { itemProps: (item) => ({ label: item?.label || 'New tier' }) },
+                fields: [
+                  {
+                    type: 'string',
+                    name: 'tier',
+                    label: 'Tier',
+                    options: ['gold', 'silver', 'bronze'],
+                  },
+                  { type: 'string', name: 'label', label: 'Tier Label (shown on page)' },
+                  {
+                    type: 'object',
+                    name: 'sponsors',
+                    label: 'Sponsors',
+                    list: true,
+                    ui: { itemProps: (item) => ({ label: item?.name || 'New sponsor' }) },
+                    fields: [
+                      { type: 'string', name: 'name', label: 'Name' },
+                      { type: 'image', name: 'logo', label: 'Logo' },
+                      { type: 'string', name: 'url', label: 'URL (optional)' },
+                      {
+                        type: 'boolean',
+                        name: 'darkCard',
+                        label: 'Dark card background',
+                        description:
+                          'Only enable if the logo file has a baked-in dark/solid background (not transparent) — renders the tile on a dark card instead of white so it does not clash.',
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            type: 'object',
             name: 'travelStay',
             label: 'Travel & Stay',
             fields: [
@@ -301,7 +345,6 @@ export default defineConfig({
                   { type: 'string', name: 'url', label: 'URL' },
                 ],
               },
-              { type: 'object', name: 'privacyLink', label: 'Privacy Link', fields: linkFields() },
               { type: 'string', name: 'copyright', label: 'Copyright' },
             ],
           },

@@ -1,0 +1,124 @@
+---
+/**
+ * Sponsors — Gold / Silver / Bronze tiers, each its own row with tier-scaled
+ * tile sizes (Gold largest, Bronze smallest — standard sponsor-tier
+ * convention). Distinct from Beneficiaries (proceeds recipients): these are
+ * paying event sponsors. Tile grid/rendering lives in the shared LogoGrid
+ * primitive (also used by Beneficiaries via LogoTileGrid).
+ *
+ * CMS hints: heading short-text, tiers repeater{
+ *   tier: select(gold|silver|bronze), label short-text,
+ *   sponsors repeater{name,logo,url?}
+ * }.
+ */
+import LogoGrid, { type LogoItem } from '~/components/primitives/LogoGrid.astro';
+
+export interface SponsorTier {
+  tier: 'gold' | 'silver' | 'bronze';
+  label: string;
+  sponsors: LogoItem[];
+}
+
+export interface Props {
+  heading: string;
+  intro?: string;
+  tiers: SponsorTier[];
+}
+
+const { heading, intro, tiers } = Astro.props;
+
+// Gold largest tiles, Bronze smallest — standard tier-size convention.
+const TIER_LAYOUT: Record<SponsorTier['tier'], { columnsAtDesktop: number; tilePadding: string }> = {
+  gold: { columnsAtDesktop: 3, tilePadding: 'var(--space-lg)' },
+  silver: { columnsAtDesktop: 4, tilePadding: 'var(--space-md)' },
+  bronze: { columnsAtDesktop: 4, tilePadding: 'var(--space-sm)' },
+};
+---
+
+<section id="sponsors" class="sponsors">
+  <div class="sponsors-inner">
+    <p class="sponsors-overline">Sponsors</p>
+    <h2 class="sponsors-heading">{heading}</h2>
+    {intro && <p class="sponsors-intro">{intro}</p>}
+
+    {
+      tiers.map(
+        (tier) =>
+          tier.sponsors.length > 0 && (
+            <div class={`sponsor-tier sponsor-tier--${tier.tier}`}>
+              <h3 class="sponsor-tier__label">{tier.label}</h3>
+              <LogoGrid logos={tier.sponsors} {...TIER_LAYOUT[tier.tier]} />
+            </div>
+          ),
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .sponsors {
+    padding-block: var(--space-section);
+    background-color: var(--layer-01);
+  }
+
+  .sponsors-inner {
+    max-width: var(--space-content-max);
+    margin-inline: auto;
+    padding-inline: var(--space-gutter);
+  }
+
+  .sponsors-overline {
+    margin: 0 0 var(--space-xs);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-body-semi);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-overline);
+    /* --color-primary (teal-500) is 4.07:1 on paper — fails AA 4.5:1 for
+       this 14px text. Use the strong variant (7.54:1) instead. */
+    color: var(--color-primary-strong);
+  }
+
+  .sponsors-heading {
+    margin: 0 0 var(--space-sm);
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    font-size: var(--text-2xl);
+    line-height: var(--leading-snug);
+    color: var(--color-text-heading);
+  }
+
+  .sponsors-intro {
+    margin: 0 0 var(--space-2xl);
+    max-width: var(--space-prose-max);
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    color: var(--color-text-muted);
+  }
+
+  .sponsor-tier + .sponsor-tier {
+    margin-top: var(--space-2xl);
+  }
+
+  /* h3 sub-grouping within the h2 section — was a <p> styled to look like a
+     heading, which silently dropped the tier grouping from screen-reader
+     heading navigation while sighted users still saw it visually. */
+  .sponsor-tier__label {
+    margin: 0 0 var(--space-lg);
+    font-family: var(--font-body);
+    font-weight: var(--weight-body-semi);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-overline);
+  }
+
+  .sponsor-tier--gold .sponsor-tier__label {
+    color: var(--orange-600);
+  }
+  .sponsor-tier--silver .sponsor-tier__label {
+    color: var(--color-text-muted);
+  }
+  .sponsor-tier--bronze .sponsor-tier__label {
+    color: var(--color-text-muted);
+  }
+</style>

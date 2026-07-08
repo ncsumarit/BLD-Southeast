@@ -23,6 +23,7 @@ import WhyAttend from '~/components/sections/WhyAttend.astro';
 import Agenda from '~/components/sections/Agenda.astro';
 import Speakers from '~/components/sections/Speakers.astro';
 import Beneficiaries from '~/components/sections/Beneficiaries.astro';
+import Sponsors from '~/components/sections/Sponsors.astro';
 import TravelStay from '~/components/sections/TravelStay.astro';
 import RegisterCTA from '~/components/sections/RegisterCTA.astro';
 
@@ -34,7 +35,7 @@ import content from '../../content/landing.json';
 
 const SITE_URL = 'https://bldsoutheast.com/';
 
-const { seo, hero, about, whyAttend, agenda, speakers, beneficiaries, travelStay, registerCta } = content;
+const { seo, hero, about, whyAttend, agenda, speakers, beneficiaries, sponsors, travelStay, registerCta } = content;
 
 const metadata = {
   title: seo.title,
@@ -51,6 +52,15 @@ const aboutBody = [about.body, about.bodySecondary].filter((p): p is string => B
 ---
 
 <BaseLayout metadata={metadata}>
+  {
+    /* PRE-LAUNCH CHECKLIST ITEM: venueName/streetAddress below are marked
+       "to be confirmed" in the visible Travel & Stay section (see
+       TravelStay's venueNote), but this schema emits them as settled fact —
+       see EventSchema.astro's header comment for why that's a deliberate
+       tradeoff, not an oversight. Once the organizer confirms the exact
+       building/room, update BOTH this block AND TravelStay's venueNote in
+       one pass so the two don't drift out of sync again. */
+  }
   <EventSchema
     name="BLD Southeast 2026"
     startDate="2026-09-16"
@@ -95,6 +105,29 @@ const aboutBody = [about.body, about.bodySecondary].filter((p): p is string => B
   -->
   <WhyAttend heading={whyAttend.heading} intro={whyAttend.intro} benefits={whyAttend.benefits} />
 
+  <Beneficiaries heading={beneficiaries.heading} logos={beneficiaries.logos} />
+
+  <Sponsors heading={sponsors.heading} intro={sponsors.intro} tiers={sponsors.tiers} />
+
+  <TravelStay
+    heading={travelStay.heading}
+    partnerUrl={travelStay.partnerUrl}
+    venueNote={travelStay.venueNote}
+    venue={travelStay.venue}
+    airports={travelStay.airports}
+    hotels={travelStay.hotels}
+    bookingDeadline={travelStay.bookingDeadline}
+    carbonOffsetNote={travelStay.carbonOffsetNote}
+  />
+
+  <!--
+    Agenda and Speakers moved to the bottom of the page (just above the
+    final Register CTA) — both are still placeholder "coming soon" states
+    with no real content yet, so they shouldn't compete with the sections
+    that ARE filled out (About, WhyAttend, Beneficiaries, Sponsors, Travel)
+    for the visitor's early attention. Re-promote them once real
+    sessions/speakers exist.
+  -->
   <!-- Agenda: not public yet — renders "coming soon" state (no fabricated sessions). -->
   {agenda.show && <Agenda heading={agenda.heading} days={agenda.days} placeholderNote={agenda.placeholderNote} />}
 
@@ -110,19 +143,6 @@ const aboutBody = [about.body, about.bodySecondary].filter((p): p is string => B
       />
     )
   }
-
-  <Beneficiaries heading={beneficiaries.heading} logos={beneficiaries.logos} />
-
-  <TravelStay
-    heading={travelStay.heading}
-    partnerUrl={travelStay.partnerUrl}
-    venueNote={travelStay.venueNote}
-    venue={travelStay.venue}
-    airports={travelStay.airports}
-    hotels={travelStay.hotels}
-    bookingDeadline={travelStay.bookingDeadline}
-    carbonOffsetNote={travelStay.carbonOffsetNote}
-  />
 
   <!-- PastYears: cut — no real photos/stats exist (no-fabricated-social-proof rule). Component kept for later, not content-modeled. -->
 

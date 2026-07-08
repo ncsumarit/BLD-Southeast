@@ -1,24 +1,64 @@
 ---
-import Layout from '~/layouts/Layout.astro';
+import BaseLayout from '~/layouts/BaseLayout.astro';
 import { getHomePermalink } from '~/utils/permalinks';
+import Button from '~/components/Button.astro';
 
-const title = `Error 404`;
+const metadata = { title: 'Page Not Found' };
 ---
 
-<Layout metadata={{ title }}>
-  <section class="flex items-center h-full p-16">
-    <div class="container flex flex-col items-center justify-center px-5 mx-auto my-8">
-      <div class="max-w-md text-center">
-        <h2 class="mb-8 font-bold text-9xl">
-          <span class="sr-only">Error</span>
-          <span class="text-primary">404</span>
-        </h2>
-        <p class="text-3xl font-semibold md:text-3xl">Sorry, we couldn't find this page.</p>
-        <p class="mt-4 mb-8 text-lg text-muted dark:text-slate-400">
-          But dont worry, you can find plenty of other things on our homepage.
-        </p>
-        <a rel="noopener noreferrer" href={getHomePermalink()} class="btn ml-4">Back to homepage</a>
-      </div>
+<BaseLayout metadata={metadata}>
+  <section class="error-404">
+    <div class="error-404__inner">
+      <h1 class="error-404__code"><span class="sr-only">Error</span>404</h1>
+      <p class="error-404__title">Sorry, we couldn't find this page.</p>
+      <p class="error-404__body">
+        But don't worry — you can find plenty of other things on our homepage.
+      </p>
+      <Button href={getHomePermalink()} variant="secondary">Back to homepage</Button>
     </div>
   </section>
-</Layout>
+</BaseLayout>
+
+<style>
+  .error-404 {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: var(--space-section);
+    padding-inline: var(--space-gutter);
+    background-color: var(--layer-01);
+  }
+
+  .error-404__inner {
+    max-width: var(--space-prose-max);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .error-404__code {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: var(--weight-display-bold);
+    font-size: var(--text-4xl);
+    color: var(--color-primary-strong);
+  }
+
+  .error-404__title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    font-size: var(--text-xl);
+    color: var(--color-text-heading);
+  }
+
+  .error-404__body {
+    margin: 0 0 var(--space-sm);
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    color: var(--color-text-muted);
+  }
+</style>

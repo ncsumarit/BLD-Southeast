@@ -99,6 +99,7 @@ const { heading, venueNote, partnerUrl, venue, airports, hotels, bookingDeadline
               {hotel.bookHref && (
                 <a class="hotel-card__book" href={hotel.bookHref} target="_blank" rel="noopener noreferrer">
                   Book this rate &rarr;
+                  <span class="sr-only"> (opens in new tab)</span>
                 </a>
               )}
               {hotel.phone && <span class="hotel-card__phone">{hotel.phone}</span>}
@@ -124,7 +125,9 @@ const { heading, venueNote, partnerUrl, venue, airports, hotels, bookingDeadline
     font-weight: var(--weight-body-semi);
     text-transform: uppercase;
     letter-spacing: var(--tracking-overline);
-    color: var(--color-primary);
+    /* --color-primary (teal-500) is 4.07:1 on paper — fails AA 4.5:1 for
+       this 14px text. Use the strong variant (7.54:1) instead. */
+    color: var(--color-primary-strong);
   }
 
   .travel-heading {
@@ -272,6 +275,14 @@ const { heading, venueNote, partnerUrl, venue, airports, hotels, bookingDeadline
     background-color: var(--layer-03);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-ui);
+  }
+  /* Card contains a real interactive link ("Book this rate") — lift the
+     whole card on hover/focus-within, per project convention for clickable
+     cards (hover on the wrapper, not just the inner link). */
+  .hotel-card:hover,
+  .hotel-card:focus-within {
+    box-shadow: var(--shadow-md);
   }
 
   .hotel-card__name {

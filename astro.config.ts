@@ -24,6 +24,13 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 export default defineConfig({
   output: 'static',
 
+  // Respect an externally-assigned port (e.g. the preview harness) instead
+  // of Vite's silent auto-increment, which can drift from what a proxy
+  // expects to be listening on.
+  server: {
+    port: process.env.PORT ? Number(process.env.PORT) : 4321,
+  },
+
   // Project-wide policy (see CLAUDE.md "Trailing Slash Enforcement").
   // All internal links, canonicals, OG URLs, and sitemap entries must end with "/".
   trailingSlash: 'always',
