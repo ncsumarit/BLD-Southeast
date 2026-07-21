@@ -75,13 +75,22 @@ const { logos, columnsAtDesktop = 3, tilePadding = 'var(--space-md)' } = Astro.p
     align-items: center;
     justify-content: center;
     aspect-ratio: 3 / 2;
-    padding: var(--logo-grid-padding);
+    /* Below 640px tiles are half-width (2-col grid), so the desktop tier
+       padding leaves too little room for the logo itself — scale it down
+       proportionally rather than dropping tier hierarchy entirely. */
+    padding: calc(var(--logo-grid-padding) / 2);
     background-color: var(--layer-03);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-xs);
     transition:
       box-shadow var(--transition-ui),
       transform var(--transition-ui);
+  }
+
+  @media (min-width: 640px) {
+    .logo-tile {
+      padding: var(--logo-grid-padding);
+    }
   }
   a.logo-tile:hover {
     box-shadow: var(--shadow-sm);
