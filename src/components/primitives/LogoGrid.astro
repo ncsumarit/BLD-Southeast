@@ -74,6 +74,11 @@ const { logos, columnsAtDesktop = 3, tilePadding = 'var(--space-md)' } = Astro.p
     display: flex;
     align-items: center;
     justify-content: center;
+    /* Grid items default to min-width: auto, which resolves to the
+       intrinsic (natural) width of the <img> inside — without this, a
+       high-res logo can force its track (and the whole grid) wider than
+       100%, blowing the container out on narrow/mobile viewports. */
+    min-width: 0;
     aspect-ratio: 3 / 2;
     /* Below 640px tiles are half-width (2-col grid), so the desktop tier
        padding leaves too little room for the logo itself — scale it down
