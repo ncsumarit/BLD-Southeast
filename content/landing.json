@@ -91,6 +91,7 @@
           { "name": "Council Fire", "logo": "/images/sponsors/silver/council-fire.png", "url": "https://www.councilfire.org/" },
           { "name": "Practical Insight", "logo": "/images/sponsors/silver/practical-insight.png", "url": "https://getpracticalinsight.com/" },
           { "name": "Big Path Capital", "logo": "/images/sponsors/silver/big-path-capital.jpg", "url": "https://www.bigpathcapital.com/" },
+          { "name": "Big Sea", "logo": "/images/sponsors/silver/big-sea.png", "url": "https://bigsea.co/" },
           { "name": "Mangrove Web Development", "logo": "/images/sponsors/silver/mangrove-web-development.svg", "url": "https://mangrove-web.com/" }
         ]
       },
