@@ -128,8 +128,19 @@ const aboutBody = [about.body, about.bodySecondary].filter((p): p is string => B
     for the visitor's early attention. Re-promote them once real
     sessions/speakers exist.
   -->
-  <!-- Agenda: not public yet — renders "coming soon" state (no fabricated sessions). -->
-  {agenda.show && <Agenda heading={agenda.heading} days={agenda.days} placeholderNote={agenda.placeholderNote} />}
+  <!-- Agenda: homepage shows a per-day overview; full schedule lives at /agenda/. -->
+  {
+    agenda.show && (
+      <Agenda
+        heading={agenda.heading}
+        variant="overview"
+        overview={agenda.overview}
+        fullHref={agenda.fullAgendaHref}
+        days={agenda.days}
+        placeholderNote={agenda.placeholderNote}
+      />
+    )
+  }
 
   <!-- Speakers: none confirmed yet — renders "to be announced" + Apply to Speak. -->
   {

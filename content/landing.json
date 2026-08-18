@@ -43,6 +43,12 @@
     "heading": "Agenda",
     "show": true,
     "placeholderNote": "Full agenda coming soon — check back for Day 1 (Sept 16) and Day 2 (Sept 17) session details.",
+    "fullAgendaHref": "/agenda/",
+    "overview": [
+      { "label": "Day 1 — Wednesday, September 16", "summary": "Optional morning and afternoon excursions across DC — Capitol tours, museum visits, and walking tours — capped by the opening reception at the Martin Luther King Jr. Memorial Library." },
+      { "label": "Day 2 — Thursday, September 17", "summary": "The main conference day at GW's Student Center: keynotes, four blocks of concurrent sessions, a congressional plenary, and the closing reception at Tonic at Quigley's." },
+      { "label": "Bonus — Urban Hike · Friday, September 18", "summary": "A guided ~5-mile urban hike visiting B Corps across Georgetown and downtown DC, ending at Luke's Lobster Farragut." }
+    ],
     "days": [
       {
         "label": "Day 1 — Wednesday, September 16",

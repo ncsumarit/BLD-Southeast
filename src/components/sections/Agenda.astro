@@ -30,10 +30,18 @@ export interface Props {
   heading: string;
   days?: { label: string; sessions: AgendaSession[] }[];
   placeholderNote?: string;
+  /** 'overview' renders per-day summary cards + a link to the full agenda
+   *  page (homepage use); 'full' renders every session (the /agenda page). */
+  variant?: 'full' | 'overview';
+  /** Per-day summaries for the overview variant. */
+  overview?: { label: string; summary: string }[];
+  /** Where the "View full agenda" link points (overview variant). */
+  fullHref?: string;
 }
 
-const { heading, days = [], placeholderNote } = Astro.props;
+const { heading, days = [], placeholderNote, variant = 'full', overview = [], fullHref = '/agenda/' } = Astro.props;
 const hasAgenda = days.length > 0;
+const isOverview = variant === 'overview' && overview.length > 0;
 ---
 
 <StackedContent id="agenda" ground="layer-02" measure="content">
@@ -41,7 +49,22 @@ const hasAgenda = days.length > 0;
   <h2 class="agenda-heading">{heading}</h2>
 
   {
-    hasAgenda ? (
+    isOverview ? (
+      <div class="agenda-overview">
+        <ul class="agenda-overview__cards">
+          {overview.map((day) => (
+            <li class="agenda-overview__card">
+              <h3 class="agenda-overview__label">{day.label}</h3>
+              <p class="agenda-overview__summary">{day.summary}</p>
+            </li>
+          ))}
+        </ul>
+        <a class="agenda-overview__cta" href={fullHref}>
+          View full agenda
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    ) : hasAgenda ? (
       <div class="agenda-days">
         {days.map((day) => (
           <div class="agenda-day">
@@ -98,6 +121,66 @@ const hasAgenda = days.length > 0;
     font-size: var(--text-2xl);
     line-height: var(--leading-snug);
     color: var(--color-text-heading);
+  }
+
+  /* Overview variant — per-day summary cards + link to the full agenda. */
+  .agenda-overview__cards {
+    list-style: none;
+    margin: 0 0 var(--space-xl);
+    padding: 0;
+    display: grid;
+    gap: var(--space-lg);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 720px) {
+    .agenda-overview__cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .agenda-overview__card {
+    min-width: 0;
+    padding: var(--space-lg);
+    background-color: var(--layer-03);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xs);
+  }
+
+  .agenda-overview__label {
+    margin: 0 0 var(--space-xs);
+    font-family: var(--font-display);
+    font-weight: var(--weight-display-bold);
+    font-size: var(--text-lg);
+    line-height: var(--leading-snug);
+    color: var(--color-primary-strong);
+  }
+
+  .agenda-overview__summary {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .agenda-overview__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-family: var(--font-body);
+    font-weight: var(--weight-body-semi);
+    font-size: var(--text-md);
+    color: var(--color-primary-strong);
+    text-decoration: none;
+  }
+  .agenda-overview__cta:hover {
+    text-decoration: underline;
+  }
+  .agenda-overview__cta:focus-visible {
+    outline: var(--focus-ring-width) solid var(--color-focus);
+    outline-offset: var(--focus-ring-offset);
+    border-radius: var(--radius-xs);
   }
 
   .agenda-days {

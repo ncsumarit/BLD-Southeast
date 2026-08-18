@@ -1,0 +1,60 @@
+---
+/**
+ * /agenda — the complete event schedule. The homepage shows a per-day
+ * overview (see Agenda's `variant="overview"`); this page renders every
+ * session in full, including excursion addresses, meal notes, reservation
+ * flags, and the bonus Friday hike. Content comes from the same
+ * content/landing.json agenda model so there's a single source of truth.
+ */
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Agenda from '~/components/sections/Agenda.astro';
+import { getHomePermalink } from '~/utils/permalinks';
+import content from '../../content/landing.json';
+
+const { agenda } = content;
+
+const metadata = {
+  title: 'Full Agenda',
+  description:
+    'The complete BLD Southeast 2026 schedule: Day 1 DC excursions, the Day 2 conference sessions, and the bonus Friday urban hike.',
+};
+---
+
+<BaseLayout metadata={metadata}>
+  <div class="agenda-page">
+    <div class="agenda-page__inner">
+      <a class="agenda-page__back" href={getHomePermalink()}>
+        <span aria-hidden="true">←</span>
+        Back to home
+      </a>
+    </div>
+    <Agenda heading={agenda.heading} days={agenda.days} placeholderNote={agenda.placeholderNote} />
+  </div>
+
+  <style>
+    .agenda-page__inner {
+      max-width: var(--space-content-max);
+      margin-inline: auto;
+      padding: var(--space-2xl) var(--space-gutter) 0;
+    }
+
+    .agenda-page__back {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2xs);
+      font-family: var(--font-body);
+      font-weight: var(--weight-body-semi);
+      font-size: var(--text-sm);
+      color: var(--color-primary-strong);
+      text-decoration: none;
+    }
+    .agenda-page__back:hover {
+      text-decoration: underline;
+    }
+    .agenda-page__back:focus-visible {
+      outline: var(--focus-ring-width) solid var(--color-focus);
+      outline-offset: var(--focus-ring-offset);
+      border-radius: var(--radius-xs);
+    }
+  </style>
+</BaseLayout>
