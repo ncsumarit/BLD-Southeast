@@ -160,8 +160,19 @@ export default defineConfig({
                     ui: { itemProps: (item) => ({ label: item?.title || 'New session' }) },
                     fields: [
                       { type: 'string', name: 'time', label: 'Time' },
-                      { type: 'string', name: 'title', label: 'Title' },
+                      { type: 'string', name: 'title', label: 'Title (or block heading when using options)' },
                       { type: 'string', name: 'description', label: 'Description', ui: { component: 'textarea' } },
+                      {
+                        type: 'object',
+                        name: 'options',
+                        label: 'Concurrent Options (parallel choices in this time slot)',
+                        list: true,
+                        ui: { itemProps: (item) => ({ label: item?.title || 'New option' }) },
+                        fields: [
+                          { type: 'string', name: 'title', label: 'Option Title' },
+                          { type: 'string', name: 'description', label: 'Option Description', ui: { component: 'textarea' } },
+                        ],
+                      },
                     ],
                   },
                 ],

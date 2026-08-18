@@ -47,15 +47,17 @@
       {
         "label": "Day 1 — Wednesday, September 16",
         "sessions": [
-          { "time": "9:00–10:00", "title": "Breakfast & Networking Meetup", "description": "Meet inside Western Market (2000 Pennsylvania Ave NW). Breakfast not provided — please pay for your own meal." },
-          { "time": "9:00–10:30", "title": "Capitol Tour with Bart Houlahan", "description": "Meet outside the Longworth House Office Building (1 Independence Ave SE). Limited slots." },
-          { "time": "10:30–12:00", "title": "Capitol Tour with Bart Houlahan", "description": "Meet outside the Longworth House Office Building (1 Independence Ave SE). Limited slots." },
-          { "time": "10:30–12:00", "title": "L'Occitane Community Event", "description": "Meet at L'Occitane (3106 M St NW). Limited slots." },
-          { "time": "10:30–12:00", "title": "Gabs & Grabbers (Networking & Cleanup)", "description": "Location TBD." },
-          { "time": "10:30–12:00", "title": "National Museum of African American History and Culture", "description": "Meet in the museum lobby (1400 Constitution Ave NW). Slots TBD." },
-          { "time": "12:30–1:30", "title": "Lunch", "description": "Options: food court at the Longworth Dining Hall / lunch outside with Bart Houlahan (Independence Ave SE); food court at the National Museum of African American History and Culture (1400 Constitution Ave NW); or Compliments Only (2029 P St NW, Front 1). Please pay for your own meal." },
+          { "time": "9:00–10:00", "title": "Breakfast & Networking Meetup", "description": "Meet inside Western Market (2000 Pennsylvania Ave NW). Breakfast not provided. *Note: please pay for your own meal." },
+          { "time": "9:00–10:30", "title": "Capitol Tour with Bart Houlahan", "description": "Meet outside the Longworth House Office Building (1 Independence Ave SE). Limited slots (signup link coming soon)." },
+          { "time": "10:30–12:00", "title": "Morning excursions — choose one", "options": [
+            { "title": "Capitol Tour with Bart Houlahan", "description": "Meet outside the Longworth House Office Building (1 Independence Ave SE). Limited slots (signup link coming soon)." },
+            { "title": "L'Occitane Community Event", "description": "Meet at L'Occitane (3106 M St NW). Limited slots (signup link coming soon)." },
+            { "title": "Gabs & Grabbers (Networking & Cleanup)", "description": "Location TBD." },
+            { "title": "National Museum of African American History and Culture", "description": "Meet in the museum lobby (1400 Constitution Ave NW). Slots TBD (signup link coming soon)." }
+          ] },
+          { "time": "12:30–1:30", "title": "Lunch", "description": "Options: food court at the Longworth Dining Hall / lunch outside with Bart Houlahan (Independence Ave SE); food court at the National Museum of African American History and Culture (1400 Constitution Ave NW); or Compliments Only (2029 P St NW, Front 1). *Note: please pay for your own meal." },
           { "time": "3:00–4:00", "title": "National Portrait Gallery", "description": "Meet in the museum lobby (8th St NW & G St NW)." },
-          { "time": "3:30–5:00", "title": "Black History Walking Tour", "description": "Meet outside Ben's Chili Bowl (1213 U St NW). Paid excursion." },
+          { "time": "3:30–5:00", "title": "Black History Walking Tour", "description": "Meet outside Ben's Chili Bowl (1213 U St NW). Paid excursion (signup link coming soon)." },
           { "time": "5:00–6:00", "title": "BIPOC Happy Hour at Busboys and Poets", "description": "Meet in the Community Room at Busboys and Poets (2021 14th St NW). Attendees who don't identify as BIPOC but would like a drink beforehand can meet at Urban Garden Brewhouse (624 T St NW), DC's first Black woman-owned brick-and-mortar brewery — a table will be reserved for BLD Southeast." },
           { "time": "6:30–9:00", "title": "Opening Reception at Martin Luther King Jr. Memorial Library", "description": "5th-floor event space & rooftop terrace (901 G St NW). Registration, brief opening and closing remarks, networking, complimentary food & beverages, library access, and live music (TBD)." }
         ]
@@ -68,25 +70,33 @@
           { "time": "8:00–8:45 AM", "title": "Registration, Networking & Breakfast", "description": "Breakfast will all be vegan." },
           { "time": "8:45–9:00", "title": "Opening Remarks", "description": "DC Mayor-Elect Janeese Lewis George invited (TBD)." },
           { "time": "9:00–9:15", "title": "Keynote" },
-          { "time": "9:25–10:25 AM", "title": "Protecting the Mission: Practical Climate Risk Strategies for B Corps", "description": "First morning session (concurrent)." },
-          { "time": "9:25–10:25 AM", "title": "From Readiness to Responsibility: An AI Readiness Workshop for Purpose-Driven Companies", "description": "First morning session (concurrent)." },
-          { "time": "9:25–10:25 AM", "title": "Radical Inclusion: Aligning Your Digital Presence with Your Inclusion Commitments, Legal Requirements, and B Corp V2 JEDI Standards", "description": "First morning session (concurrent)." },
-          { "time": "9:25–10:25 AM", "title": "Why Should Anyone Choose You?", "description": "First morning session (concurrent)." },
-          { "time": "10:35–11:35", "title": "From Proof to Power: Building the Infrastructure for Systems Change", "description": "Second morning session (concurrent)." },
-          { "time": "10:35–11:35", "title": "Using Your Purchasing Power: Supply Chain Engagement as Collective Action", "description": "Second morning session (concurrent)." },
-          { "time": "10:35–11:35", "title": "Is Impact Capital Right for You — and Are You Ready for It?", "description": "Second morning session (concurrent)." },
-          { "time": "10:35–11:35", "title": "Keeping Your People When Budgets Are Stretched and Attention Fractured", "description": "Second morning session (concurrent)." },
+          { "time": "9:25–10:25 AM", "title": "First morning session — choose one", "options": [
+            { "title": "Protecting the Mission: Practical Climate Risk Strategies for B Corps" },
+            { "title": "From Readiness to Responsibility: An AI Readiness Workshop for Purpose-Driven Companies" },
+            { "title": "Radical Inclusion: Aligning Your Digital Presence with Your Inclusion Commitments, Legal Requirements, and B Corp V2 JEDI Standards" },
+            { "title": "Why Should Anyone Choose You?" }
+          ] },
+          { "time": "10:35–11:35", "title": "Second morning session — choose one", "options": [
+            { "title": "From Proof to Power: Building the Infrastructure for Systems Change" },
+            { "title": "Using Your Purchasing Power: Supply Chain Engagement as Collective Action" },
+            { "title": "Is Impact Capital Right for You — and Are You Ready for It?" },
+            { "title": "Keeping Your People When Budgets Are Stretched and Attention Fractured" }
+          ] },
           { "time": "11:45–12:45 PM", "title": "Lunch", "description": "Lunch will all be vegan." },
           { "time": "12:45–1:00", "title": "Mini Keynote" },
-          { "time": "1:10–2:10 PM", "title": "From B Impact to Certification: Demystifying the Audit Process", "description": "First afternoon session (concurrent)." },
-          { "time": "1:10–2:10 PM", "title": "One Team. Every Generation: Creating Workplaces Where People Feel Valued, Connected, and Inspired", "description": "First afternoon session (concurrent)." },
-          { "time": "1:10–2:10 PM", "title": "Buy, Build, Share: A Practical Workshop on Mission-Driven M&A and Employee Ownership", "description": "First afternoon session (concurrent)." },
-          { "time": "1:10–2:10 PM", "title": "Beyond the Statement: Building Structural Solidarity That Pays Off Before, During, and After a Crisis", "description": "First afternoon session (concurrent)." },
+          { "time": "1:10–2:10 PM", "title": "First afternoon session — choose one", "options": [
+            { "title": "From B Impact to Certification: Demystifying the Audit Process" },
+            { "title": "One Team. Every Generation: Creating Workplaces Where People Feel Valued, Connected, and Inspired" },
+            { "title": "Buy, Build, Share: A Practical Workshop on Mission-Driven M&A and Employee Ownership" },
+            { "title": "Beyond the Statement: Building Structural Solidarity That Pays Off Before, During, and After a Crisis" }
+          ] },
           { "time": "2:20–3:20 PM", "title": "Congressional Plenary — Building the Conditions for Shared Prosperity", "description": "Sen. Chris Van Hollen (MD), Rep. Chrissy Houlahan (PA), Rep. Jamie Raskin (MD), and a business representative (TBD). Moderated by George Chmael II (Council Fire)." },
-          { "time": "3:30–4:30 PM", "title": "From Proof to Power: Designing the Next Phase of the Movement", "description": "Second afternoon session (concurrent)." },
-          { "time": "3:30–4:30 PM", "title": "Conscious AI Adoption: People, Planet, Governance", "description": "Second afternoon session (concurrent)." },
-          { "time": "3:30–4:30 PM", "title": "Employee Ownership 101: A Succession Strategy for Mission-Driven Businesses", "description": "Second afternoon session (concurrent)." },
-          { "time": "3:30–4:30 PM", "title": "Money Talks: How Money Beliefs Shape Leadership, Culture, and Impact", "description": "Second afternoon session (concurrent)." },
+          { "time": "3:30–4:30 PM", "title": "Second afternoon session — choose one", "options": [
+            { "title": "From Proof to Power: Designing the Next Phase of the Movement" },
+            { "title": "Conscious AI Adoption: People, Planet, Governance" },
+            { "title": "Employee Ownership 101: A Succession Strategy for Mission-Driven Businesses" },
+            { "title": "Money Talks: How Money Beliefs Shape Leadership, Culture, and Impact" }
+          ] },
           { "time": "4:40–5:20", "title": "Closing Session — Continuing Our Collective Work Together" },
           { "time": "5:20–5:30", "title": "Closing Remarks" },
           { "time": "6:00–7:00", "title": "B1 Happy Hour (B Corp & 1% for the Planet members)", "description": "Third floor of Tonic at Quigley's (2036 G St NW). Hosted by local Patagonia store Engagement Leads." },

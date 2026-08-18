@@ -9,9 +9,26 @@
  */
 import StackedContent from '~/components/primitives/StackedContent.astro';
 
+interface AgendaOption {
+  title: string;
+  description?: string;
+}
+
+interface AgendaSession {
+  time: string;
+  title: string;
+  description?: string;
+  /** Concurrent choices in this time slot. When present, the session title
+   *  acts as the block heading (e.g. "Second afternoon session — choose
+   *  one") and the options render as an indented list beneath it — one time
+   *  label, clear parent/child hierarchy, instead of the same time repeated
+   *  on every parallel row. */
+  options?: AgendaOption[];
+}
+
 export interface Props {
   heading: string;
-  days?: { label: string; sessions: { time: string; title: string; description?: string }[] }[];
+  days?: { label: string; sessions: AgendaSession[] }[];
   placeholderNote?: string;
 }
 
@@ -36,6 +53,16 @@ const hasAgenda = days.length > 0;
                   <span class="agenda-session__body">
                     <span class="agenda-session__title">{session.title}</span>
                     {session.description && <span class="agenda-session__desc">{session.description}</span>}
+                    {session.options && session.options.length > 0 && (
+                      <ul class="agenda-options">
+                        {session.options.map((opt) => (
+                          <li class="agenda-option">
+                            <span class="agenda-option__title">{opt.title}</span>
+                            {opt.description && <span class="agenda-option__desc">{opt.description}</span>}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </span>
                 </li>
               ))}
@@ -137,6 +164,39 @@ const hasAgenda = days.length > 0;
     font-family: var(--font-body);
     font-size: var(--text-sm);
     color: var(--color-text-muted);
+  }
+
+  /* Concurrent options: an indented list under the block heading so the
+     shared time reads once, with the parallel choices grouped beneath. */
+  .agenda-options {
+    list-style: none;
+    margin: var(--space-2xs) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .agenda-option {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+    padding-left: var(--space-md);
+    border-left: 2px solid var(--color-border);
+  }
+
+  .agenda-option__title {
+    font-family: var(--font-body);
+    font-weight: var(--weight-body-semi);
+    font-size: var(--text-sm);
+    color: var(--color-text);
+  }
+
+  .agenda-option__desc {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    overflow-wrap: break-word;
   }
 
   .agenda-placeholder {
