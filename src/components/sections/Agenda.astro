@@ -114,6 +114,16 @@ const hasAgenda = days.length > 0;
     display: flex;
     flex-direction: column;
     gap: var(--space-3xs);
+    /* 1fr grid column defaults to min-width:auto (= widest content). A long
+       unbreakable token — e.g. a raw map URL in a description — would force
+       the track past 100% and overflow on mobile. Let it shrink, and break
+       long tokens rather than overflow. */
+    min-width: 0;
+  }
+
+  .agenda-session__title,
+  .agenda-session__desc {
+    overflow-wrap: break-word;
   }
 
   .agenda-session__title {
