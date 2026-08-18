@@ -232,7 +232,7 @@ export default defineConfig({
                     type: 'string',
                     name: 'tier',
                     label: 'Tier',
-                    options: ['gold', 'silver', 'bronze'],
+                    options: ['platinum', 'gold', 'silver', 'bronze'],
                   },
                   { type: 'string', name: 'label', label: 'Tier Label (shown on page)' },
                   {

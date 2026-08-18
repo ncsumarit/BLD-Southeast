@@ -69,14 +69,24 @@
     "intro": "",
     "tiers": [
       {
+        "tier": "platinum",
+        "label": "Platinum",
+        "sponsors": [
+          { "name": "Ecolytics", "logo": "/images/sponsors/platinum/ecolytics.png", "url": "https://www.ecolytics.io/" },
+          { "name": "Profitable Purpose Consulting", "logo": "/images/sponsors/platinum/ppc-profitable-purpose-consulting.png", "url": "https://www.profitablepurposeconsulting.com/" },
+          { "name": "Council Fire", "logo": "/images/sponsors/platinum/council-fire.png", "url": "https://www.councilfire.org/" }
+        ]
+      },
+      {
         "tier": "gold",
         "label": "Gold",
         "sponsors": [
           { "name": "Climate First Bank", "logo": "/images/sponsors/gold/climate-first-bank.jpg", "url": "https://www.climatefirstbank.com/" },
           { "name": "University of Maryland – Robert H. Smith School of Business, Center for Social Value Creation", "logo": "/images/sponsors/gold/umd-smith-school.png", "url": "https://www.rhsmith.umd.edu/centers-initiatives/social-value-creation" },
           { "name": "B Lab U.S. & Canada", "logo": "/images/sponsors/gold/b-lab-us-canada.png", "url": "https://usca.bcorporation.net/" },
-          { "name": "Profitable Purpose Consulting", "logo": "/images/sponsors/gold/ppc-profitable-purpose-consulting.png", "url": "https://www.profitablepurposeconsulting.com/" },
-          { "name": "Ecolytics", "logo": "/images/sponsors/gold/ecolytics.png", "url": "https://www.ecolytics.io/" }
+          { "name": "We Are Neutral", "logo": "/images/sponsors/gold/we-are-neutral.png", "url": "https://www.weareneutral.com/" },
+          { "name": "Practical Insight", "logo": "/images/sponsors/gold/practical-insight.png", "url": "https://getpracticalinsight.com/" },
+          { "name": "Impact GC", "logo": "/images/sponsors/gold/impact-gc.png", "url": "https://impactgclaw.com/" }
         ]
       },
       {
@@ -87,9 +97,6 @@
           { "name": "Merit Financial Advisors", "logo": "/images/sponsors/silver/merit-financial-advisors.png", "url": "https://meritfinancialadvisors.com/" },
           { "name": "Retaaza", "logo": "/images/sponsors/silver/retaaza.png", "url": "https://www.retaaza.com/" },
           { "name": "TripZero", "logo": "/images/sponsors/silver/tripzero.png", "url": "https://www.tripzero.events/" },
-          { "name": "Impact GC", "logo": "/images/sponsors/silver/impact-gc.png", "url": "https://impactgclaw.com/" },
-          { "name": "Council Fire", "logo": "/images/sponsors/silver/council-fire.png", "url": "https://www.councilfire.org/" },
-          { "name": "Practical Insight", "logo": "/images/sponsors/silver/practical-insight.png", "url": "https://getpracticalinsight.com/" },
           { "name": "Big Path Capital", "logo": "/images/sponsors/silver/big-path-capital.jpg", "url": "https://www.bigpathcapital.com/" },
           { "name": "Big Sea", "logo": "/images/sponsors/silver/big-sea.png", "url": "https://bigsea.co/" },
           { "name": "Mangrove Web Development", "logo": "/images/sponsors/silver/mangrove-web-development.svg", "url": "https://mangrove-web.com/" }
@@ -102,7 +109,8 @@
           { "name": "Nazareth Bonifacino Law", "logo": "/images/sponsors/bronze/nazareth-bonifacino-law.png", "url": "https://dmvbusinesslawyers.com/" },
           { "name": "NextLevel Financial", "logo": "/images/sponsors/bronze/nextlevel-financial.png", "url": "https://www.nextlevelfinancial.co/" },
           { "name": "Ocaquatics Swim School", "logo": "/images/sponsors/bronze/ocaquatics-swim-school.png", "url": "https://www.ocaquatics.com/" },
-          { "name": "Marit Digital", "logo": "/images/sponsors/bronze/marit-digital.png", "url": "https://maritdigital.com/" }
+          { "name": "Marit Digital", "logo": "/images/sponsors/bronze/marit-digital.png", "url": "https://maritdigital.com/" },
+          { "name": "Olek Law", "logo": "/images/sponsors/bronze/olek-law.png", "url": "https://oleklaw.com/" }
         ]
       }
     ]

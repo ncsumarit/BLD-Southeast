@@ -14,7 +14,7 @@
 import LogoGrid, { type LogoItem } from '~/components/primitives/LogoGrid.astro';
 
 export interface SponsorTier {
-  tier: 'gold' | 'silver' | 'bronze';
+  tier: 'platinum' | 'gold' | 'silver' | 'bronze';
   label: string;
   sponsors: LogoItem[];
 }
@@ -27,8 +27,9 @@ export interface Props {
 
 const { heading, intro, tiers } = Astro.props;
 
-// Gold largest tiles, Bronze smallest — standard tier-size convention.
+// Platinum largest tiles, Bronze smallest — standard tier-size convention.
 const TIER_LAYOUT: Record<SponsorTier['tier'], { columnsAtDesktop: number; tilePadding: string }> = {
+  platinum: { columnsAtDesktop: 3, tilePadding: 'var(--space-lg)' },
   gold: { columnsAtDesktop: 3, tilePadding: 'var(--space-lg)' },
   silver: { columnsAtDesktop: 4, tilePadding: 'var(--space-md)' },
   bronze: { columnsAtDesktop: 4, tilePadding: 'var(--space-sm)' },
@@ -112,6 +113,11 @@ const TIER_LAYOUT: Record<SponsorTier['tier'], { columnsAtDesktop: number; tileP
     letter-spacing: var(--tracking-overline);
   }
 
+  .sponsor-tier--platinum .sponsor-tier__label {
+    /* Deepest brand teal — reads as the top/premium tier, distinct from
+       Gold's warm orange, and passes AA (9:1 on paper). */
+    color: var(--color-primary-deepest);
+  }
   .sponsor-tier--gold .sponsor-tier__label {
     color: var(--orange-600);
   }
