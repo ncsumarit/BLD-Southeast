@@ -37,15 +37,27 @@ export interface Props {
   overview?: { label: string; summary: string }[];
   /** Where the "View full agenda" link points (overview variant). */
   fullHref?: string;
+  /** Small eyebrow above the heading. Defaults to "Agenda"; pass an empty
+   *  string to hide it (e.g. on the dedicated /agenda page, where an
+   *  "AGENDA" eyebrow just duplicates the heading). */
+  overline?: string;
 }
 
-const { heading, days = [], placeholderNote, variant = 'full', overview = [], fullHref = '/agenda/' } = Astro.props;
+const {
+  heading,
+  days = [],
+  placeholderNote,
+  variant = 'full',
+  overview = [],
+  fullHref = '/agenda/',
+  overline = 'Agenda',
+} = Astro.props;
 const hasAgenda = days.length > 0;
 const isOverview = variant === 'overview' && overview.length > 0;
 ---
 
 <StackedContent id="agenda" ground="layer-02" measure="content">
-  <p class="agenda-overline">Agenda</p>
+  {overline && <p class="agenda-overline">{overline}</p>}
   <h2 class="agenda-heading">{heading}</h2>
 
   {

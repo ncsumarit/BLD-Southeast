@@ -141,9 +141,22 @@ export default defineConfig({
             name: 'agenda',
             label: 'Agenda',
             fields: [
-              { type: 'string', name: 'heading', label: 'Heading' },
+              { type: 'string', name: 'heading', label: 'Heading (full agenda page)' },
+              { type: 'string', name: 'overviewHeading', label: 'Overview Heading (homepage)' },
               { type: 'boolean', name: 'show', label: 'Show this section' },
               { type: 'string', name: 'placeholderNote', label: 'Placeholder Note (shown when no days added yet)' },
+              { type: 'string', name: 'fullAgendaHref', label: 'Full Agenda Link (homepage → full page)' },
+              {
+                type: 'object',
+                name: 'overview',
+                label: 'Homepage Overview Cards (one per day)',
+                list: true,
+                ui: { itemProps: (item) => ({ label: item?.label || 'New day' }) },
+                fields: [
+                  { type: 'string', name: 'label', label: 'Day Label' },
+                  { type: 'string', name: 'summary', label: 'Summary', ui: { component: 'textarea' } },
+                ],
+              },
               {
                 type: 'object',
                 name: 'days',

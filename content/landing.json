@@ -40,7 +40,8 @@
     ]
   },
   "agenda": {
-    "heading": "Agenda",
+    "heading": "Full Agenda",
+    "overviewHeading": "At a glance",
     "show": true,
     "placeholderNote": "Full agenda coming soon — check back for Day 1 (Sept 16) and Day 2 (Sept 17) session details.",
     "fullAgendaHref": "/agenda/",
