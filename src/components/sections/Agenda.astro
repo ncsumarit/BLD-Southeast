@@ -8,6 +8,7 @@
  * sessions repeater{time,title,description}), placeholderNote short-text.
  */
 import StackedContent from '~/components/primitives/StackedContent.astro';
+import Button from '~/components/Button.astro';
 
 interface AgendaOption {
   title: string;
@@ -71,10 +72,7 @@ const isOverview = variant === 'overview' && overview.length > 0;
             </li>
           ))}
         </ul>
-        <a class="agenda-overview__cta" href={fullHref}>
-          View full agenda
-          <span aria-hidden="true">→</span>
-        </a>
+        <Button href={fullHref} variant="secondary">View full agenda →</Button>
       </div>
     ) : hasAgenda ? (
       <div class="agenda-days">
@@ -174,25 +172,6 @@ const isOverview = variant === 'overview' && overview.length > 0;
     font-size: var(--text-sm);
     line-height: var(--leading-relaxed);
     color: var(--color-text-muted);
-  }
-
-  .agenda-overview__cta {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2xs);
-    font-family: var(--font-body);
-    font-weight: var(--weight-body-semi);
-    font-size: var(--text-md);
-    color: var(--color-primary-strong);
-    text-decoration: none;
-  }
-  .agenda-overview__cta:hover {
-    text-decoration: underline;
-  }
-  .agenda-overview__cta:focus-visible {
-    outline: var(--focus-ring-width) solid var(--color-focus);
-    outline-offset: var(--focus-ring-offset);
-    border-radius: var(--radius-xs);
   }
 
   .agenda-days {

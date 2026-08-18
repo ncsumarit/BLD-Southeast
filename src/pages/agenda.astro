@@ -8,7 +8,6 @@
  */
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import Agenda from '~/components/sections/Agenda.astro';
-import { getHomePermalink } from '~/utils/permalinks';
 import content from '../../content/landing.json';
 
 const { agenda } = content;
@@ -21,40 +20,5 @@ const metadata = {
 ---
 
 <BaseLayout metadata={metadata}>
-  <div class="agenda-page">
-    <div class="agenda-page__inner">
-      <a class="agenda-page__back" href={getHomePermalink()}>
-        <span aria-hidden="true">←</span>
-        Back to home
-      </a>
-    </div>
-    <Agenda heading={agenda.heading} overline="" days={agenda.days} placeholderNote={agenda.placeholderNote} />
-  </div>
-
-  <style>
-    .agenda-page__inner {
-      max-width: var(--space-content-max);
-      margin-inline: auto;
-      padding: var(--space-2xl) var(--space-gutter) 0;
-    }
-
-    .agenda-page__back {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-2xs);
-      font-family: var(--font-body);
-      font-weight: var(--weight-body-semi);
-      font-size: var(--text-sm);
-      color: var(--color-primary-strong);
-      text-decoration: none;
-    }
-    .agenda-page__back:hover {
-      text-decoration: underline;
-    }
-    .agenda-page__back:focus-visible {
-      outline: var(--focus-ring-width) solid var(--color-focus);
-      outline-offset: var(--focus-ring-offset);
-      border-radius: var(--radius-xs);
-    }
-  </style>
+  <Agenda heading={agenda.heading} overline="" days={agenda.days} placeholderNote={agenda.placeholderNote} />
 </BaseLayout>
