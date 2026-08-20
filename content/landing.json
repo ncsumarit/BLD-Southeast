@@ -71,7 +71,7 @@
       {
         "label": "Day 2 — Thursday, September 17",
         "sessions": [
-          { "time": "Venue", "title": "George Washington University Student Center", "description": "800 21st St NW. Enter through the main entrance on 21st St and take the elevators to the third floor." },
+          { "time": "Venue", "title": "George Washington University – Student Center", "description": "800 21st St NW, Washington, DC 20052. Enter through the main entrance on 21st St and take the elevators to the third floor." },
           { "time": "7:30–8:00 AM", "title": "Sponsor table setup", "description": "Sponsors: we recommend arriving in this window to set up your table." },
           { "time": "8:00–8:45 AM", "title": "Registration, Networking & Breakfast", "description": "Breakfast will all be vegan." },
           { "time": "8:45–9:00", "title": "Opening Remarks", "description": "DC Mayor-Elect Janeese Lewis George invited (TBD)." },
@@ -191,11 +191,11 @@
   },
   "travelStay": {
     "heading": "Travel & stay",
-    "venueNote": "Venue to be confirmed — exact building/room pending final confirmation with the organizer.",
+    "venueNote": "Enter through the main entrance on 21st St and take the elevators to the 3rd floor.",
     "partnerUrl": "https://www.tripzero.events/bld-southeast/2026",
     "venue": {
-      "name": "George Washington University – Foggy Bottom Campus",
-      "address": "800 21st St NW, Washington, DC 20052",
+      "name": "George Washington University – Student Center",
+      "address": "3rd Floor, 800 21st St NW, Washington, DC 20052",
       "neighborhood": "Foggy Bottom / West End",
       "metro": "Foggy Bottom-GWU Metro (Blue/Orange/Silver), ~6 min walk"
     },
