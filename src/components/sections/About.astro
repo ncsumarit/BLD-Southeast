@@ -27,11 +27,13 @@ const { heading, body, image, imageAlt = '', secondaryCta } = Astro.props;
     <p class="about-overline">About BLD Southeast</p>
     <h2 class="about-heading">{heading}</h2>
     {body.map((para) => <p class="about-copy">{para}</p>)}
-    {secondaryCta && (
-      <Button href={secondaryCta.href} variant="secondary" class="about-cta">
-        {secondaryCta.label}
-      </Button>
-    )}
+    {
+      secondaryCta && (
+        <Button href={secondaryCta.href} variant="secondary" class="about-cta">
+          {secondaryCta.label}
+        </Button>
+      )
+    }
   </div>
 </SplitContent>
 

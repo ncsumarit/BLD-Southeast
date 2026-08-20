@@ -29,58 +29,58 @@
   --orange-500: #dd6420; /* BRAND burnt orange — energy accent, focus ring (3:1+ UI use only — fails 4.5:1 as a text/button-fill color, do not use for button backgrounds with white text) */
   --orange-100: #fbe6d8; /* pale orange wash */
 
-  --paper:      #fbf8f3; /* warm off-white page ground (editorial, not stark) */
-  --paper-02:   #f3ece1; /* warm sand — alternating section ground */
-  --white:      #ffffff;
+  --paper: #fbf8f3; /* warm off-white page ground (editorial, not stark) */
+  --paper-02: #f3ece1; /* warm sand — alternating section ground */
+  --white: #ffffff;
 
-  --ink-900:    #14312f; /* near-black warm teal-ink — body + headings on light */
-  --ink-600:    #4a5d5a; /* muted teal-grey — secondary text (6.6:1 on paper) */
-  --ink-300:    #cbd6d2; /* hairline / disabled on light */
+  --ink-900: #14312f; /* near-black warm teal-ink — body + headings on light */
+  --ink-600: #4a5d5a; /* muted teal-grey — secondary text (6.6:1 on paper) */
+  --ink-300: #cbd6d2; /* hairline / disabled on light */
 
   /* ---------------------------------------------------------------------------
      COLOR ROLES (semantic — USE THESE in components)
      Contrast notes are WCAG ratios; AA text = 4.5:1, AA large/UI = 3:1.
   --------------------------------------------------------------------------- */
-  --color-primary:          var(--teal-500); /* brand identity color */
-  --color-primary-strong:   var(--teal-600); /* white-text-safe primary (7.54) */
-  --color-primary-deepest:  var(--teal-700); /* darkest teal (9.0 on white) */
-  --color-secondary:        var(--teal-600);
-  --color-accent:           var(--orange-500); /* energy / conversion accent */
-  --color-accent-text:      var(--orange-600); /* orange as text on light (4.51) */
-  --color-highlight-coral:  var(--coral-500);
-  --color-highlight-green:  var(--green-500);
+  --color-primary: var(--teal-500); /* brand identity color */
+  --color-primary-strong: var(--teal-600); /* white-text-safe primary (7.54) */
+  --color-primary-deepest: var(--teal-700); /* darkest teal (9.0 on white) */
+  --color-secondary: var(--teal-600);
+  --color-accent: var(--orange-500); /* energy / conversion accent */
+  --color-accent-text: var(--orange-600); /* orange as text on light (4.51) */
+  --color-highlight-coral: var(--coral-500);
+  --color-highlight-green: var(--green-500);
 
   /* Text */
-  --color-text:         var(--ink-900);   /* 13.1:1 on paper */
-  --color-text-muted:   var(--ink-600);   /* 6.6:1 on paper  */
-  --color-text-invert:  var(--white);     /* on dark teal: 15–16:1 */
+  --color-text: var(--ink-900); /* 13.1:1 on paper */
+  --color-text-muted: var(--ink-600); /* 6.6:1 on paper  */
+  --color-text-invert: var(--white); /* on dark teal: 15–16:1 */
   --color-text-heading: var(--ink-900);
-  --color-link:         var(--teal-600);  /* 7.54:1 on white */
-  --color-link-hover:   var(--teal-700);
+  --color-link: var(--teal-600); /* 7.54:1 on white */
+  --color-link-hover: var(--teal-700);
 
   /* Surfaces / layering (depth without borders — see --layer-* below) */
-  --color-bg:         var(--paper);
-  --color-bg-subtle:  var(--paper-02);
-  --color-bg-muted:   var(--white);       /* elevated cards on sand read as "up" */
-  --color-bg-invert:  var(--teal-800);    /* immersive dark sections/footer */
+  --color-bg: var(--paper);
+  --color-bg-subtle: var(--paper-02);
+  --color-bg-muted: var(--white); /* elevated cards on sand read as "up" */
+  --color-bg-invert: var(--teal-800); /* immersive dark sections/footer */
   --color-bg-invert-deep: var(--teal-900);
 
   /* Borders / hairlines */
-  --color-border:        var(--ink-300);
+  --color-border: var(--ink-300);
   --color-border-strong: var(--teal-500);
   --color-border-invert: color-mix(in srgb, var(--teal-300) 40%, transparent);
 
   /* On-dark accent variants (coral/green pop on ink-teal: 9.5 / 9.2) */
   --color-on-dark-coral: var(--coral-500);
   --color-on-dark-green: var(--green-500);
-  --color-on-dark-teal:  var(--teal-300);
+  --color-on-dark-teal: var(--teal-300);
 
   /* ---------------------------------------------------------------------------
      LAYERING (section background depth) — alternate to build hierarchy.
   --------------------------------------------------------------------------- */
-  --layer-01: var(--color-bg);        /* default page ground (warm off-white) */
+  --layer-01: var(--color-bg); /* default page ground (warm off-white) */
   --layer-02: var(--color-bg-subtle); /* alternating section ground (sand)    */
-  --layer-03: var(--color-bg-muted);  /* cards/elevated on layer-02 (white)   */
+  --layer-03: var(--color-bg-muted); /* cards/elevated on layer-02 (white)   */
   --layer-invert: var(--color-bg-invert); /* immersive dark bands (hero/CTA)  */
 
   /* ---------------------------------------------------------------------------
@@ -90,68 +90,68 @@
      Both Google Fonts. Loaded via @fontsource in CustomStyles.astro.
   --------------------------------------------------------------------------- */
   --font-display: 'Fraunces Variable', 'Fraunces', Georgia, 'Times New Roman', serif;
-  --font-body:    'Figtree Variable', 'Figtree', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-body: 'Figtree Variable', 'Figtree', ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-heading: var(--font-display);
 
   /* Weights */
-  --weight-body:      400;
-  --weight-body-med:  500;
+  --weight-body: 400;
+  --weight-body-med: 500;
   --weight-body-semi: 600;
-  --weight-display:   500; /* Fraunces optical: mid weight reads elegant, not heavy */
+  --weight-display: 500; /* Fraunces optical: mid weight reads elegant, not heavy */
   --weight-display-bold: 600;
 
   /* Fluid type scale (clamp: min @ ~360px, max @ ~1280px). 1.25 major-third-ish. */
-  --text-xs:   0.75rem;   /* 12px — overlines, meta */
-  --text-sm:   0.875rem;  /* 14px — captions, small UI */
-  --text-base: 1rem;      /* 16px — body */
-  --text-md:   1.125rem;  /* 18px — lead body / large UI */
-  --text-lg:   clamp(1.25rem, 0.5vw + 1.1rem, 1.5rem);      /* 20–24 subheads */
-  --text-xl:   clamp(1.5rem, 1.2vw + 1.2rem, 2rem);         /* 24–32 h4/h3 */
-  --text-2xl:  clamp(1.9rem, 2vw + 1.3rem, 2.75rem);        /* 30–44 h2 */
-  --text-3xl:  clamp(2.4rem, 3.4vw + 1.4rem, 4rem);         /* 38–64 h1 */
-  --text-4xl:  clamp(2.9rem, 5vw + 1.4rem, 5.5rem);         /* 46–88 hero display */
+  --text-xs: 0.75rem; /* 12px — overlines, meta */
+  --text-sm: 0.875rem; /* 14px — captions, small UI */
+  --text-base: 1rem; /* 16px — body */
+  --text-md: 1.125rem; /* 18px — lead body / large UI */
+  --text-lg: clamp(1.25rem, 0.5vw + 1.1rem, 1.5rem); /* 20–24 subheads */
+  --text-xl: clamp(1.5rem, 1.2vw + 1.2rem, 2rem); /* 24–32 h4/h3 */
+  --text-2xl: clamp(1.9rem, 2vw + 1.3rem, 2.75rem); /* 30–44 h2 */
+  --text-3xl: clamp(2.4rem, 3.4vw + 1.4rem, 4rem); /* 38–64 h1 */
+  --text-4xl: clamp(2.9rem, 5vw + 1.4rem, 5.5rem); /* 46–88 hero display */
 
   /* Line-heights */
-  --leading-tight:   1.05; /* large display */
-  --leading-snug:    1.18; /* headings */
-  --leading-normal:  1.55; /* body */
-  --leading-relaxed: 1.7;  /* long-form */
+  --leading-tight: 1.05; /* large display */
+  --leading-snug: 1.18; /* headings */
+  --leading-normal: 1.55; /* body */
+  --leading-relaxed: 1.7; /* long-form */
 
   /* Letter-spacing */
-  --tracking-tight:   -0.02em; /* display serif tightens nicely */
-  --tracking-normal:  0;
-  --tracking-wide:    0.02em;
+  --tracking-tight: -0.02em; /* display serif tightens nicely */
+  --tracking-normal: 0;
+  --tracking-wide: 0.02em;
   --tracking-overline: 0.16em; /* uppercase overlines/eyebrows */
 
   /* ---------------------------------------------------------------------------
      SPACING SCALE (rhythm — 4px base, generous editorial steps)
   --------------------------------------------------------------------------- */
-  --space-3xs: 0.25rem;  /* 4  */
-  --space-2xs: 0.5rem;   /* 8  */
-  --space-xs:  0.75rem;  /* 12 */
-  --space-sm:  1rem;     /* 16 */
-  --space-md:  1.5rem;   /* 24 */
-  --space-lg:  2rem;     /* 32 */
-  --space-xl:  3rem;     /* 48 */
-  --space-2xl: 4rem;     /* 64 */
-  --space-3xl: 6rem;     /* 96 */
-  --space-4xl: 8rem;     /* 128 */
+  --space-3xs: 0.25rem; /* 4  */
+  --space-2xs: 0.5rem; /* 8  */
+  --space-xs: 0.75rem; /* 12 */
+  --space-sm: 1rem; /* 16 */
+  --space-md: 1.5rem; /* 24 */
+  --space-lg: 2rem; /* 32 */
+  --space-xl: 3rem; /* 48 */
+  --space-2xl: 4rem; /* 64 */
+  --space-3xl: 6rem; /* 96 */
+  --space-4xl: 8rem; /* 128 */
 
   /* Section rhythm (generous vertical breathing room, fluid) */
-  --space-section:      clamp(4rem, 8vw, 8rem);   /* top/bottom section padding */
+  --space-section: clamp(4rem, 8vw, 8rem); /* top/bottom section padding */
   --space-section-tight: clamp(2.5rem, 5vw, 4.5rem);
-  --space-gap:          clamp(1.5rem, 3vw, 3rem); /* grid/column gaps */
-  --space-content-max:  72rem;  /* max content width (1152px) */
-  --space-prose-max:    42rem;  /* readable measure for long text */
-  --space-gutter:       clamp(1.25rem, 4vw, 3rem); /* page side gutters */
+  --space-gap: clamp(1.5rem, 3vw, 3rem); /* grid/column gaps */
+  --space-content-max: 72rem; /* max content width (1152px) */
+  --space-prose-max: 42rem; /* readable measure for long text */
+  --space-gutter: clamp(1.25rem, 4vw, 3rem); /* page side gutters */
 
   /* ---------------------------------------------------------------------------
      RADII — pill buttons (~40px) are brand DNA. Keep.
   --------------------------------------------------------------------------- */
-  --radius-sm:   0.375rem; /* 6  — inputs, small tags */
-  --radius-md:   0.75rem;  /* 12 — cards */
-  --radius-lg:   1.25rem;  /* 20 — large panels, image frames */
-  --radius-xl:   2rem;     /* 32 — feature media */
+  --radius-sm: 0.375rem; /* 6  — inputs, small tags */
+  --radius-md: 0.75rem; /* 12 — cards */
+  --radius-lg: 1.25rem; /* 20 — large panels, image frames */
+  --radius-xl: 2rem; /* 32 — feature media */
   --radius-pill: 62.4375rem; /* fully rounded — buttons, chips (brand) */
   --radius-round: 50%;
 
@@ -168,53 +168,53 @@
   /* ---------------------------------------------------------------------------
      MOTION TOKENS
   --------------------------------------------------------------------------- */
-  --duration-fast:     70ms;
+  --duration-fast: 70ms;
   --duration-moderate: 150ms;
-  --duration-slow:     240ms;
-  --duration-slower:   400ms;
+  --duration-slow: 240ms;
+  --duration-slower: 400ms;
 
-  --ease-productive: cubic-bezier(0.2, 0, 0.38, 0.9);  /* UI: hover/focus/toggles */
-  --ease-expressive: cubic-bezier(0.4, 0.14, 0.3, 1);  /* hero/scroll reveals */
+  --ease-productive: cubic-bezier(0.2, 0, 0.38, 0.9); /* UI: hover/focus/toggles */
+  --ease-expressive: cubic-bezier(0.4, 0.14, 0.3, 1); /* hero/scroll reveals */
 
   /* Ready-made transitions */
-  --transition-ui:      var(--duration-moderate) var(--ease-productive);
+  --transition-ui: var(--duration-moderate) var(--ease-productive);
   --transition-express: var(--duration-slow) var(--ease-expressive);
 
   /* ---------------------------------------------------------------------------
      FOCUS (two-part ring — visible on light, dark, and colored/image backgrounds)
   --------------------------------------------------------------------------- */
-  --color-focus:       var(--orange-500); /* brand energy accent, 3:1+ on light & dark */
-  --color-focus-inset: var(--white);      /* contrasting inner ring on dark/colored bg */
-  --focus-ring-width:  2px;
+  --color-focus: var(--orange-500); /* brand energy accent, 3:1+ on light & dark */
+  --color-focus-inset: var(--white); /* contrasting inner ring on dark/colored bg */
+  --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
   --focus-inset-width: 4px;
 
   /* ---------------------------------------------------------------------------
      LAYOUT / CHROME
   --------------------------------------------------------------------------- */
-  --header-height:        4.5rem;  /* 72px sticky header */
+  --header-height: 4.5rem; /* 72px sticky header */
   --header-height-scroll: 3.75rem; /* condenses on scroll */
-  --z-header:  100;
+  --z-header: 100;
   --z-overlay: 200;
-  --z-modal:   300;
+  --z-modal: 300;
 
   /* ---------------------------------------------------------------------------
      ASTROWIND BRIDGE — map --aw-* to brand so template components inherit it.
      (AstroWind reads these; do not remove.)
   --------------------------------------------------------------------------- */
-  --aw-font-sans:    var(--font-body);
-  --aw-font-serif:   var(--font-display);
+  --aw-font-sans: var(--font-body);
+  --aw-font-serif: var(--font-display);
   --aw-font-heading: var(--font-display);
 
-  --aw-color-primary:   var(--color-primary-strong); /* white-text-safe teal */
+  --aw-color-primary: var(--color-primary-strong); /* white-text-safe teal */
   --aw-color-secondary: var(--color-primary-deepest);
-  --aw-color-accent:    var(--color-accent);
+  --aw-color-accent: var(--color-accent);
 
   --aw-color-text-heading: var(--color-text-heading);
   --aw-color-text-default: var(--color-text);
-  --aw-color-text-muted:   var(--color-text-muted);
-  --aw-color-text-page:    var(--color-text);
-  --aw-color-bg-page:      var(--color-bg);
+  --aw-color-text-muted: var(--color-text-muted);
+  --aw-color-text-page: var(--color-text);
+  --aw-color-bg-page: var(--color-bg);
   --aw-color-bg-page-dark: var(--color-bg-invert);
 }
 

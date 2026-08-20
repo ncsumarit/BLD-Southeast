@@ -51,26 +51,30 @@ const {
       <p class="hero-meta">{dateLine} &middot; {locationLine}</p>
       <div class="hero-actions">
         <Button href={primaryCta.href} variant="primary">{primaryCta.label}</Button>
-        {secondaryCta && (
-          <Button href={secondaryCta.href} variant="outline">{secondaryCta.label}</Button>
-        )}
-        {tertiaryCta && (
-          <Button href={tertiaryCta.href} variant="outline">{tertiaryCta.label}</Button>
-        )}
+        {
+          secondaryCta && (
+            <Button href={secondaryCta.href} variant="outline">
+              {secondaryCta.label}
+            </Button>
+          )
+        }
+        {
+          tertiaryCta && (
+            <Button href={tertiaryCta.href} variant="outline">
+              {tertiaryCta.label}
+            </Button>
+          )
+        }
       </div>
     </div>
 
     <div class="hero-media">
-      <img
-        class="hero-photo"
-        src={backgroundImage}
-        alt={backgroundAlt}
-        loading="eager"
-        fetchpriority="high"
-      />
-      {decorativeOverlay && (
-        <img class="hero-decor" src={decorativeOverlay} alt="" aria-hidden="true" loading="eager" />
-      )}
+      <img class="hero-photo" src={backgroundImage} alt={backgroundAlt} loading="eager" fetchpriority="high" />
+      {
+        decorativeOverlay && (
+          <img class="hero-decor" src={decorativeOverlay} alt="" aria-hidden="true" loading="eager" />
+        )
+      }
     </div>
   </div>
 </section>

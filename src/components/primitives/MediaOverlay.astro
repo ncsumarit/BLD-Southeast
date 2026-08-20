@@ -20,13 +20,25 @@ export interface Props {
   id?: string;
 }
 
-const { backgroundImage, backgroundAlt = '', align = 'left', minHeight = 'medium', class: className = '', id } = Astro.props;
+const {
+  backgroundImage,
+  backgroundAlt = '',
+  align = 'left',
+  minHeight = 'medium',
+  class: className = '',
+  id,
+} = Astro.props;
 ---
 
 <section id={id} class:list={['media-overlay', `media-overlay--${minHeight}`, className]}>
   {
     backgroundImage && (
-      <img class="media-overlay__img" src={backgroundImage} alt={backgroundAlt} loading={minHeight === 'tall' ? 'eager' : 'lazy'} />
+      <img
+        class="media-overlay__img"
+        src={backgroundImage}
+        alt={backgroundAlt}
+        loading={minHeight === 'tall' ? 'eager' : 'lazy'}
+      />
     )
   }
   <div class="media-overlay__scrim" aria-hidden="true"></div>

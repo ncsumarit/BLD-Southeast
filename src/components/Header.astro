@@ -97,7 +97,10 @@ const { logo, anchorLinks, registerCta } = Astro.props;
     display: flex;
     align-items: center;
     background-color: transparent;
-    transition: background-color var(--transition-ui), height var(--transition-ui), box-shadow var(--transition-ui);
+    transition:
+      background-color var(--transition-ui),
+      height var(--transition-ui),
+      box-shadow var(--transition-ui);
   }
 
   .site-header.is-scrolled {
@@ -234,7 +237,10 @@ const { logo, anchorLinks, registerCta } = Astro.props;
     height: 2px;
     background-color: var(--color-text);
     border-radius: var(--radius-pill);
-    transition: background-color var(--transition-ui), transform var(--transition-ui), opacity var(--transition-ui);
+    transition:
+      background-color var(--transition-ui),
+      transform var(--transition-ui),
+      opacity var(--transition-ui);
   }
   .site-header.is-scrolled .site-header__toggle-bar {
     background-color: var(--color-text);

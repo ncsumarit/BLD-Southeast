@@ -14,7 +14,11 @@ export interface Props {
 const { ground = 'layer-01', measure = 'content', id, class: className = '' } = Astro.props;
 
 const groundClass =
-  ground === 'invertDeep' ? 'stacked--invert-deep' : ground === 'layer-invert' ? 'stacked--invert' : `stacked--${ground}`;
+  ground === 'invertDeep'
+    ? 'stacked--invert-deep'
+    : ground === 'layer-invert'
+      ? 'stacked--invert'
+      : `stacked--${ground}`;
 ---
 
 <section id={id} class:list={['stacked', groundClass, className]}>

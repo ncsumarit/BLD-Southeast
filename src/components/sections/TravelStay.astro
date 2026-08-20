@@ -46,8 +46,18 @@ export interface Props {
   carbonOffsetNote: string;
 }
 
-const { heading, venueNote, partnerUrl, venue, airports, gettingAroundNote, metroMap, hotels, bookingDeadline, carbonOffsetNote } =
-  Astro.props;
+const {
+  heading,
+  venueNote,
+  partnerUrl,
+  venue,
+  airports,
+  gettingAroundNote,
+  metroMap,
+  hotels,
+  bookingDeadline,
+  carbonOffsetNote,
+} = Astro.props;
 ---
 
 <StackedContent id="travel" ground="layer-01" measure="content">
@@ -122,7 +132,9 @@ const { heading, venueNote, partnerUrl, venue, airports, gettingAroundNote, metr
             <p class="hotel-card__meta">
               {hotel.neighborhood} &middot; {hotel.walkMin} min walk to venue
             </p>
-            <p class="hotel-card__rate">{hotel.rate} <span class="hotel-card__rate-note">event rate*</span></p>
+            <p class="hotel-card__rate">
+              {hotel.rate} <span class="hotel-card__rate-note">event rate*</span>
+            </p>
             {hotel.notes && <p class="hotel-card__notes">{hotel.notes}</p>}
             <div class="hotel-card__actions">
               {hotel.bookHref && (
