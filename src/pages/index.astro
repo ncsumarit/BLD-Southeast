@@ -52,23 +52,14 @@ const aboutBody = [about.body, about.bodySecondary].filter((p): p is string => B
 ---
 
 <BaseLayout metadata={metadata}>
-  {
-    /* PRE-LAUNCH CHECKLIST ITEM: venueName/streetAddress below are marked
-       "to be confirmed" in the visible Travel & Stay section (see
-       TravelStay's venueNote), but this schema emits them as settled fact —
-       see EventSchema.astro's header comment for why that's a deliberate
-       tradeoff, not an oversight. Once the organizer confirms the exact
-       building/room, update BOTH this block AND TravelStay's venueNote in
-       one pass so the two don't drift out of sync again. */
-  }
   <EventSchema
     name="BLD Southeast 2026"
     startDate="2026-09-16"
     endDate="2026-09-17"
     url={SITE_URL}
     image={`${SITE_URL}images/hero-dc-background.jpg`}
-    venueName="George Washington University – Foggy Bottom Campus"
-    streetAddress="800 21st St NW"
+    venueName="George Washington University – Student Center"
+    streetAddress="800 21st St NW, 3rd Floor"
     city="Washington"
     state="DC"
     postalCode="20052"
@@ -115,6 +106,8 @@ const aboutBody = [about.body, about.bodySecondary].filter((p): p is string => B
     venueNote={travelStay.venueNote}
     venue={travelStay.venue}
     airports={travelStay.airports}
+    gettingAroundNote={travelStay.gettingAroundNote}
+    metroMap={travelStay.metroMap}
     hotels={travelStay.hotels}
     bookingDeadline={travelStay.bookingDeadline}
     carbonOffsetNote={travelStay.carbonOffsetNote}
@@ -142,7 +135,7 @@ const aboutBody = [about.body, about.bodySecondary].filter((p): p is string => B
     )
   }
 
-  <!-- Speakers: none confirmed yet — renders "to be announced" + Apply to Speak. -->
+  <!-- Speakers: none confirmed yet — renders "to be announced" placeholder. -->
   {
     speakers.show && (
       <Speakers
@@ -150,7 +143,6 @@ const aboutBody = [about.body, about.bodySecondary].filter((p): p is string => B
         intro={speakers.intro}
         speakers={speakers.speakers}
         placeholderNote={speakers.placeholderNote}
-        applyCta={speakers.applyCta}
       />
     )
   }

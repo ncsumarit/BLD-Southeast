@@ -9,7 +9,6 @@
     "dateLine": "September 16–17, 2026",
     "locationLine": "Washington, DC",
     "primaryCta": { "label": "Get Your Ticket", "href": "https://www.tickettailor.com/events/bldsoutheast/2128091" },
-    "secondaryCta": { "label": "Apply to Speak", "href": "https://docs.google.com/forms/d/e/1FAIpQLSdjo7GO7IDMCZVbW_jBbTBmvuEr1YpZuYEEwfenkjCdEzLlwA/viewform" },
     "tertiaryCta": { "label": "Book Your Stay", "href": "https://www.tripzero.events/bld-southeast/2026" },
     "heroImage": "/images/hero-dc-background.jpg",
     "heroImageAlt": "United States Capitol, Washington, DC"
@@ -72,7 +71,7 @@
       {
         "label": "Day 2 — Thursday, September 17",
         "sessions": [
-          { "time": "Venue", "title": "George Washington University Student Center", "description": "800 21st St NW. Enter through the main entrance on 21st St and take the elevators to the third floor." },
+          { "time": "Venue", "title": "George Washington University – Student Center", "description": "800 21st St NW, Washington, DC 20052. Enter through the main entrance on 21st St and take the elevators to the third floor." },
           { "time": "7:30–8:00 AM", "title": "Sponsor table setup", "description": "Sponsors: we recommend arriving in this window to set up your table." },
           { "time": "8:00–8:45 AM", "title": "Registration, Networking & Breakfast", "description": "Breakfast will all be vegan." },
           { "time": "8:45–9:00", "title": "Opening Remarks", "description": "DC Mayor-Elect Janeese Lewis George invited (TBD)." },
@@ -126,7 +125,6 @@
     "intro": "Our 2026 speaker lineup is coming together.",
     "show": true,
     "placeholderNote": "Speaker lineup announced soon.",
-    "applyCta": { "label": "Apply to Speak", "href": "https://docs.google.com/forms/d/e/1FAIpQLSdjo7GO7IDMCZVbW_jBbTBmvuEr1YpZuYEEwfenkjCdEzLlwA/viewform" },
     "speakers": []
   },
   "beneficiaries": {
@@ -193,11 +191,11 @@
   },
   "travelStay": {
     "heading": "Travel & stay",
-    "venueNote": "Venue to be confirmed — exact building/room pending final confirmation with the organizer.",
+    "venueNote": "Enter through the main entrance on 21st St and take the elevators to the 3rd floor.",
     "partnerUrl": "https://www.tripzero.events/bld-southeast/2026",
     "venue": {
-      "name": "George Washington University – Foggy Bottom Campus",
-      "address": "800 21st St NW, Washington, DC 20052",
+      "name": "George Washington University – Student Center",
+      "address": "3rd Floor, 800 21st St NW, Washington, DC 20052",
       "neighborhood": "Foggy Bottom / West End",
       "metro": "Foggy Bottom-GWU Metro (Blue/Orange/Silver), ~6 min walk"
     },
@@ -213,13 +211,19 @@
         "transit": "Silver line to Foggy Bottom-GWU, ~60 min (~$6) · taxi ~35–65 min (~$90)"
       }
     ],
+    "gettingAroundNote": "Conference attendees should expect to use the metro to get around. Exact details will be in Sched.",
+    "metroMap": {
+      "thumbnail": "/images/dc-metro-map-thumbnail.png",
+      "fileHref": "/documents/dc-metro-system-map.pdf",
+      "alt": "Washington, DC Metro system map"
+    },
     "hotels": [
       {
         "name": "Hotel Hive",
         "neighborhood": "West End",
         "walkMin": 8,
         "rate": "$199*",
-        "bookHref": "https://www.addtripzero.events/bld/hotel-hive",
+        "bookHref": "https://www.tripzero.events/bld-southeast/2026",
         "phone": "202-849-8499",
         "notes": "Green Key certified micro-hotel · Destination DC Sustainability District"
       },
@@ -228,7 +232,7 @@
         "neighborhood": "Foggy Bottom",
         "walkMin": 11,
         "rate": "$229*",
-        "bookHref": "",
+        "bookHref": "https://www.tripzero.events/bld-southeast/2026",
         "phone": "202-337-7600",
         "notes": "Suites with kitchenettes · Destination DC Sustainability District"
       }

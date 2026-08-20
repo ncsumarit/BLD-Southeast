@@ -63,7 +63,7 @@ const { logo, anchorLinks, registerCta } = Astro.props;
 
 {
   /* A plain src-referenced script, not Astro's managed inline <script>
-     block — Astro/Vite sometimes inlines small single-use scripts directly
+     block - Astro/Vite sometimes inlines small single-use scripts directly
      into the built HTML, which our strict CSP (no 'unsafe-inline' in
      script-src) silently blocks in production. A public/ file loaded by
      src is always same-origin ('self') and never touched by that inlining

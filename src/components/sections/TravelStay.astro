@@ -8,9 +8,11 @@
  *
  * CMS field-type hints (candidate interface if promoted to the registry):
  *   heading: short-text
- *   venueNote: short-text (the "to be confirmed" caveat)
+ *   venueNote: short-text (arrival/entrance instructions)
  *   venue: object{name,address,neighborhood,metro}
  *   airports: repeater{code,name,transit}
+ *   gettingAroundNote: short-text
+ *   metroMap: object{thumbnail (image-picker),fileHref (file-picker),alt}
  *   hotels: repeater{name,neighborhood,walkMin,rate,bookHref,phone,notes}
  *   bookingDeadline: short-text
  *   carbonOffset: rich-text-editor
@@ -29,6 +31,8 @@ export interface Props {
     metro: string;
   };
   airports: { code: string; name: string; transit: string }[];
+  gettingAroundNote?: string;
+  metroMap?: { thumbnail: string; fileHref: string; alt?: string };
   hotels: {
     name: string;
     neighborhood: string;
@@ -42,7 +46,8 @@ export interface Props {
   carbonOffsetNote: string;
 }
 
-const { heading, venueNote, partnerUrl, venue, airports, hotels, bookingDeadline, carbonOffsetNote } = Astro.props;
+const { heading, venueNote, partnerUrl, venue, airports, gettingAroundNote, metroMap, hotels, bookingDeadline, carbonOffsetNote } =
+  Astro.props;
 ---
 
 <StackedContent id="travel" ground="layer-01" measure="content">
@@ -76,12 +81,36 @@ const { heading, venueNote, partnerUrl, venue, airports, hotels, bookingDeadline
     </div>
   </div>
 
+  {
+    (gettingAroundNote || metroMap) && (
+      <div class="travel-around">
+        <h3 class="travel-block__title">Getting Around</h3>
+        {gettingAroundNote && <p class="travel-around__note">{gettingAroundNote}</p>}
+        {metroMap && (
+          <a class="travel-metro-map" href={metroMap.fileHref} target="_blank" rel="noopener noreferrer">
+            <img
+              class="travel-metro-map__thumb"
+              src={metroMap.thumbnail}
+              alt={metroMap.alt ?? 'DC Metro system map'}
+              loading="lazy"
+            />
+            <span class="travel-metro-map__label">
+              View &amp; download the DC Metro map
+              <span class="sr-only"> (opens in new tab)</span>
+            </span>
+          </a>
+        )}
+      </div>
+    )
+  }
+
   <div class="travel-hotels">
     <h3 class="travel-block__title">Attendee hotel deals</h3>
     <p class="travel-deadline">Book by {bookingDeadline} to lock in the event rate.</p>
     <div class="travel-partner-cta">
       <p class="travel-partner-cta__text">
-        Browse every discounted attendee hotel and book through our travel partner, <strong>TripZero</strong>.
+        Stay with fellow B Corps at our event hotels. Our travel partner, <strong>TripZero</strong>, has arranged for
+        significantly discounted group rates for BLD SE attendees.
       </p>
       <Button href={partnerUrl} variant="secondary">Book your stay on TripZero</Button>
     </div>
@@ -223,6 +252,56 @@ const { heading, venueNote, partnerUrl, venue, airports, hotels, bookingDeadline
     font-family: var(--font-body);
     font-size: var(--text-sm);
     color: var(--color-text-muted);
+  }
+
+  .travel-around {
+    padding-top: var(--space-2xl);
+    border-top: 1px solid var(--color-border);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .travel-around__note {
+    margin: 0 0 var(--space-lg);
+    max-width: 60ch;
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    color: var(--color-text);
+  }
+
+  .travel-metro-map {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-sm);
+    background-color: var(--layer-03);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+    transition: box-shadow var(--transition-ui);
+  }
+  .travel-metro-map:hover {
+    box-shadow: var(--shadow-md);
+  }
+  .travel-metro-map:focus-visible {
+    outline: var(--focus-ring-width) solid var(--color-focus);
+    outline-offset: var(--focus-ring-offset);
+    border-radius: var(--radius-sm);
+  }
+
+  .travel-metro-map__thumb {
+    width: 5rem;
+    height: 5rem;
+    object-fit: cover;
+    object-position: top;
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+  }
+
+  .travel-metro-map__label {
+    font-family: var(--font-body);
+    font-weight: var(--weight-body-semi);
+    font-size: var(--text-sm);
+    color: var(--color-link);
   }
 
   .travel-hotels {

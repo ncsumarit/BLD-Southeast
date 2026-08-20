@@ -28,6 +28,7 @@ const RULES = [
   { match: (p) => p === 'hero-dc-background.jpg', maxWidth: 2400, quality: 80 },
   { match: (p) => p === 'sixth-year-intro-image.jpg', maxWidth: 1200, quality: 80 },
   { match: (p) => p.startsWith('sponsors/') || p.startsWith('beneficiaries/'), maxWidth: 800, quality: 82 },
+  { match: (p) => p === 'dc-metro-map-thumbnail.png', maxWidth: 700, quality: 85 },
 ];
 
 // Left untouched: bld-southeast-logo-white.png, b-corp-icon-favicon.png —
