@@ -142,7 +142,7 @@ const aboutBody = [about.body, about.bodySecondary].filter((p): p is string => B
     )
   }
 
-  <!-- Speakers: none confirmed yet — renders "to be announced" + Apply to Speak. -->
+  <!-- Speakers: none confirmed yet — renders "to be announced" placeholder. -->
   {
     speakers.show && (
       <Speakers
@@ -150,7 +150,6 @@ const aboutBody = [about.body, about.bodySecondary].filter((p): p is string => B
         intro={speakers.intro}
         speakers={speakers.speakers}
         placeholderNote={speakers.placeholderNote}
-        applyCta={speakers.applyCta}
       />
     )
   }

@@ -6,7 +6,7 @@
  *
  * CMS hints: heading short-text, intro rich-text-editor,
  * speakers repeater{name,title,org,photo,bio}, placeholderNote short-text,
- * applyCta link-picker.
+ * applyCta link-picker (optional).
  */
 import CardGrid from '~/components/primitives/CardGrid.astro';
 import Button from '~/components/Button.astro';
@@ -16,7 +16,7 @@ export interface Props {
   intro?: string;
   speakers?: { name: string; title?: string; org?: string; photo?: string; bio?: string }[];
   placeholderNote?: string;
-  applyCta: { label: string; href: string };
+  applyCta?: { label: string; href: string };
 }
 
 const { heading, intro, speakers = [], placeholderNote, applyCta } = Astro.props;
@@ -49,15 +49,13 @@ const hasSpeakers = speakers.length > 0;
       : (
         <div class="speakers-placeholder">
           <p class="speakers-placeholder__note">{placeholderNote ?? 'Speaker lineup announced soon.'}</p>
-          <p class="speakers-placeholder__sub">Want to share your work on the BLD Southeast stage? We're accepting speaker applications now.</p>
-          <Button href={applyCta.href} variant="secondary">{applyCta.label}</Button>
         </div>
       )
   }
 </CardGrid>
 
 {
-  hasSpeakers && (
+  hasSpeakers && applyCta && (
     <div class="speakers-apply-row">
       <Button href={applyCta.href} variant="secondary">{applyCta.label}</Button>
     </div>

@@ -9,7 +9,6 @@
     "dateLine": "September 16–17, 2026",
     "locationLine": "Washington, DC",
     "primaryCta": { "label": "Get Your Ticket", "href": "https://www.tickettailor.com/events/bldsoutheast/2128091" },
-    "secondaryCta": { "label": "Apply to Speak", "href": "https://docs.google.com/forms/d/e/1FAIpQLSdjo7GO7IDMCZVbW_jBbTBmvuEr1YpZuYEEwfenkjCdEzLlwA/viewform" },
     "tertiaryCta": { "label": "Book Your Stay", "href": "https://www.tripzero.events/bld-southeast/2026" },
     "heroImage": "/images/hero-dc-background.jpg",
     "heroImageAlt": "United States Capitol, Washington, DC"
@@ -126,7 +125,6 @@
     "intro": "Our 2026 speaker lineup is coming together.",
     "show": true,
     "placeholderNote": "Speaker lineup announced soon.",
-    "applyCta": { "label": "Apply to Speak", "href": "https://docs.google.com/forms/d/e/1FAIpQLSdjo7GO7IDMCZVbW_jBbTBmvuEr1YpZuYEEwfenkjCdEzLlwA/viewform" },
     "speakers": []
   },
   "beneficiaries": {
