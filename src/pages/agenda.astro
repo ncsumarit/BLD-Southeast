@@ -7,7 +7,7 @@
  * content/landing.json agenda model so there's a single source of truth.
  */
 import BaseLayout from '~/layouts/BaseLayout.astro';
-import Agenda from '~/components/sections/Agenda.astro';
+import AgendaSection from '~/components/sections/Agenda.astro';
 import content from '../../content/landing.json';
 
 const { agenda } = content;
@@ -20,5 +20,5 @@ const metadata = {
 ---
 
 <BaseLayout metadata={metadata}>
-  <Agenda heading={agenda.heading} overline="" days={agenda.days} placeholderNote={agenda.placeholderNote} />
+  <AgendaSection heading={agenda.heading} overline="" days={agenda.days} placeholderNote={agenda.placeholderNote} />
 </BaseLayout>

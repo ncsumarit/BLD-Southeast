@@ -15,7 +15,9 @@ export interface Props {
 }
 
 const { id, class: className = '', columnHint } = Astro.props;
-const colClass = columnHint ? `stats-band__row--cols-${Math.min(Math.max(columnHint, 2), 4)}` : 'stats-band__row--statement';
+const colClass = columnHint
+  ? `stats-band__row--cols-${Math.min(Math.max(columnHint, 2), 4)}`
+  : 'stats-band__row--statement';
 ---
 
 <section id={id} class:list={['stats-band', className]}>

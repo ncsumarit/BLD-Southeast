@@ -20,10 +20,7 @@ const { ground = 'layer-01', columns = 3, minItemWidth = '17rem', id, class: cla
     <div class="card-grid-section__intro">
       <slot name="intro" />
     </div>
-    <div
-      class="card-grid"
-      style={`--card-grid-cols: ${columns}; --card-grid-min: ${minItemWidth};`}
-    >
+    <div class="card-grid" style={`--card-grid-cols: ${columns}; --card-grid-min: ${minItemWidth};`}>
       <slot />
     </div>
   </div>

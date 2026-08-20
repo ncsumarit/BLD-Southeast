@@ -38,7 +38,7 @@ The production site is deployed on **Cloudflare** and lives in the
 **Marit Digital** Cloudflare account — the same account that owns the
 `bldsoutheast.com` DNS zone. This matters: a Cloudflare Worker or Pages
 project can only bind a Custom Domain to a zone that lives in the **same**
-account. Deploying this site from a *different* Cloudflare account and
+account. Deploying this site from a _different_ Cloudflare account and
 pointing DNS at it via a proxied CNAME will fail with
 **Error 1014 (CNAME Cross-User Banned)** — Cloudflare blocks proxied
 cross-account CNAMEs to `*.workers.dev` / `*.pages.dev` targets specifically.

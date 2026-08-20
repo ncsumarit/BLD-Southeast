@@ -84,7 +84,7 @@ async function main() {
   }
 
   console.log(
-    `\n${touched} files optimized. Total: ${(totalBefore / 1024).toFixed(0)}KB -> ${(totalAfter / 1024).toFixed(0)}KB (saved ${((totalBefore - totalAfter) / 1024).toFixed(0)}KB)`,
+    `\n${touched} files optimized. Total: ${(totalBefore / 1024).toFixed(0)}KB -> ${(totalAfter / 1024).toFixed(0)}KB (saved ${((totalBefore - totalAfter) / 1024).toFixed(0)}KB)`
   );
 }
 

@@ -31,33 +31,35 @@ const hasSpeakers = speakers.length > 0;
   </Fragment>
 
   {
-    hasSpeakers
-      ? speakers.map((speaker) => (
-          <article class="speaker-card">
-            {speaker.photo && <img class="speaker-card__photo" src={speaker.photo} alt={speaker.name} loading="lazy" />}
-            <h3 class="speaker-card__name">{speaker.name}</h3>
-            {(speaker.title || speaker.org) && (
-              <p class="speaker-card__role">
-                {speaker.title}
-                {speaker.title && speaker.org ? ', ' : ''}
-                {speaker.org}
-              </p>
-            )}
-            {speaker.bio && <p class="speaker-card__bio">{speaker.bio}</p>}
-          </article>
-        ))
-      : (
-        <div class="speakers-placeholder">
-          <p class="speakers-placeholder__note">{placeholderNote ?? 'Speaker lineup announced soon.'}</p>
-        </div>
-      )
+    hasSpeakers ? (
+      speakers.map((speaker) => (
+        <article class="speaker-card">
+          {speaker.photo && <img class="speaker-card__photo" src={speaker.photo} alt={speaker.name} loading="lazy" />}
+          <h3 class="speaker-card__name">{speaker.name}</h3>
+          {(speaker.title || speaker.org) && (
+            <p class="speaker-card__role">
+              {speaker.title}
+              {speaker.title && speaker.org ? ', ' : ''}
+              {speaker.org}
+            </p>
+          )}
+          {speaker.bio && <p class="speaker-card__bio">{speaker.bio}</p>}
+        </article>
+      ))
+    ) : (
+      <div class="speakers-placeholder">
+        <p class="speakers-placeholder__note">{placeholderNote ?? 'Speaker lineup announced soon.'}</p>
+      </div>
+    )
   }
 </CardGrid>
 
 {
   hasSpeakers && applyCta && (
     <div class="speakers-apply-row">
-      <Button href={applyCta.href} variant="secondary">{applyCta.label}</Button>
+      <Button href={applyCta.href} variant="secondary">
+        {applyCta.label}
+      </Button>
     </div>
   )
 }

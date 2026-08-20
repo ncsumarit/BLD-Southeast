@@ -26,7 +26,13 @@ const isExternal = external || /^https?:\/\//.test(href);
   rel={isExternal ? 'noopener noreferrer' : undefined}
 >
   <span class="btn__label"><slot /></span>
-  {variant === 'text' && <span class="btn__chevron" aria-hidden="true">&rarr;</span>}
+  {
+    variant === 'text' && (
+      <span class="btn__chevron" aria-hidden="true">
+        &rarr;
+      </span>
+    )
+  }
   {isExternal && <span class="sr-only"> (opens in new tab)</span>}
 </a>
 
@@ -43,8 +49,12 @@ const isExternal = external || /^https?:\/\//.test(href);
     text-decoration: none;
     white-space: nowrap;
     cursor: pointer;
-    transition: background-color var(--transition-ui), color var(--transition-ui), border-color var(--transition-ui),
-      transform var(--transition-ui), box-shadow var(--transition-ui);
+    transition:
+      background-color var(--transition-ui),
+      color var(--transition-ui),
+      border-color var(--transition-ui),
+      transform var(--transition-ui),
+      box-shadow var(--transition-ui);
   }
 
   .btn:focus-visible {

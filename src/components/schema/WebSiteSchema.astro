@@ -12,7 +12,20 @@ export interface Props {
 
 const { name, url, description, searchUrl } = Astro.props;
 
-const schema: Record<string, any> = {
+interface WebSiteJsonLd {
+  '@context': 'https://schema.org';
+  '@type': 'WebSite';
+  name: string;
+  url: string;
+  description?: string;
+  potentialAction?: {
+    '@type': 'SearchAction';
+    target: { '@type': 'EntryPoint'; urlTemplate: string };
+    'query-input': string;
+  };
+}
+
+const schema: WebSiteJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name,

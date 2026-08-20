@@ -15,8 +15,7 @@
  */
 import { defineConfig } from 'tinacms';
 
-const branch =
-  process.env.GITHUB_BRANCH || process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || 'main';
+const branch = process.env.GITHUB_BRANCH || process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || 'main';
 
 const linkFields = () => [
   { type: 'string' as const, name: 'label', label: 'Label' },
@@ -105,7 +104,8 @@ export default defineConfig({
                 label: 'Body — second paragraph (optional, operator-supplied)',
                 ui: {
                   component: 'textarea',
-                  description: 'Left empty on purpose. Add a second paragraph here only with real, operator-approved copy.',
+                  description:
+                    'Left empty on purpose. Add a second paragraph here only with real, operator-approved copy.',
                 },
               },
               { type: 'image', name: 'image', label: 'Image' },
@@ -183,7 +183,12 @@ export default defineConfig({
                         ui: { itemProps: (item) => ({ label: item?.title || 'New option' }) },
                         fields: [
                           { type: 'string', name: 'title', label: 'Option Title' },
-                          { type: 'string', name: 'description', label: 'Option Description', ui: { component: 'textarea' } },
+                          {
+                            type: 'string',
+                            name: 'description',
+                            label: 'Option Description',
+                            ui: { component: 'textarea' },
+                          },
                         ],
                       },
                     ],
@@ -200,7 +205,11 @@ export default defineConfig({
               { type: 'string', name: 'heading', label: 'Heading' },
               { type: 'string', name: 'intro', label: 'Intro', ui: { component: 'textarea' } },
               { type: 'boolean', name: 'show', label: 'Show this section' },
-              { type: 'string', name: 'placeholderNote', label: 'Placeholder Note (shown until speakers are announced)' },
+              {
+                type: 'string',
+                name: 'placeholderNote',
+                label: 'Placeholder Note (shown until speakers are announced)',
+              },
               { type: 'object', name: 'applyCta', label: 'Apply to Speak CTA', fields: linkFields() },
               {
                 type: 'object',
@@ -288,7 +297,12 @@ export default defineConfig({
             label: 'Travel & Stay',
             fields: [
               { type: 'string', name: 'heading', label: 'Heading' },
-              { type: 'string', name: 'venueNote', label: 'Venue Note (to-confirm caveat)', ui: { component: 'textarea' } },
+              {
+                type: 'string',
+                name: 'venueNote',
+                label: 'Venue Note (to-confirm caveat)',
+                ui: { component: 'textarea' },
+              },
               { type: 'string', name: 'partnerUrl', label: 'Booking Partner URL (TripZero)' },
               {
                 type: 'object',

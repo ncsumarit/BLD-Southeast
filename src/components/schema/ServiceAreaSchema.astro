@@ -15,7 +15,16 @@ export interface Props {
   url: string;
 }
 
-const { businessName, businessUrl, businessType = 'LocalBusiness', city, state, services, description, url } = Astro.props;
+const {
+  businessName,
+  businessUrl,
+  businessType = 'LocalBusiness',
+  city,
+  state,
+  services,
+  description,
+  url,
+} = Astro.props;
 
 const schema = {
   '@context': 'https://schema.org',
@@ -34,7 +43,7 @@ const schema = {
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: `${businessName} Services in ${city}`,
-    itemListElement: services.map((service, i) => ({
+    itemListElement: services.map((service) => ({
       '@type': 'Offer',
       itemOffered: {
         '@type': 'Service',
