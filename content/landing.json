@@ -223,7 +223,7 @@
         "neighborhood": "West End",
         "walkMin": 8,
         "rate": "$199*",
-        "bookHref": "https://www.addtripzero.events/bld/hotel-hive",
+        "bookHref": "https://www.tripzero.events/bld-southeast/2026",
         "phone": "202-849-8499",
         "notes": "Green Key certified micro-hotel · Destination DC Sustainability District"
       },
@@ -232,7 +232,7 @@
         "neighborhood": "Foggy Bottom",
         "walkMin": 11,
         "rate": "$229*",
-        "bookHref": "",
+        "bookHref": "https://www.tripzero.events/bld-southeast/2026",
         "phone": "202-337-7600",
         "notes": "Suites with kitchenettes · Destination DC Sustainability District"
       }
