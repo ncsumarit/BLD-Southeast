@@ -6,9 +6,16 @@
 # unverified confidence; googletagmanager.com/google-analytics.com/
 # web3forms.com WERE removed below — confirmed zero usage anywhere
 # (no analytics, no on-site forms, verified via build output).
+#
+# https://*.sched.com is the /agenda page's Sched schedule embed
+# (embed.js + the iframe/XHR it injects at runtime) — allow-listed in
+# script-src, frame-src, and connect-src. Without all three the widget
+# fails SILENTLY (no console error users would report), exactly like the
+# header-script CSP issue described in Header.astro. Verify the live
+# /agenda page after touching this line.
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://cdn.jsdelivr.net https://*.sched.com; style-src 'self' 'unsafe-inline' https://*.sched.com; img-src 'self' data: https:; font-src 'self' data: https://*.sched.com; connect-src 'self' https://*.sched.com; frame-src 'self' https://*.sched.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   X-XSS-Protection: 1; mode=block

@@ -1,24 +1,66 @@
 ---
 /**
- * /agenda — the complete event schedule. The homepage shows a per-day
- * overview (see Agenda's `variant="overview"`); this page renders every
- * session in full, including excursion addresses, meal notes, reservation
- * flags, and the bonus Friday hike. Content comes from the same
- * content/landing.json agenda model so there's a single source of truth.
+ * /agenda — full event schedule, embedded live from Sched
+ * (https://bldsoutheast2026.sched.com/list/simple) via Sched's own embed
+ * widget. Replaces the previous hand-authored Day 1/Day 2/bonus-hike
+ * listing — Sched is now the single source of truth for session times,
+ * speakers, and room assignments, kept current by the organizer directly
+ * in Sched rather than requiring a content/code change here for every
+ * schedule tweak. The homepage's own "At a glance" overview (Agenda
+ * section, variant="overview") is unaffected — still content/landing.json
+ * driven.
+ *
+ * IMPORTANT: the embed script loads from bldsoutheast2026.sched.com — that
+ * domain must stay allow-listed in public/_headers' CSP (script-src,
+ * frame-src, connect-src) or the widget silently fails in production.
+ * This is the exact same class of bug documented in Header.astro's
+ * comment (a script silently blocked by CSP with no visible error) —
+ * verify the live /agenda page after any CSP or Sched-URL change.
  */
 import BaseLayout from '~/layouts/BaseLayout.astro';
-import AgendaSection from '~/components/sections/Agenda.astro';
-import content from '../../content/landing.json';
-
-const { agenda } = content;
+import StackedContent from '~/components/primitives/StackedContent.astro';
 
 const metadata = {
   title: 'Full Agenda',
   description:
-    'The complete BLD Southeast 2026 schedule: Day 1 DC excursions, the Day 2 conference sessions, and the bonus Friday urban hike.',
+    'The complete BLD Southeast 2026 schedule and directory — browse sessions, speakers, and exhibitors live on Sched.',
 };
 ---
 
 <BaseLayout metadata={metadata}>
-  <AgendaSection heading={agenda.heading} overline="" days={agenda.days} placeholderNote={agenda.placeholderNote} />
+  <StackedContent id="agenda" ground="layer-02" measure="content">
+    <h1 class="agenda-heading">Full Agenda</h1>
+    <p class="agenda-intro">
+      The full BLD Southeast 2026 schedule lives on Sched — session times, speakers, and rooms are kept up to date
+      there.
+    </p>
+    <a id="sched-embed" href="//bldsoutheast2026.sched.com/list/simple" data-sched-sidebar="no">
+      View the BLD Southeast 2026 schedule &amp; directory.
+    </a>
+    <script is:inline type="text/javascript" src="//bldsoutheast2026.sched.com/js/embed.js"></script>
+  </StackedContent>
 </BaseLayout>
+
+<style>
+  .agenda-heading {
+    margin: 0 0 var(--space-sm);
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    font-size: var(--text-2xl);
+    line-height: var(--leading-snug);
+    color: var(--color-text-heading);
+  }
+
+  .agenda-intro {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-md);
+    color: var(--color-text-muted);
+  }
+
+  /* Sched's embed.js replaces the #sched-embed link with its own widget
+     markup/styles at runtime — nothing further to style here. The link
+     stays as a real, functional fallback (plain text link to the schedule
+     on sched.com) if the script is ever blocked (CSP, ad blocker, JS
+     disabled), so it's deliberately not hidden via CSS. */
+</style>
