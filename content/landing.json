@@ -399,6 +399,24 @@
     },
     "hotels": [
       {
+        "name": "Normandy",
+        "rate": "$269–$279*",
+        "bookHref": "https://www.tripzero.events/bld-southeast/2026",
+        "notes": "Includes free breakfast and a $10 Uber credit."
+      },
+      {
+        "name": "Yours Truly",
+        "rate": "$329*",
+        "bookHref": "https://www.tripzero.events/bld-southeast/2026",
+        "notes": "Walkable from venue."
+      },
+      {
+        "name": "Washington Hilton",
+        "rate": "$229*",
+        "bookHref": "https://www.tripzero.events/bld-southeast/2026",
+        "notes": "Convenient to the Dupont Circle Metro."
+      },
+      {
         "name": "Hotel Hive",
         "neighborhood": "West End",
         "walkMin": 8,

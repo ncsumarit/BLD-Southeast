@@ -13,7 +13,7 @@
  *   airports: repeater{code,name,transit}
  *   gettingAroundNote: short-text
  *   metroMap: object{thumbnail (image-picker),fileHref (file-picker),alt}
- *   hotels: repeater{name,neighborhood,walkMin,rate,bookHref,phone,notes}
+ *   hotels: repeater{name,neighborhood?,walkMin?,rate,bookHref,phone,notes}
  *   bookingDeadline: short-text
  *   carbonOffset: rich-text-editor
  */
@@ -35,8 +35,11 @@ export interface Props {
   metroMap?: { thumbnail: string; fileHref: string; alt?: string };
   hotels: {
     name: string;
-    neighborhood: string;
-    walkMin: number;
+    /** Neighborhood + walk time are only shown together when both are
+     *  known (see hotel-card__meta below) — some hotels are listed by
+     *  amenity/notes only. */
+    neighborhood?: string;
+    walkMin?: number;
     rate: string;
     bookHref?: string;
     phone?: string;
@@ -129,9 +132,11 @@ const {
         hotels.map((hotel) => (
           <article class="hotel-card">
             <h4 class="hotel-card__name">{hotel.name}</h4>
-            <p class="hotel-card__meta">
-              {hotel.neighborhood} &middot; {hotel.walkMin} min walk to venue
-            </p>
+            {hotel.neighborhood && hotel.walkMin != null && (
+              <p class="hotel-card__meta">
+                {hotel.neighborhood} &middot; {hotel.walkMin} min walk to venue
+              </p>
+            )}
             <p class="hotel-card__rate">
               {hotel.rate} <span class="hotel-card__rate-note">event rate*</span>
             </p>
