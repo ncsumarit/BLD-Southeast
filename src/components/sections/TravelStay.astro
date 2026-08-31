@@ -141,7 +141,7 @@ const {
             </p>
             {hotel.notes && <p class="hotel-card__notes">{hotel.notes}</p>}
             <div class="hotel-card__actions">
-              {hotel.bookHref && (
+              {hotel.bookHref && !hotel.soldOut && (
                 <a class="hotel-card__book" href={hotel.bookHref} target="_blank" rel="noopener noreferrer">
                   Book this rate &rarr;
                   <span class="sr-only"> (opens in new tab)</span>
