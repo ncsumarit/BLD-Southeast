@@ -33,14 +33,22 @@ const { hero, footer } = content;
 // sit at the bottom there since both are still placeholder "coming soon"
 // states, so the nav follows suit rather than sending visitors to an
 // early empty section.
+// Prefixed with '/' rather than bare '#slug': this nav is shared by every
+// page via BaseLayout (index, agenda, 404), but the anchors themselves
+// only exist on the homepage. A bare '#about' on /agenda/ just no-ops
+// (no element with that id on the current page) instead of taking the
+// visitor back to the homepage section. '/#about' works correctly from
+// anywhere — same-page smooth-scroll on the homepage (browsers treat a
+// same-document hash link as a plain anchor jump, no reload), and
+// navigate-to-homepage-then-scroll from any other page.
 const anchorLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Why Attend', href: '#why-attend' },
-  { label: 'Beneficiaries', href: '#beneficiaries' },
-  { label: 'Sponsors', href: '#sponsors' },
-  { label: 'Travel', href: '#travel' },
+  { label: 'About', href: '/#about' },
+  { label: 'Why Attend', href: '/#why-attend' },
+  { label: 'Beneficiaries', href: '/#beneficiaries' },
+  { label: 'Sponsors', href: '/#sponsors' },
+  { label: 'Travel', href: '/#travel' },
   { label: 'Agenda', href: '/agenda/' },
-  { label: 'Speakers', href: '#speakers' },
+  { label: 'Speakers', href: '/#speakers' },
 ];
 ---
 
