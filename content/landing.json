@@ -399,21 +399,24 @@
     },
     "hotels": [
       {
-        "name": "Normandy",
+        "name": "The Normandy Hotel",
         "rate": "$269–$279*",
         "bookHref": "https://www.tripzero.events/bld-southeast/2026",
+        "phone": "202-483-1350",
         "notes": "Includes free breakfast and a $10 Uber credit."
       },
       {
-        "name": "Yours Truly",
+        "name": "Yours Truly DC",
         "rate": "$329*",
         "bookHref": "https://www.tripzero.events/bld-southeast/2026",
+        "phone": "877-269-5199",
         "notes": "Walkable from venue."
       },
       {
         "name": "Washington Hilton",
         "rate": "$229*",
         "bookHref": "https://www.tripzero.events/bld-southeast/2026",
+        "phone": "202-483-3000",
         "notes": "Convenient to the Dupont Circle Metro."
       },
       {
