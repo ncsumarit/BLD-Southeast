@@ -405,7 +405,8 @@
         "rate": "$199*",
         "bookHref": "https://www.tripzero.events/bld-southeast/2026",
         "phone": "202-849-8499",
-        "notes": "Green Key certified micro-hotel · Destination DC Sustainability District"
+        "notes": "Green Key certified micro-hotel · Destination DC Sustainability District",
+        "soldOut": true
       },
       {
         "name": "The River Inn",
@@ -414,7 +415,8 @@
         "rate": "$229*",
         "bookHref": "https://www.tripzero.events/bld-southeast/2026",
         "phone": "202-337-7600",
-        "notes": "Suites with kitchenettes · Destination DC Sustainability District"
+        "notes": "Suites with kitchenettes · Destination DC Sustainability District",
+        "soldOut": true
       }
     ],
     "bookingDeadline": "August 26, 2026",
