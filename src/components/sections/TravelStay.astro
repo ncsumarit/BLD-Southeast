@@ -13,7 +13,7 @@
  *   airports: repeater{code,name,transit}
  *   gettingAroundNote: short-text
  *   metroMap: object{thumbnail (image-picker),fileHref (file-picker),alt}
- *   hotels: repeater{name,neighborhood,walkMin,rate,bookHref,phone,notes}
+ *   hotels: repeater{name,neighborhood,walkMin,rate,bookHref,phone,notes,soldOut}
  *   bookingDeadline: short-text
  *   carbonOffset: rich-text-editor
  */
@@ -41,6 +41,7 @@ export interface Props {
     bookHref?: string;
     phone?: string;
     notes?: string;
+    soldOut?: boolean;
   }[];
   bookingDeadline: string;
   carbonOffsetNote: string;
@@ -128,7 +129,10 @@ const {
       {
         hotels.map((hotel) => (
           <article class="hotel-card">
-            <h4 class="hotel-card__name">{hotel.name}</h4>
+            <h4 class="hotel-card__name">
+              {hotel.name}
+              {hotel.soldOut && <span class="hotel-card__sold-out">Sold Out</span>}
+            </h4>
             <p class="hotel-card__meta">
               {hotel.neighborhood} &middot; {hotel.walkMin} min walk to venue
             </p>
@@ -137,7 +141,7 @@ const {
             </p>
             {hotel.notes && <p class="hotel-card__notes">{hotel.notes}</p>}
             <div class="hotel-card__actions">
-              {hotel.bookHref && (
+              {hotel.bookHref && !hotel.soldOut && (
                 <a class="hotel-card__book" href={hotel.bookHref} target="_blank" rel="noopener noreferrer">
                   Book this rate &rarr;
                   <span class="sr-only"> (opens in new tab)</span>
@@ -378,10 +382,26 @@ const {
 
   .hotel-card__name {
     margin: 0 0 var(--space-3xs);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
     font-family: var(--font-display);
     font-weight: var(--weight-display-bold);
     font-size: var(--text-lg);
     color: var(--color-text-heading);
+  }
+
+  .hotel-card__sold-out {
+    padding: 0.125rem var(--space-2xs);
+    font-family: var(--font-body);
+    font-weight: var(--weight-body-semi);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-overline);
+    color: var(--color-accent-text);
+    background-color: var(--orange-100);
+    border-radius: var(--radius-sm);
   }
 
   .hotel-card__meta {
