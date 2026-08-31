@@ -35,8 +35,11 @@ export interface Props {
   metroMap?: { thumbnail: string; fileHref: string; alt?: string };
   hotels: {
     name: string;
-    neighborhood: string;
-    walkMin: number;
+    /** Neighborhood + walk time are only shown together when both are
+     *  known (see hotel-card__meta below) — some hotels are listed by
+     *  amenity/notes only. */
+    neighborhood?: string;
+    walkMin?: number;
     rate: string;
     bookHref?: string;
     phone?: string;
