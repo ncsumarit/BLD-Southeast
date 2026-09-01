@@ -364,7 +364,14 @@
             "logo": "/images/sponsors/bronze/marit-digital.png",
             "url": "https://maritdigital.com/"
           },
-          { "name": "Olek Law", "logo": "/images/sponsors/bronze/olek-law.png", "url": "https://oleklaw.com/" }
+          { "name": "Olek Law", "logo": "/images/sponsors/bronze/olek-law.png", "url": "https://oleklaw.com/" },
+          { "name": "BTourism", "logo": "/images/sponsors/bronze/btourism.png" },
+          {
+            "name": "Convey",
+            "logo": "/images/sponsors/bronze/convey.png",
+            "darkCard": true
+          },
+          { "name": "Pariveda", "logo": "/images/sponsors/bronze/pariveda.png" }
         ]
       }
     ]
