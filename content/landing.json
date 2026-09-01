@@ -337,7 +337,8 @@
             "name": "Mangrove Web Development",
             "logo": "/images/sponsors/silver/mangrove-web-development.svg",
             "url": "https://mangrove-web.com/"
-          }
+          },
+          { "name": "Employee Ownership Expansion Network", "logo": "/images/sponsors/silver/eox.png" }
         ]
       },
       {
@@ -372,6 +373,29 @@
             "darkCard": true
           },
           { "name": "Pariveda", "logo": "/images/sponsors/bronze/pariveda.png" }
+        ]
+      },
+      {
+        "tier": "silent-auction",
+        "label": "Silent Auction",
+        "sponsors": [
+          {
+            "name": "The Local St. Augustine",
+            "logo": "/images/sponsors/silent-auction/the-local-st-augustine.png"
+          },
+          {
+            "name": "Legacy Vacation Resorts",
+            "logo": "/images/sponsors/silent-auction/legacy-vacation-resorts.png"
+          },
+          { "name": "East Fork", "logo": "/images/sponsors/silent-auction/east-fork.png" },
+          { "name": "andCo Hospitality", "logo": "/images/sponsors/silent-auction/andco-hospitality.png" },
+          { "name": "Bodhi Surf + Yoga", "logo": "/images/sponsors/silent-auction/bodhi-surf-yoga.png" },
+          {
+            "name": "The Fold Hotels",
+            "logo": "/images/sponsors/silent-auction/the-fold-hotels.jpg",
+            "darkCard": true
+          },
+          { "name": "Taos", "logo": "/images/sponsors/silent-auction/taos.png" }
         ]
       }
     ]
