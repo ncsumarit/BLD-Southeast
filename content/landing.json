@@ -337,6 +337,16 @@
             "name": "Mangrove Web Development",
             "logo": "/images/sponsors/silver/mangrove-web-development.svg",
             "url": "https://mangrove-web.com/"
+          },
+          {
+            "name": "Employee Ownership Expansion Network",
+            "logo": "/images/sponsors/silver/eox.png",
+            "url": "https://www.eoxnetwork.org/"
+          },
+          {
+            "name": "Fair Trade Certified",
+            "logo": "/images/sponsors/silver/fair-trade-certified.png",
+            "url": "https://www.fairtradecertified.org/"
           }
         ]
       },
@@ -364,7 +374,65 @@
             "logo": "/images/sponsors/bronze/marit-digital.png",
             "url": "https://maritdigital.com/"
           },
-          { "name": "Olek Law", "logo": "/images/sponsors/bronze/olek-law.png", "url": "https://oleklaw.com/" }
+          { "name": "Olek Law", "logo": "/images/sponsors/bronze/olek-law.png", "url": "https://oleklaw.com/" },
+          {
+            "name": "BTourism",
+            "logo": "/images/sponsors/bronze/btourism.png",
+            "url": "https://theforgoodmovement.com/btourism/"
+          },
+          {
+            "name": "Convey",
+            "logo": "/images/sponsors/bronze/convey.png",
+            "url": "https://conveyagency.co/",
+            "darkCard": true
+          },
+          {
+            "name": "Pariveda",
+            "logo": "/images/sponsors/bronze/pariveda.png",
+            "url": "https://parivedasolutions.com/"
+          }
+        ]
+      },
+      {
+        "tier": "silent-auction",
+        "label": "Silent Auction",
+        "sponsors": [
+          {
+            "name": "The Local St. Augustine",
+            "logo": "/images/sponsors/silent-auction/the-local-st-augustine.png",
+            "url": "https://www.thelocalinns.com/"
+          },
+          {
+            "name": "Legacy Vacation Resorts",
+            "logo": "/images/sponsors/silent-auction/legacy-vacation-resorts.png",
+            "url": "https://www.legacyvacationresorts.com/"
+          },
+          {
+            "name": "East Fork",
+            "logo": "/images/sponsors/silent-auction/east-fork.png",
+            "url": "https://eastfork.com/"
+          },
+          {
+            "name": "andCo Hospitality",
+            "logo": "/images/sponsors/silent-auction/andco-hospitality.png",
+            "url": "https://www.andco.earth/"
+          },
+          {
+            "name": "Bodhi Surf + Yoga",
+            "logo": "/images/sponsors/silent-auction/bodhi-surf-yoga.png",
+            "url": "https://www.bodhisurfyoga.com/"
+          },
+          {
+            "name": "The Fold Hotels",
+            "logo": "/images/sponsors/silent-auction/the-fold-hotels.jpg",
+            "url": "https://www.thefoldhotels.com/",
+            "darkCard": true
+          },
+          {
+            "name": "Taos",
+            "logo": "/images/sponsors/silent-auction/taos.png",
+            "url": "https://www.skitaos.com/"
+          }
         ]
       }
     ]

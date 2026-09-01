@@ -1,20 +1,23 @@
 ---
 /**
- * Sponsors — Gold / Silver / Bronze tiers, each its own row with tier-scaled
- * tile sizes (Gold largest, Bronze smallest — standard sponsor-tier
- * convention). Distinct from Beneficiaries (proceeds recipients): these are
- * paying event sponsors. Tile grid/rendering lives in the shared LogoGrid
- * primitive (also used by Beneficiaries via LogoTileGrid).
+ * Sponsors — Platinum / Gold / Silver / Bronze paid tiers, plus a trailing
+ * Silent Auction "tier" (donated-item contributors, not paying sponsors —
+ * reuses the same tier row + LogoGrid rendering since visually it's the
+ * same pattern, just not part of the platinum..bronze hierarchy). Each row
+ * has tier-scaled tile sizes (larger tiers read bigger). Distinct from
+ * Beneficiaries (proceeds recipients): these are event sponsors/donors.
+ * Tile grid/rendering lives in the shared LogoGrid primitive (also used by
+ * Beneficiaries via LogoTileGrid).
  *
  * CMS hints: heading short-text, tiers repeater{
- *   tier: select(gold|silver|bronze), label short-text,
- *   sponsors repeater{name,logo,url?}
+ *   tier: select(platinum|gold|silver|bronze|silent-auction), label short-text,
+ *   sponsors repeater{name,logo,url?,darkCard?}
  * }.
  */
 import LogoGrid, { type LogoItem } from '~/components/primitives/LogoGrid.astro';
 
 export interface SponsorTier {
-  tier: 'platinum' | 'gold' | 'silver' | 'bronze';
+  tier: 'platinum' | 'gold' | 'silver' | 'bronze' | 'silent-auction';
   label: string;
   sponsors: LogoItem[];
 }
@@ -28,11 +31,13 @@ export interface Props {
 const { heading, intro, tiers } = Astro.props;
 
 // Platinum largest tiles, Bronze smallest — standard tier-size convention.
+// Silent Auction sized like Bronze (it's a trailing, non-paid-tier row).
 const TIER_LAYOUT: Record<SponsorTier['tier'], { columnsAtDesktop: number; tilePadding: string }> = {
   platinum: { columnsAtDesktop: 3, tilePadding: 'var(--space-lg)' },
   gold: { columnsAtDesktop: 3, tilePadding: 'var(--space-lg)' },
   silver: { columnsAtDesktop: 4, tilePadding: 'var(--space-md)' },
   bronze: { columnsAtDesktop: 4, tilePadding: 'var(--space-sm)' },
+  'silent-auction': { columnsAtDesktop: 4, tilePadding: 'var(--space-sm)' },
 };
 ---
 
@@ -125,6 +130,9 @@ const TIER_LAYOUT: Record<SponsorTier['tier'], { columnsAtDesktop: number; tileP
     color: var(--color-text-muted);
   }
   .sponsor-tier--bronze .sponsor-tier__label {
+    color: var(--color-text-muted);
+  }
+  .sponsor-tier--silent-auction .sponsor-tier__label {
     color: var(--color-text-muted);
   }
 </style>
