@@ -338,7 +338,8 @@
             "logo": "/images/sponsors/silver/mangrove-web-development.svg",
             "url": "https://mangrove-web.com/"
           },
-          { "name": "Employee Ownership Expansion Network", "logo": "/images/sponsors/silver/eox.png" }
+          { "name": "Employee Ownership Expansion Network", "logo": "/images/sponsors/silver/eox.png" },
+          { "name": "Fair Trade Certified", "logo": "/images/sponsors/silver/fair-trade-certified.png" }
         ]
       },
       {
