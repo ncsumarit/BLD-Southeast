@@ -57,179 +57,6 @@
         "label": "Bonus — Urban Hike · Friday, September 18",
         "summary": "A guided ~5-mile urban hike visiting B Corps across Georgetown and downtown DC, ending at Luke's Lobster Farragut."
       }
-    ],
-    "days": [
-      {
-        "label": "Day 1 — Wednesday, September 16",
-        "sessions": [
-          {
-            "time": "9:00–10:00",
-            "title": "Breakfast & Networking Meetup",
-            "description": "Meet inside Western Market (2000 Pennsylvania Ave NW). Breakfast not provided. *Note: please pay for your own meal."
-          },
-          {
-            "time": "9:00–10:30",
-            "title": "Capitol Tour with Bart Houlahan",
-            "description": "Meet outside the Longworth House Office Building (1 Independence Ave SE). Limited slots (signup link coming soon)."
-          },
-          {
-            "time": "10:30–12:00",
-            "title": "Morning excursions — choose one",
-            "options": [
-              {
-                "title": "Capitol Tour with Bart Houlahan",
-                "description": "Meet outside the Longworth House Office Building (1 Independence Ave SE). Limited slots (signup link coming soon)."
-              },
-              {
-                "title": "L'Occitane Community Event",
-                "description": "Meet at L'Occitane (3106 M St NW). Limited slots (signup link coming soon)."
-              },
-              { "title": "Gabs & Grabbers (Networking & Cleanup)", "description": "Location TBD." },
-              {
-                "title": "National Museum of African American History and Culture",
-                "description": "Meet in the museum lobby (1400 Constitution Ave NW). Slots TBD (signup link coming soon)."
-              }
-            ]
-          },
-          {
-            "time": "12:30–1:30",
-            "title": "Lunch",
-            "description": "Options: food court at the Longworth Dining Hall / lunch outside with Bart Houlahan (Independence Ave SE); food court at the National Museum of African American History and Culture (1400 Constitution Ave NW); or Compliments Only (2029 P St NW, Front 1). *Note: please pay for your own meal."
-          },
-          {
-            "time": "3:00–4:00",
-            "title": "National Portrait Gallery",
-            "description": "Meet in the museum lobby (8th St NW & G St NW)."
-          },
-          {
-            "time": "3:30–5:00",
-            "title": "Black History Walking Tour",
-            "description": "Meet outside Ben's Chili Bowl (1213 U St NW). Paid excursion (signup link coming soon)."
-          },
-          {
-            "time": "5:00–6:00",
-            "title": "BIPOC Happy Hour at Busboys and Poets",
-            "description": "Meet in the Community Room at Busboys and Poets (2021 14th St NW). Attendees who don't identify as BIPOC but would like a drink beforehand can meet at Urban Garden Brewhouse (624 T St NW), DC's first Black woman-owned brick-and-mortar brewery — a table will be reserved for BLD Southeast."
-          },
-          {
-            "time": "6:30–9:00",
-            "title": "Opening Reception at Martin Luther King Jr. Memorial Library",
-            "description": "5th-floor event space & rooftop terrace (901 G St NW). Registration, brief opening and closing remarks, networking, complimentary food & beverages, library access, and live music (TBD)."
-          }
-        ]
-      },
-      {
-        "label": "Day 2 — Thursday, September 17",
-        "sessions": [
-          {
-            "time": "Venue",
-            "title": "George Washington University – Student Center",
-            "description": "800 21st St NW, Washington, DC 20052. Enter through the main entrance on 21st St and take the elevators to the third floor."
-          },
-          {
-            "time": "7:30–8:00 AM",
-            "title": "Sponsor table setup",
-            "description": "Sponsors: we recommend arriving in this window to set up your table."
-          },
-          {
-            "time": "8:00–8:45 AM",
-            "title": "Registration, Networking & Breakfast",
-            "description": "Breakfast will all be vegan."
-          },
-          {
-            "time": "8:45–9:00",
-            "title": "Opening Remarks",
-            "description": "DC Mayor-Elect Janeese Lewis George invited (TBD)."
-          },
-          { "time": "9:00–9:15", "title": "Keynote" },
-          {
-            "time": "9:25–10:25 AM",
-            "title": "First morning session — choose one",
-            "options": [
-              { "title": "Protecting the Mission: Practical Climate Risk Strategies for B Corps" },
-              { "title": "From Readiness to Responsibility: An AI Readiness Workshop for Purpose-Driven Companies" },
-              {
-                "title": "Radical Inclusion: Aligning Your Digital Presence with Your Inclusion Commitments, Legal Requirements, and B Corp V2 JEDI Standards"
-              },
-              { "title": "Why Should Anyone Choose You?" }
-            ]
-          },
-          {
-            "time": "10:35–11:35",
-            "title": "Second morning session — choose one",
-            "options": [
-              { "title": "From Proof to Power: Building the Infrastructure for Systems Change" },
-              { "title": "Using Your Purchasing Power: Supply Chain Engagement as Collective Action" },
-              { "title": "Is Impact Capital Right for You — and Are You Ready for It?" },
-              { "title": "Keeping Your People When Budgets Are Stretched and Attention Fractured" }
-            ]
-          },
-          { "time": "11:45–12:45 PM", "title": "Lunch", "description": "Lunch will all be vegan." },
-          { "time": "12:45–1:00", "title": "Mini Keynote" },
-          {
-            "time": "1:10–2:10 PM",
-            "title": "First afternoon session — choose one",
-            "options": [
-              { "title": "From B Impact to Certification: Demystifying the Audit Process" },
-              {
-                "title": "One Team. Every Generation: Creating Workplaces Where People Feel Valued, Connected, and Inspired"
-              },
-              { "title": "Buy, Build, Share: A Practical Workshop on Mission-Driven M&A and Employee Ownership" },
-              {
-                "title": "Beyond the Statement: Building Structural Solidarity That Pays Off Before, During, and After a Crisis"
-              }
-            ]
-          },
-          {
-            "time": "2:20–3:20 PM",
-            "title": "Congressional Plenary — Building the Conditions for Shared Prosperity",
-            "description": "Sen. Chris Van Hollen (MD), Rep. Chrissy Houlahan (PA), Rep. Jamie Raskin (MD), and a business representative (TBD). Moderated by George Chmael II (Council Fire)."
-          },
-          {
-            "time": "3:30–4:30 PM",
-            "title": "Second afternoon session — choose one",
-            "options": [
-              { "title": "From Proof to Power: Designing the Next Phase of the Movement" },
-              { "title": "Conscious AI Adoption: People, Planet, Governance" },
-              { "title": "Employee Ownership 101: A Succession Strategy for Mission-Driven Businesses" },
-              { "title": "Money Talks: How Money Beliefs Shape Leadership, Culture, and Impact" }
-            ]
-          },
-          { "time": "4:40–5:20", "title": "Closing Session — Continuing Our Collective Work Together" },
-          { "time": "5:20–5:30", "title": "Closing Remarks" },
-          {
-            "time": "6:00–7:00",
-            "title": "B1 Happy Hour (B Corp & 1% for the Planet members)",
-            "description": "Third floor of Tonic at Quigley's (2036 G St NW). Hosted by local Patagonia store Engagement Leads."
-          },
-          {
-            "time": "7:00–9:00",
-            "title": "Closing Reception",
-            "description": "Across all floors of Tonic at Quigley's (2036 G St NW). Silent auction (prizes from 1 Hotel South Beach, andCo, and Bodhi Surf + Yoga), live raffle (West Paw, Every Man Jack, and more), complimentary food & beverage, and networking."
-          }
-        ]
-      },
-      {
-        "label": "Bonus — Urban Hike · Friday, September 18",
-        "sessions": [
-          {
-            "time": "Overview",
-            "title": "~5 miles · ~2 hours walking (3–3.5 hours total with stops)",
-            "description": "Route map: https://maps.app.goo.gl/6fPVD2Fwpf89H3MAA"
-          },
-          {
-            "time": "9:00–9:30",
-            "title": "Start at the Lincoln Memorial",
-            "description": "12 min / 0.5 mi walk from Hotel Hive. Continue to the MLK Memorial (10 min / 0.4 mi), then along the Rock Creek Trail / Potomac riverfront to Georgetown, passing the Kennedy Center, the Watergate Hotel, the C&O Canal, and the Exorcist Steps."
-          },
-          {
-            "time": "10:30",
-            "title": "Georgetown along M St",
-            "description": "See B Corps along the way: Aesop, Athleta, Warby Parker, Marine Layer, Cotopaxi, Monos, Sézane, L'Occitane en Provence, Patagonia, East Fork, and Le Labo. Then continue to the Farragut / White House area (Just Salad, Longchamp, the White House)."
-          },
-          { "time": "12:30", "title": "End at Luke's Lobster Farragut", "description": "624 E St NW." }
-        ]
-      }
     ]
   },
   "speakers": {
@@ -383,8 +210,7 @@
           {
             "name": "Convey",
             "logo": "/images/sponsors/bronze/convey.png",
-            "url": "https://conveyagency.co/",
-            "darkCard": true
+            "url": "https://conveyagency.co/"
           },
           {
             "name": "Pariveda",
@@ -425,8 +251,7 @@
           {
             "name": "The Fold Hotels",
             "logo": "/images/sponsors/silent-auction/the-fold-hotels.jpg",
-            "url": "https://www.thefoldhotels.com/",
-            "darkCard": true
+            "url": "https://www.thefoldhotels.com/"
           },
           {
             "name": "Taos",

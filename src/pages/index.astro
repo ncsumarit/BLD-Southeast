@@ -23,7 +23,7 @@ import WhyAttend from '~/components/sections/WhyAttend.astro';
 import Agenda from '~/components/sections/Agenda.astro';
 import Speakers from '~/components/sections/Speakers.astro';
 import Beneficiaries from '~/components/sections/Beneficiaries.astro';
-import Sponsors from '~/components/sections/Sponsors.astro';
+import Sponsors, { type SponsorTier } from '~/components/sections/Sponsors.astro';
 import TravelStay from '~/components/sections/TravelStay.astro';
 import RegisterCTA from '~/components/sections/RegisterCTA.astro';
 
@@ -97,7 +97,7 @@ const aboutBody = [about.body, about.bodySecondary].filter((p): p is string => B
 
   <Beneficiaries heading={beneficiaries.heading} logos={beneficiaries.logos} />
 
-  <Sponsors heading={sponsors.heading} intro={sponsors.intro} tiers={sponsors.tiers} />
+  <Sponsors heading={sponsors.heading} intro={sponsors.intro} tiers={sponsors.tiers as SponsorTier[]} />
 
   <TravelStay
     heading={travelStay.heading}
@@ -128,8 +128,6 @@ const aboutBody = [about.body, about.bodySecondary].filter((p): p is string => B
         variant="overview"
         overview={agenda.overview}
         fullHref={agenda.fullAgendaHref}
-        days={agenda.days}
-        placeholderNote={agenda.placeholderNote}
       />
     )
   }
