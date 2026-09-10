@@ -9,6 +9,7 @@
  * applyCta link-picker (optional).
  */
 import CardGrid from '~/components/primitives/CardGrid.astro';
+import StackedContent from '~/components/primitives/StackedContent.astro';
 import Button from '~/components/Button.astro';
 
 export interface Props {
@@ -17,50 +18,71 @@ export interface Props {
   speakers?: { name: string; title?: string; org?: string; photo?: string; bio?: string }[];
   placeholderNote?: string;
   applyCta?: { label: string; href: string };
+  /** When set, the section embeds the live Sched speaker directory instead
+   *  of intro text / speaker cards / the "coming soon" placeholder — the
+   *  same Sched embed pattern as the /agenda page. Protocol-relative URL,
+   *  e.g. "//bldsoutheast2026.sched.com/directory/speakers". Requires
+   *  *.sched.com in public/_headers CSP (already allow-listed). */
+  schedEmbedUrl?: string;
 }
 
-const { heading, intro, speakers = [], placeholderNote, applyCta } = Astro.props;
+const { heading, intro, speakers = [], placeholderNote, applyCta, schedEmbedUrl } = Astro.props;
 const hasSpeakers = speakers.length > 0;
 ---
 
-<CardGrid id="speakers" ground="layer-01" columns={3}>
-  <Fragment slot="intro">
-    <p class="speakers-overline">Speakers</p>
-    <h2 class="speakers-heading">{heading}</h2>
-    {intro && <p class="speakers-intro">{intro}</p>}
-  </Fragment>
-
-  {
-    hasSpeakers ? (
-      speakers.map((speaker) => (
-        <article class="speaker-card">
-          {speaker.photo && <img class="speaker-card__photo" src={speaker.photo} alt={speaker.name} loading="lazy" />}
-          <h3 class="speaker-card__name">{speaker.name}</h3>
-          {(speaker.title || speaker.org) && (
-            <p class="speaker-card__role">
-              {speaker.title}
-              {speaker.title && speaker.org ? ', ' : ''}
-              {speaker.org}
-            </p>
-          )}
-          {speaker.bio && <p class="speaker-card__bio">{speaker.bio}</p>}
-        </article>
-      ))
-    ) : (
-      <div class="speakers-placeholder">
-        <p class="speakers-placeholder__note">{placeholderNote ?? 'Speaker lineup announced soon.'}</p>
-      </div>
-    )
-  }
-</CardGrid>
-
 {
-  hasSpeakers && applyCta && (
-    <div class="speakers-apply-row">
-      <Button href={applyCta.href} variant="secondary">
-        {applyCta.label}
-      </Button>
-    </div>
+  schedEmbedUrl ? (
+    <StackedContent id="speakers" ground="layer-01" measure="content">
+      <p class="speakers-overline">Speakers</p>
+      <h2 class="speakers-heading">{heading}</h2>
+      <div class="speakers-sched">
+        <a id="sched-embed" href={schedEmbedUrl} data-sched-sidebar="no">
+          View the BLD Southeast 2026 speaker directory.
+        </a>
+        <script is:inline type="text/javascript" src="//bldsoutheast2026.sched.com/js/embed.js" />
+      </div>
+    </StackedContent>
+  ) : (
+    <>
+      <CardGrid id="speakers" ground="layer-01" columns={3}>
+        <Fragment slot="intro">
+          <p class="speakers-overline">Speakers</p>
+          <h2 class="speakers-heading">{heading}</h2>
+          {intro && <p class="speakers-intro">{intro}</p>}
+        </Fragment>
+
+        {hasSpeakers ? (
+          speakers.map((speaker) => (
+            <article class="speaker-card">
+              {speaker.photo && (
+                <img class="speaker-card__photo" src={speaker.photo} alt={speaker.name} loading="lazy" />
+              )}
+              <h3 class="speaker-card__name">{speaker.name}</h3>
+              {(speaker.title || speaker.org) && (
+                <p class="speaker-card__role">
+                  {speaker.title}
+                  {speaker.title && speaker.org ? ', ' : ''}
+                  {speaker.org}
+                </p>
+              )}
+              {speaker.bio && <p class="speaker-card__bio">{speaker.bio}</p>}
+            </article>
+          ))
+        ) : (
+          <div class="speakers-placeholder">
+            <p class="speakers-placeholder__note">{placeholderNote ?? 'Speaker lineup announced soon.'}</p>
+          </div>
+        )}
+      </CardGrid>
+
+      {hasSpeakers && applyCta && (
+        <div class="speakers-apply-row">
+          <Button href={applyCta.href} variant="secondary">
+            {applyCta.label}
+          </Button>
+        </div>
+      )}
+    </>
   )
 }
 
@@ -166,5 +188,22 @@ const hasSpeakers = speakers.length > 0;
     max-width: var(--space-content-max);
     margin: var(--space-lg) auto 0;
     padding-inline: var(--space-gutter);
+  }
+
+  /* Sched speaker-directory embed. Sched's embed.js replaces the
+     #sched-embed link with its own widget; the link is a real fallback if
+     the script is blocked (CSP/ad-block/no-JS).
+
+     The Sched widget renders a fixed ~132px blank banner area above its
+     register bar. It's harmless on the /agenda page (there's intro copy
+     above it) but looks like dead space in this heading-only section, so we
+     clip that band off the top of the iframe. The value is Sched's fixed
+     header height (not viewport-proportional), verified at mobile/desktop;
+     revisit if Sched changes their embed chrome. */
+  .speakers-sched {
+    overflow: hidden;
+  }
+  .speakers-sched :global(iframe) {
+    margin-top: -100px;
   }
 </style>

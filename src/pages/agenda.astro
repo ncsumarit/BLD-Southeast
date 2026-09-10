@@ -31,8 +31,11 @@ const metadata = {
   <StackedContent id="agenda" ground="layer-02" measure="content">
     <h1 class="agenda-heading">Full Agenda</h1>
     <p class="agenda-intro">
-      The full BLD Southeast 2026 schedule lives on Sched — session times, speakers, and rooms are kept up to date
-      there.
+      Below is the full BLD Southeast 2026 schedule. To create your own schedule and sign up for excursions and
+      sessions, <a href="https://bldsoutheast2026.sched.com/" target="_blank" rel="noopener noreferrer">register for
+      Sched here</a>! You'll need to <strong>Reserve a free ticket</strong> on Sched to gain access. Please use the code
+      in your TicketTailor confirmation email or email
+      <a href="mailto:bldsoutheast@gmail.com">bldsoutheast@gmail.com</a> if you don't have a code.
     </p>
     <a id="sched-embed" href="//bldsoutheast2026.sched.com/list/simple" data-sched-sidebar="no">
       View the BLD Southeast 2026 schedule &amp; directory.
@@ -56,6 +59,15 @@ const metadata = {
     font-family: var(--font-body);
     font-size: var(--text-md);
     color: var(--color-text-muted);
+  }
+
+  .agenda-intro a {
+    color: var(--color-primary-strong);
+    font-weight: var(--weight-body-semi);
+    text-decoration: underline;
+  }
+  .agenda-intro a:hover {
+    color: var(--color-primary-deepest);
   }
 
   /* Sched's embed.js replaces the #sched-embed link with its own widget

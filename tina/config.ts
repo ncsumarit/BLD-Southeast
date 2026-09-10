@@ -210,6 +210,11 @@ export default defineConfig({
                 name: 'placeholderNote',
                 label: 'Placeholder Note (shown until speakers are announced)',
               },
+              {
+                type: 'string',
+                name: 'schedEmbedUrl',
+                label: 'Sched Speaker-Directory Embed URL (e.g. //bldsoutheast2026.sched.com/directory/speakers) — when set, embeds the live Sched speakers list instead of cards/placeholder',
+              },
               { type: 'object', name: 'applyCta', label: 'Apply to Speak CTA', fields: linkFields() },
               {
                 type: 'object',

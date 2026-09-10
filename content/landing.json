@@ -60,10 +60,11 @@
     ]
   },
   "speakers": {
-    "heading": "Speakers",
-    "intro": "Our 2026 speaker lineup is coming together.",
+    "heading": "Speakers + Schedule",
+    "intro": "",
     "show": true,
     "placeholderNote": "Speaker lineup announced soon.",
+    "schedEmbedUrl": "//bldsoutheast2026.sched.com/directory/speakers",
     "speakers": []
   },
   "beneficiaries": {
@@ -301,21 +302,24 @@
         "rate": "$269–$279*",
         "bookHref": "https://www.tripzero.events/bld-southeast/2026",
         "phone": "202-483-1350",
-        "notes": "Includes free breakfast and a $10 Uber credit."
+        "notes": "Includes free breakfast and a $10 Uber credit.",
+        "soldOut": true
       },
       {
         "name": "Yours Truly DC",
         "rate": "$329*",
         "bookHref": "https://www.tripzero.events/bld-southeast/2026",
         "phone": "877-269-5199",
-        "notes": "Walkable from venue."
+        "notes": "Walkable from venue.",
+        "soldOut": true
       },
       {
         "name": "Washington Hilton",
         "rate": "$229*",
         "bookHref": "https://www.tripzero.events/bld-southeast/2026",
         "phone": "202-483-3000",
-        "notes": "Convenient to the Dupont Circle Metro."
+        "notes": "Convenient to the Dupont Circle Metro.",
+        "soldOut": true
       },
       {
         "name": "Hotel Hive",
